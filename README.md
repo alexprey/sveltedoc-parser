@@ -1,6 +1,16 @@
 # The sveltedoc parser
 
-## Key Features
+Generate a JSON documentation for a Svelte file
+
+[![npm](https://img.shields.io/npm/v/sveltedoc-parser.svg)](https://www.npmjs.com/package/sveltedoc-parser)
+
+## Install
+
+```shell
+npm install --save sveltedoc-parser
+```
+
+## Features
 
 - JSDoc support
 - Extract the component description from JSDoc
@@ -22,9 +32,26 @@
 |---------|-----------|---------------|
 | **filename** | The filename to parse. **Required**, unless `fileContent` is passed. | |
 | **fileContent** | The file content to parse. **Required**, unless `filename` is passed. | |
-| **encoding** | The file encoding. | 'utf8' |
+| **encoding** | The file encoding. | `utf8` |
 | **features** | The component features to parse and extracting. | By default used all supported features. |
 | **ignoredVisibilities** | The list of ignored visibilities. | `['private', 'protected']` |
+
+## Usage
+
+```js
+const sveltedoc = require('sveltedoc-parser');
+const options = {
+    filename: 'main.svelte'
+};
+
+sveltedoc.parse(options)
+    .then(componentDoc => {
+        console.log(componentDoc);
+    })
+    .catch(e => {
+        console.error(e);
+    });
+```
 
 ## Issues
 

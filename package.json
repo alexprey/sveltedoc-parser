@@ -1,5 +1,5 @@
 {
-    "name": "@sveltedoc/parser",
+    "name": "sveltedoc-parser",
     "version": "1.0.0",
     "description": "Generate a JSON documentation for a Svelte file",
     "main": "index.js",

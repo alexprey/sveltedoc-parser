@@ -5,7 +5,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [1.1.0] Unreleased
 - [Fix] Fix issue with component name parsing with default features set (Missing feature `name` in defaults features list)
-- [Added] Implement parsing of js types for data properties from `@type` keyword or from default value
+- [Added] Implement parsing of js types for data properties from `@type` keyword and from default value
 
 ## [1.0.0]
 - Initial release

@@ -14,12 +14,12 @@ npm install --save sveltedoc-parser
 
 - JSDoc support
     - Support description extraction for everything items
-    - Support for visibility keywords: `@public`, `@protected`, `@private`
+    - Support visibility scope from JSDoc keywords: `@public`, `@protected`, `@private`
 - Extract list of imported components
     - Extract relative path to imported component (supports full-syntax and short-syntax import styles)
 - Extract data properties
     - Extract description from JSDoc comment
-    - Extract JS type from JSDoc (`@type {string}`) or parse default value
+    - Extract JS type from JSDoc (`@type {string}`) or parse default value if is not provided
 - Extract computed properties with list of dependencies
 - Extract list of references that attached to components or HTML elements
 - Extract all fired events

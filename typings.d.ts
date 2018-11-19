@@ -25,7 +25,7 @@ declare interface JSDocType {
     text: string,
     /**
      * The type representation of this item.
-     * @see `'type'` in `kind` field, then this field provide the name of JS type.
+     * @see `'type'|'const'` in `kind` field, then this field provide the name of JS type.
      * @see `'union'` in `kind` field, then this field provide the list of @see JSDocType  
      */
     type: string|JSDocType[],

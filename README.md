@@ -4,6 +4,8 @@ Generate a JSON documentation for a Svelte file
 
 [![npm](https://img.shields.io/npm/v/sveltedoc-parser.svg)](https://www.npmjs.com/package/sveltedoc-parser)
 
+Changelog of release versions can be found [here](/CHANGELOG.md)
+
 ## Install
 
 ```shell

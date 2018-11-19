@@ -13,18 +13,24 @@ npm install --save sveltedoc-parser
 ## Features
 
 - JSDoc support
-- Extract the component description from JSDoc
-- Extract used components list (with short or reference notations)
+    - Support description extraction for everything items
+    - Support for visibility keywords: `@public`, `@protected`, `@private`
+- Extract list of imported components
+    - Extract relative path to imported component (supports full-syntax and short-syntax import styles)
 - Extract data properties
-- Extract computed properties with dependencies
-- Extract events that fired by this component
-- Extract events that propogated from child component
-- Extract custom implemented events
+    - Extract description from JSDoc comment
+    - Extract JS type from JSDoc (`@type {string}`) or parse default value
+- Extract computed properties with list of dependencies
+- Extract list of references that attached to components or HTML elements
+- Extract all fired events
+    - Events that fired by this component by `fire(...)` method
+    - Events that propogated from child component or HTML elements
+    - Custom event handlers with `private` visibility scope
 - Extract list of used default and named `slots`
 - Extract component methods
 - Extract component helpers
 - Extract component actions
-- Extract used `refs` in template nodes
+- Extract component transitions
 
 ## Configuration
 
@@ -52,6 +58,8 @@ npm install --save sveltedoc-parser
 - `'refs'` - Extract the list of references used by this component.
 
 ## Output format
+
+Output format are described at [this document](/typings.d.ts).
 
 See example of output [here](/test/overall/overall.main.doc.json) presented in JSON format for [this component](/test/overall/main.svelte).
 

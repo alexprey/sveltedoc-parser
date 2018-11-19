@@ -94,7 +94,12 @@
             "description": null,
             "keywords": [],
             "value": false,
-            "name": "showSkinSelector"
+            "name": "showSkinSelector",
+            "type": {
+                "kind": "type",
+                "text": "boolean",
+                "type": "boolean"
+            }
         },
         {
             "visibility": "public",
@@ -104,8 +109,8 @@
             "name": "userKpiData",
             "type": {
                 "kind": "type",
-                "text": "object",
-                "type": "object"
+                "text": "any",
+                "type": "any"
             }
         },
         {
@@ -125,7 +130,12 @@
             "description": null,
             "keywords": [],
             "value": "",
-            "name": "copyright"
+            "name": "copyright",
+            "type": {
+                "kind": "type",
+                "text": "string",
+                "type": "string"
+            }
         }
     ],
     "computed": [
@@ -251,6 +261,13 @@
         {
             "name": "menu",
             "parent": "div",
+            "visibility": "public",
+            "description": "",
+            "keywords": []
+        },
+        {
+            "name": "menuComponent",
+            "parent": "Menu",
             "visibility": "public",
             "description": "",
             "keywords": []

@@ -5,7 +5,7 @@
         </Header>
     </div>
     <div ref:menu>
-        <Menu>
+        <Menu ref:menuComponent>
             {#each menuItems as item}
                 <MenuItem {item} />
             {/each}
@@ -31,6 +31,7 @@
 <script>
 /**
  * The entry-point component for 'Overall' page of Web-Application.
+ * @author Alexey Mulyukin
  */
 export default {
     components: {

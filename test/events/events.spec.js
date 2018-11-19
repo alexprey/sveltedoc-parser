@@ -53,7 +53,7 @@ describe('Events', () => {
         });
     });
 
-    it('Fired events with identifier event name in component methods should be parsed', (done) => {
+    xit('Fired events with identifier event name in component methods should be parsed', (done) => {
         parser.parse({
             filename: path.resolve(__dirname, 'event.method.fire.identifier.svelte'),
             features: ['events'],

@@ -33,8 +33,31 @@ npm install --save sveltedoc-parser
 | **filename** | The filename to parse. **Required**, unless `fileContent` is passed. | |
 | **fileContent** | The file content to parse. **Required**, unless `filename` is passed. | |
 | **encoding** | The file encoding. | `utf8` |
-| **features** | The component features to parse and extracting. | By default used all supported features. |
+| **features** | The component features to parse and extracting. | By default used all supported features (see below). |
 | **ignoredVisibilities** | The list of ignored visibilities. | `['private', 'protected']` |
+
+### Supported feature names
+
+- `'name'` - Extract the component name.
+- `'data'` - Extract and parse the list of component data properties.
+- `'computed'` - Extract and parse the list of component computed properties.
+- `'methods'` - Extract the list of component methods.
+- `'actions'` - Extract the list of component actions.
+- `'helpers'` - Extract the list of component helpers.
+- `'components'` - Extract the list of imported components.
+- `'description'` - Extract the component description.
+- `'events'` - Extract the list of events that fired by this component.
+- `'slots'` - Extract the list of slots provided by this component.
+- `'transitions'` - Extract the list of transitions used by this component.
+- `'refs'` - Extract the list of references used by this component.
+
+## Output format
+
+```json
+{
+    
+}
+```
 
 ## Usage
 

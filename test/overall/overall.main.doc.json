@@ -1,0 +1,782 @@
+{
+    "name": "main",
+    "data": [
+      {
+        "keywords": [
+          {
+            "name": "type",
+            "description": "{'default'|'night'}"
+          }
+        ],
+        "visibility": "public",
+        "description": "The skin type for layout.",
+        "value": "default",
+        "name": "skin"
+      },
+      {
+        "keywords": [
+          {
+            "name": "public",
+            "description": ""
+          }
+        ],
+        "visibility": "public",
+        "description": "The list of menu items.",
+        "value": {
+          "type": "ArrayExpression",
+          "start": 588,
+          "end": 590,
+          "range": [
+            588,
+            590
+          ],
+          "elements": [
+            
+          ]
+        },
+        "name": "menuItems"
+      },
+      {
+        "keywords": [
+          {
+            "name": "type",
+            "description": "{string}"
+          },
+          {
+            "name": "public",
+            "description": ""
+          }
+        ],
+        "visibility": "public",
+        "description": "The page header.",
+        "value": "",
+        "name": "pageHeader"
+      },
+      {
+        "keywords": [
+          {
+            "name": "type",
+            "description": "{string}"
+          },
+          {
+            "name": "public",
+            "description": ""
+          }
+        ],
+        "visibility": "public",
+        "description": "The page content.",
+        "value": "",
+        "name": "pageContent"
+      }
+    ],
+    "computed": [
+      {
+        "keywords": [
+          
+        ],
+        "visibility": "public",
+        "description": "Indicates that mobile device are used.",
+        "name": "isMobile",
+        "dependencies": [
+          "_"
+        ]
+      },
+      {
+        "visibility": "public",
+        "description": null,
+        "keywords": [
+          
+        ],
+        "name": "hasMenu",
+        "dependencies": [
+          "menuItems"
+        ]
+      }
+    ],
+    "methods": [
+      {
+        "visibility": "public",
+        "description": null,
+        "keywords": [
+          
+        ],
+        "value": {
+          "type": "FunctionExpression",
+          "start": 1227,
+          "end": 1371,
+          "range": [
+            1227,
+            1371
+          ],
+          "id": null,
+          "generator": false,
+          "expression": false,
+          "async": false,
+          "params": [
+            {
+              "type": "Identifier",
+              "start": 1228,
+              "end": 1233,
+              "range": [
+                1228,
+                1233
+              ],
+              "name": "event"
+            }
+          ],
+          "body": {
+            "type": "BlockStatement",
+            "start": 1235,
+            "end": 1371,
+            "range": [
+              1235,
+              1371
+            ],
+            "body": [
+              {
+                "type": "ExpressionStatement",
+                "start": 1250,
+                "end": 1312,
+                "range": [
+                  1250,
+                  1312
+                ],
+                "expression": {
+                  "type": "CallExpression",
+                  "start": 1250,
+                  "end": 1311,
+                  "range": [
+                    1250,
+                    1311
+                  ],
+                  "callee": {
+                    "type": "MemberExpression",
+                    "start": 1250,
+                    "end": 1258,
+                    "range": [
+                      1250,
+                      1258
+                    ],
+                    "object": {
+                      "type": "ThisExpression",
+                      "start": 1250,
+                      "end": 1254,
+                      "range": [
+                        1250,
+                        1254
+                      ]
+                    },
+                    "property": {
+                      "type": "Identifier",
+                      "start": 1255,
+                      "end": 1258,
+                      "range": [
+                        1255,
+                        1258
+                      ],
+                      "name": "set"
+                    },
+                    "computed": false
+                  },
+                  "arguments": [
+                    {
+                      "type": "ObjectExpression",
+                      "start": 1259,
+                      "end": 1310,
+                      "range": [
+                        1259,
+                        1310
+                      ],
+                      "properties": [
+                        {
+                          "type": "Property",
+                          "start": 1278,
+                          "end": 1295,
+                          "range": [
+                            1278,
+                            1295
+                          ],
+                          "method": false,
+                          "shorthand": false,
+                          "computed": false,
+                          "key": {
+                            "type": "Identifier",
+                            "start": 1278,
+                            "end": 1282,
+                            "range": [
+                              1278,
+                              1282
+                            ],
+                            "name": "skin"
+                          },
+                          "value": {
+                            "type": "MemberExpression",
+                            "start": 1284,
+                            "end": 1295,
+                            "range": [
+                              1284,
+                              1295
+                            ],
+                            "object": {
+                              "type": "Identifier",
+                              "start": 1284,
+                              "end": 1289,
+                              "range": [
+                                1284,
+                                1289
+                              ],
+                              "name": "event"
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "start": 1290,
+                              "end": 1295,
+                              "range": [
+                                1290,
+                                1295
+                              ],
+                              "name": "value"
+                            },
+                            "computed": false
+                          },
+                          "kind": "init"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "start": 1328,
+                "end": 1360,
+                "range": [
+                  1328,
+                  1360
+                ],
+                "expression": {
+                  "type": "CallExpression",
+                  "start": 1328,
+                  "end": 1359,
+                  "range": [
+                    1328,
+                    1359
+                  ],
+                  "callee": {
+                    "type": "MemberExpression",
+                    "start": 1328,
+                    "end": 1337,
+                    "range": [
+                      1328,
+                      1337
+                    ],
+                    "object": {
+                      "type": "ThisExpression",
+                      "start": 1328,
+                      "end": 1332,
+                      "range": [
+                        1328,
+                        1332
+                      ]
+                    },
+                    "property": {
+                      "type": "Identifier",
+                      "start": 1333,
+                      "end": 1337,
+                      "range": [
+                        1333,
+                        1337
+                      ],
+                      "name": "fire"
+                    },
+                    "computed": false
+                  },
+                  "arguments": [
+                    {
+                      "type": "Literal",
+                      "start": 1338,
+                      "end": 1351,
+                      "range": [
+                        1338,
+                        1351
+                      ],
+                      "value": "skinChanged",
+                      "raw": "'skinChanged'"
+                    },
+                    {
+                      "type": "Identifier",
+                      "start": 1353,
+                      "end": 1358,
+                      "range": [
+                        1353,
+                        1358
+                      ],
+                      "name": "event"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "name": "handleSkinChanged",
+        "args": [
+          "event"
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "visibility": "public",
+        "description": null,
+        "keywords": [
+          
+        ],
+        "value": {
+          "type": "ArrowFunctionExpression",
+          "start": 1414,
+          "end": 1593,
+          "range": [
+            1414,
+            1593
+          ],
+          "id": null,
+          "generator": false,
+          "expression": false,
+          "async": false,
+          "params": [
+            {
+              "type": "Identifier",
+              "start": 1415,
+              "end": 1419,
+              "range": [
+                1415,
+                1419
+              ],
+              "name": "node"
+            }
+          ],
+          "body": {
+            "type": "BlockStatement",
+            "start": 1424,
+            "end": 1593,
+            "range": [
+              1424,
+              1593
+            ],
+            "body": [
+              {
+                "type": "ReturnStatement",
+                "start": 1439,
+                "end": 1582,
+                "range": [
+                  1439,
+                  1582
+                ],
+                "argument": {
+                  "type": "ObjectExpression",
+                  "start": 1446,
+                  "end": 1582,
+                  "range": [
+                    1446,
+                    1582
+                  ],
+                  "properties": [
+                    {
+                      "type": "Property",
+                      "start": 1465,
+                      "end": 1496,
+                      "range": [
+                        1465,
+                        1496
+                      ],
+                      "method": true,
+                      "shorthand": false,
+                      "computed": false,
+                      "key": {
+                        "type": "Identifier",
+                        "start": 1465,
+                        "end": 1471,
+                        "range": [
+                          1465,
+                          1471
+                        ],
+                        "name": "update"
+                      },
+                      "kind": "init",
+                      "value": {
+                        "type": "FunctionExpression",
+                        "start": 1471,
+                        "end": 1496,
+                        "range": [
+                          1471,
+                          1496
+                        ],
+                        "id": null,
+                        "generator": false,
+                        "expression": false,
+                        "async": false,
+                        "params": [
+                          
+                        ],
+                        "body": {
+                          "type": "BlockStatement",
+                          "start": 1474,
+                          "end": 1496,
+                          "range": [
+                            1474,
+                            1496
+                          ],
+                          "body": [
+                            
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "type": "Property",
+                      "start": 1515,
+                      "end": 1567,
+                      "range": [
+                        1515,
+                        1567
+                      ],
+                      "method": true,
+                      "shorthand": false,
+                      "computed": false,
+                      "key": {
+                        "type": "Identifier",
+                        "start": 1515,
+                        "end": 1522,
+                        "range": [
+                          1515,
+                          1522
+                        ],
+                        "name": "destroy"
+                      },
+                      "kind": "init",
+                      "value": {
+                        "type": "FunctionExpression",
+                        "start": 1522,
+                        "end": 1567,
+                        "range": [
+                          1522,
+                          1567
+                        ],
+                        "id": null,
+                        "generator": false,
+                        "expression": false,
+                        "async": false,
+                        "params": [
+                          
+                        ],
+                        "body": {
+                          "type": "BlockStatement",
+                          "start": 1525,
+                          "end": 1567,
+                          "range": [
+                            1525,
+                            1567
+                          ],
+                          "body": [
+                            
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "name": "tooltip",
+        "args": [
+          "node"
+        ]
+      }
+    ],
+    "helpers": [
+      {
+        "visibility": "public",
+        "description": null,
+        "keywords": [
+          
+        ],
+        "value": "window",
+        "name": "window"
+      }
+    ],
+    "components": [
+      {
+        "visibility": "public",
+        "description": null,
+        "keywords": [
+          
+        ],
+        "value": "./Header.svelte",
+        "name": "Header"
+      },
+      {
+        "visibility": "public",
+        "description": null,
+        "keywords": [
+          
+        ],
+        "value": "./Menu.svelte",
+        "name": "Menu"
+      },
+      {
+        "visibility": "public",
+        "description": null,
+        "keywords": [
+          
+        ],
+        "value": "./MenuItem.svelte",
+        "name": "MenuItem"
+      },
+      {
+        "visibility": "public",
+        "description": null,
+        "keywords": [
+          
+        ],
+        "value": "./MarkdownContent.svelte",
+        "name": "MarkdownContent"
+      }
+    ],
+    "description": "The entry-point component for 'Overall' page of Web-Application.",
+    "events": [
+      {
+        "name": "skinChanged",
+        "parent": null,
+        "description": "",
+        "visibility": "public",
+        "keywords": [
+          
+        ]
+      }
+    ],
+    "slots": [
+      {
+        "name": "default",
+        "description": null
+      },
+      {
+        "name": "footer",
+        "description": null
+      }
+    ],
+    "transitions": [
+      {
+        "visibility": "public",
+        "description": null,
+        "keywords": [
+          
+        ],
+        "value": {
+          "type": "ArrowFunctionExpression",
+          "start": 1638,
+          "end": 1802,
+          "range": [
+            1638,
+            1802
+          ],
+          "id": null,
+          "generator": false,
+          "expression": false,
+          "async": false,
+          "params": [
+            {
+              "type": "Identifier",
+              "start": 1639,
+              "end": 1643,
+              "range": [
+                1639,
+                1643
+              ],
+              "name": "node"
+            }
+          ],
+          "body": {
+            "type": "BlockStatement",
+            "start": 1648,
+            "end": 1802,
+            "range": [
+              1648,
+              1802
+            ],
+            "body": [
+              {
+                "type": "ReturnStatement",
+                "start": 1663,
+                "end": 1791,
+                "range": [
+                  1663,
+                  1791
+                ],
+                "argument": {
+                  "type": "ObjectExpression",
+                  "start": 1670,
+                  "end": 1790,
+                  "range": [
+                    1670,
+                    1790
+                  ],
+                  "properties": [
+                    {
+                      "type": "Property",
+                      "start": 1689,
+                      "end": 1702,
+                      "range": [
+                        1689,
+                        1702
+                      ],
+                      "method": false,
+                      "shorthand": false,
+                      "computed": false,
+                      "key": {
+                        "type": "Identifier",
+                        "start": 1689,
+                        "end": 1697,
+                        "range": [
+                          1689,
+                          1697
+                        ],
+                        "name": "duration"
+                      },
+                      "value": {
+                        "type": "Literal",
+                        "start": 1699,
+                        "end": 1702,
+                        "range": [
+                          1699,
+                          1702
+                        ],
+                        "value": 100,
+                        "raw": "100"
+                      },
+                      "kind": "init"
+                    },
+                    {
+                      "type": "Property",
+                      "start": 1721,
+                      "end": 1731,
+                      "range": [
+                        1721,
+                        1731
+                      ],
+                      "method": false,
+                      "shorthand": false,
+                      "computed": false,
+                      "key": {
+                        "type": "Identifier",
+                        "start": 1721,
+                        "end": 1726,
+                        "range": [
+                          1721,
+                          1726
+                        ],
+                        "name": "delay"
+                      },
+                      "value": {
+                        "type": "Literal",
+                        "start": 1728,
+                        "end": 1731,
+                        "range": [
+                          1728,
+                          1731
+                        ],
+                        "value": 100,
+                        "raw": "100"
+                      },
+                      "kind": "init"
+                    },
+                    {
+                      "type": "Property",
+                      "start": 1750,
+                      "end": 1775,
+                      "range": [
+                        1750,
+                        1775
+                      ],
+                      "method": false,
+                      "shorthand": false,
+                      "computed": false,
+                      "key": {
+                        "type": "Identifier",
+                        "start": 1750,
+                        "end": 1753,
+                        "range": [
+                          1750,
+                          1753
+                        ],
+                        "name": "css"
+                      },
+                      "value": {
+                        "type": "Literal",
+                        "start": 1755,
+                        "end": 1775,
+                        "range": [
+                          1755,
+                          1775
+                        ],
+                        "value": "visibility: hidden",
+                        "raw": "'visibility: hidden'"
+                      },
+                      "kind": "init"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "name": "delay",
+        "args": [
+          "node"
+        ]
+      }
+    ],
+    "refs": [
+      {
+        "name": "header",
+        "parent": "div",
+        "visibility": "public",
+        "description": "",
+        "keywords": [
+          
+        ]
+      },
+      {
+        "name": "menu",
+        "parent": "div",
+        "visibility": "public",
+        "description": "",
+        "keywords": [
+          
+        ]
+      },
+      {
+        "name": "body",
+        "parent": "div",
+        "visibility": "public",
+        "description": "",
+        "keywords": [
+          
+        ]
+      },
+      {
+        "name": "footer",
+        "parent": "div",
+        "visibility": "public",
+        "description": "",
+        "keywords": [
+          
+        ]
+      }
+    ],
+    "store": [
+      
+    ]
+  }

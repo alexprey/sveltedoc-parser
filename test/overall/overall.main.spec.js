@@ -14,6 +14,19 @@ describe('Overall', () => {
         }).then((doc) => {
             expect(doc, 'Document should be provided').to.exist;
 
+            // Remove function body expressions
+            [
+                ...doc.methods,
+                ...doc.actions,
+                ...doc.transitions
+            ].forEach(m => {
+                if (m.value) {
+                    delete m.value;
+                }
+            });
+
+            //fs.writeFileSync(path.resolve(__dirname, 'overall.main.doc.json'), JSON.stringify(doc, null, 4));
+
             const expectedDoc = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'overall.main.doc.json')));
 
             expect(doc).to.deep.equal(expectedDoc);

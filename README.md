@@ -53,11 +53,7 @@ npm install --save sveltedoc-parser
 
 ## Output format
 
-```json
-{
-    
-}
-```
+See example of output [here](/test/overall/overall.main.doc.json) presented in JSON format for [this component](/test/overall/main.svelte).
 
 ## Usage
 
@@ -79,6 +75,7 @@ sveltedoc.parse(options)
 ## Issues
 
 All list of known issues presented at [this page](https://github.com/alexprey/sveltedoc-parser/issues).
+
 Found a new issues? Please contribute and write detailed description [here](https://github.com/alexprey/sveltedoc-parser/issues/new).
 
 ## Contributors

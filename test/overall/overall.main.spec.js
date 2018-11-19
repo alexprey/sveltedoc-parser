@@ -18,14 +18,15 @@ describe('Overall', () => {
             [
                 ...doc.methods,
                 ...doc.actions,
-                ...doc.transitions
+                ...doc.transitions,
+                ...doc.data
             ].forEach(m => {
-                if (m.value) {
+                if (m.value && m.value.type) {
                     delete m.value;
                 }
             });
 
-            //fs.writeFileSync(path.resolve(__dirname, 'overall.main.doc.json'), JSON.stringify(doc, null, 4));
+            // fs.writeFileSync(path.resolve(__dirname, 'overall.main.doc.json'), JSON.stringify(doc, null, 4));
 
             const expectedDoc = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'overall.main.doc.json')));
 

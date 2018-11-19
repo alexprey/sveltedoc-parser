@@ -63,6 +63,10 @@ export default {
              * @public
              */
             pageContent: '',
+            showSkinSelector: false,
+            userKpiData: {},
+            newsFeedUpdateTimeout: 10,
+            copyright: '',
         };
     },
     computed: {

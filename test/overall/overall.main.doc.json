@@ -11,7 +11,25 @@
             "visibility": "public",
             "description": "The skin type for layout.",
             "value": "default",
-            "name": "skin"
+            "name": "skin",
+            "type": {
+                "kind": "union",
+                "text": "'default'|'night'",
+                "type": [
+                    {
+                        "kind": "const",
+                        "text": "'default'",
+                        "type": "string",
+                        "value": "default"
+                    },
+                    {
+                        "kind": "const",
+                        "text": "'night'",
+                        "type": "string",
+                        "value": "night"
+                    }
+                ]
+            }
         },
         {
             "keywords": [
@@ -22,17 +40,12 @@
             ],
             "visibility": "public",
             "description": "The list of menu items.",
-            "value": {
-                "type": "ArrayExpression",
-                "start": 588,
-                "end": 590,
-                "range": [
-                    588,
-                    590
-                ],
-                "elements": []
-            },
-            "name": "menuItems"
+            "name": "menuItems",
+            "type": {
+                "kind": "type",
+                "text": "Array<any>",
+                "type": "Array<any>"
+            }
         },
         {
             "keywords": [
@@ -48,7 +61,12 @@
             "visibility": "public",
             "description": "The page header.",
             "value": "",
-            "name": "pageHeader"
+            "name": "pageHeader",
+            "type": {
+                "kind": "type",
+                "text": "string",
+                "type": "string"
+            }
         },
         {
             "keywords": [
@@ -64,7 +82,12 @@
             "visibility": "public",
             "description": "The page content.",
             "value": "",
-            "name": "pageContent"
+            "name": "pageContent",
+            "type": {
+                "kind": "type",
+                "text": "string",
+                "type": "string"
+            }
         },
         {
             "visibility": "public",
@@ -78,14 +101,24 @@
             "description": null,
             "keywords": [],
             "value": {},
-            "name": "userKpiData"
+            "name": "userKpiData",
+            "type": {
+                "kind": "type",
+                "text": "object",
+                "type": "object"
+            }
         },
         {
             "visibility": "public",
             "description": null,
             "keywords": [],
             "value": 10,
-            "name": "newsFeedUpdateTimeout"
+            "name": "newsFeedUpdateTimeout",
+            "type": {
+                "kind": "type",
+                "text": "number",
+                "type": "number"
+            }
         },
         {
             "visibility": "public",

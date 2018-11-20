@@ -1,7 +1,7 @@
 /**
  * Represents a data structure of JSDoc keywords, like a `@type {string}`
  */
-declare interface JSDocKeyword {
+export interface JSDocKeyword {
     /**
      * The name of keyword.
      * @example for `@param {string} Description of this property`, this field equals a `param`.
@@ -14,7 +14,7 @@ declare interface JSDocKeyword {
     description: string;
 }
 
-declare interface JSDocType {
+export interface JSDocType {
     /**
      * Kind of this type.
      */
@@ -35,7 +35,7 @@ declare interface JSDocType {
     value?: any
 }
 
-declare interface ISvelteItem {
+export interface ISvelteItem {
     /**
      * The name of the item.
      */
@@ -54,7 +54,7 @@ declare interface ISvelteItem {
     keywords?: JSDocKeyword[];
 }
 
-declare interface SvelteDataItem extends ISvelteItem {
+export interface SvelteDataItem extends ISvelteItem {
     /**
      * The JS type of property.
      */
@@ -65,37 +65,37 @@ declare interface SvelteDataItem extends ISvelteItem {
     value?: any
 }
 
-declare interface SvelteComputedItem extends ISvelteItem {
+export interface SvelteComputedItem extends ISvelteItem {
     /**
      * The list of data or computed properties names, marked as depended to this property.
      */
     dependencies: string[]    
 }
 
-declare interface SvelteMethodItem extends ISvelteItem {
+export interface SvelteMethodItem extends ISvelteItem {
     // TODO
     args?: any[]
 }
 
-declare interface SvelteComponentItem extends ISvelteItem {
+export interface SvelteComponentItem extends ISvelteItem {
     /**
      * The relative path to improted component.
      */
     value: string;
 }
 
-declare interface SvelteEventItem extends ISvelteItem {
+export interface SvelteEventItem extends ISvelteItem {
     /**
      * The name of HTML element if propagated standart JS Dom event or null.
      */
     parent?: string|null;
 }
 
-declare interface SvelteSlotItem extends ISvelteItem {
+export interface SvelteSlotItem extends ISvelteItem {
 
 }
 
-declare interface SvelteRefItem extends ISvelteItem {
+export interface SvelteRefItem extends ISvelteItem {
     /**
      * The name of HTML element or component that binded with this ref name.
      */
@@ -105,7 +105,7 @@ declare interface SvelteRefItem extends ISvelteItem {
 /**
  * Represents a Svelte component documentation object.
  */
-declare interface SvelteComponentDoc {
+export interface SvelteComponentDoc {
     /**
      * The name of the parsed component.
      */

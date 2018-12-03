@@ -15,71 +15,79 @@ function parseOptions(options) {
     options.ignoredVisibilities = options.ignoredVisibilities || DEFAULT_IGNORED_VISIBILITIES;
 }
 
-module.exports.parse = (options) => new Promise((resolve) => {
-    parseOptions(options);
+module.exports.parse = (options) => new Promise((resolve, reject) => {
+    try {
+        parseOptions(options);
 
-    if (!options.source) {
-        if (options.filename) {
-            if (path.extname(options.filename) === '.js') {
-                options.source = {
-                    template: '',
-                    script: fs.readFileSync(options.filename, options.encoding)
-                };
+        if (!options.source) {
+            if (options.filename) {
+                if (path.extname(options.filename) === '.js') {
+                    options.source = {
+                        template: '',
+                        script: fs.readFileSync(options.filename, options.encoding)
+                    };
+                } else {
+                    options.source = loadSourceFromFileContent(
+                        fs.readFileSync(options.filename, options.encoding));
+                }
             } else {
-                options.source = loadSourceFromFileContent(
-                    fs.readFileSync(options.filename, options.encoding));
+                options.source = loadSourceFromFileContent(options.fileContent);
             }
-        } else {
-            options.source = loadSourceFromFileContent(options.fileContent);
         }
-    }
 
-    const component = {};
-    const parser = new Parser(options);
+        const component = {};
+        const parser = new Parser(options);
 
-    parser.features.forEach((feature) => {
-        switch (feature) {
-            case 'name':
-            case 'description':
-                component[feature] = null;
-                parser.on(feature, (value) => (component[feature] = value));
-                break;
-
-            case 'keywords':
-                component[feature] = [];
-                parser.on(feature, (value) => (component[feature] = value));
-                break;
-
-            default:
-                component[feature] = [];
-
-                const eventName = Parser.getEventName(feature);
-
-                parser.on(eventName, (value) => {
-                    const itemIndex = component[feature].findIndex(item => item.name === value.name);
-
-                    if (itemIndex < 0) {
-                        component[feature].push(value);
-                    } else {
-                        component[feature][itemIndex] = value;
-                    }
-                });
-        }
-    });
-
-    parser.on('end', () => {
         parser.features.forEach((feature) => {
-            if (component[feature] instanceof Array) {
-                component[feature] = component[feature].filter((item) => {
-                    return !options.ignoredVisibilities.includes(item.visibility);
-                });
+            switch (feature) {
+                case 'name':
+                case 'description':
+                    component[feature] = null;
+                    parser.on(feature, (value) => (component[feature] = value));
+                    break;
+
+                case 'keywords':
+                    component[feature] = [];
+                    parser.on(feature, (value) => (component[feature] = value));
+                    break;
+
+                default:
+                    component[feature] = [];
+
+                    const eventName = Parser.getEventName(feature);
+
+                    parser.on(eventName, (value) => {
+                        const itemIndex = component[feature].findIndex(item => item.name === value.name);
+
+                        if (itemIndex < 0) {
+                            component[feature].push(value);
+                        } else {
+                            component[feature][itemIndex] = value;
+                        }
+                    });
             }
         });
 
-        resolve(component);
-    });
+        parser.on('end', () => {
+            parser.features.forEach((feature) => {
+                if (component[feature] instanceof Array) {
+                    component[feature] = component[feature].filter((item) => {
+                        return !options.ignoredVisibilities.includes(item.visibility);
+                    });
+                }
+            });
 
-    parser.walk();
+            resolve(component);
+        });
+
+        parser.on('failure', (error) => {
+            reject(error);
+        });
+
+        parser.walk();
+    } catch (error) {
+        reject(error);
+    }
 });
 
 function extractContentFromHtmlBlock(content, blockName) {

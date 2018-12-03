@@ -3,6 +3,10 @@ All notable changes to the "svelte-intellisense" extension will be documented in
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [1.1.3] 03.12.2018
+
+- [Fixed] Improve crash handling in parser logic, now all errors fall into `reject(...)` method instead throwing up
+
 ## [1.1.2] 30.11.2018
 
 - [Fixed] Fix issue when parsing types from JSDoc, cover more cases. Previously type `@type {('plain'|'plain-negative')}` was not supported in case of `-` symbol

@@ -99,7 +99,7 @@ describe('JSDoc parser module tests', () => {
         });
 
         it('Union of string constants', () => {
-            const type = jsdoc.parseTypeKeyword('{\'plain\'|\'primary<alert>\'|\'{secondary}\'|\'plain-inverse\'}');
+            const type = jsdoc.parseTypeKeyword('{\'plain\'|\'primary<alert>\'|\'secondary\'|\'plain-inverse\'}');
 
             expect(type).is.exist;
             expect(type.kind).is.equal('union');
@@ -107,7 +107,7 @@ describe('JSDoc parser module tests', () => {
 
             expect(type.type.some(t => t.kind === 'const' && t.value === 'plain'), 'should have \'plain\' const').to.be.true;
             expect(type.type.some(t => t.kind === 'const' && t.value === 'primary<alert>'), 'should have \'primary<alert>\' const').to.be.true;
-            expect(type.type.some(t => t.kind === 'const' && t.value === '{secondary}'), 'should have \'{secondary}\' const').to.be.true;
+            expect(type.type.some(t => t.kind === 'const' && t.value === 'secondary'), 'should have \'secondary\' const').to.be.true;
             expect(type.type.some(t => t.kind === 'const' && t.value === 'plain-inverse'), 'should have \'plain-inverse\' const').to.be.true;
         });
     });
@@ -303,7 +303,7 @@ describe('JSDoc parser module tests', () => {
         });
 
         it('Union of string constants', () => {
-            const param = jsdoc.parseParamKeyword('{\'plain\'|\'primary<alert>\'|\'{secondary}\'|\'plain-inverse\'} parameter');
+            const param = jsdoc.parseParamKeyword('{\'plain\'|\'primary<alert>\'|\'secondary\'|\'plain-inverse\'} parameter');
             
             expect(param.type).is.exist;
             expect(param.type.kind).is.equal('union');
@@ -311,8 +311,27 @@ describe('JSDoc parser module tests', () => {
 
             expect(param.type.type.some(t => t.kind === 'const' && t.value === 'plain'), 'should have \'plain\' const').to.be.true;
             expect(param.type.type.some(t => t.kind === 'const' && t.value === 'primary<alert>'), 'should have \'primary<alert>\' const').to.be.true;
-            expect(param.type.type.some(t => t.kind === 'const' && t.value === '{secondary}'), 'should have \'{secondary}\' const').to.be.true;
+            expect(param.type.type.some(t => t.kind === 'const' && t.value === 'secondary'), 'should have \'secondary\' const').to.be.true;
             expect(param.type.type.some(t => t.kind === 'const' && t.value === 'plain-inverse'), 'should have \'plain-inverse\' const').to.be.true;
+        });
+
+        it('Union of string constants with missing quote', () => {
+            const param = jsdoc.parseParamKeyword('{\'plain\'|\'primary<alert>\'|secondary\'|\'plain-inverse\'} parameter');
+            
+            expect(param.type).is.exist;
+            expect(param.type.kind).is.equal('union');
+            expect(param.type.type.length).is.equal(4);
+
+            expect(param.type.type.some(t => t.kind === 'const' && t.value === 'plain'), 'should have \'plain\' const').to.be.true;
+            expect(param.type.type.some(t => t.kind === 'const' && t.value === 'primary<alert>'), 'should have \'primary<alert>\' const').to.be.true;
+            expect(param.type.type.some(t => t.kind === 'type' && t.type === 'secondary\''), 'should have \'secondary\' as a not constant').to.be.true;
+            expect(param.type.type.some(t => t.kind === 'const' && t.value === 'plain-inverse'), 'should have \'plain-inverse\' const').to.be.true;
+        });
+
+        it('Union of string constants with figure bracet', () => {
+            const param = jsdoc.parseParamKeyword('{\'plain\'|\'primary<alert>\'|\'seco{ndary}\'|\'plain-inverse\'} parameter');
+            
+            expect(param.type).is.exist;
         });
     });
 });

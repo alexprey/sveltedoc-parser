@@ -2,9 +2,9 @@ const path = require('path');
 const chai = require('chai');
 const expect = chai.expect;
 
-const parser = require('../../index');
+const parser = require('../../../index');
 
-describe('Events', () => {
+describe('SvelteDoc - Events', () => {
     it('Fired events in markup should be parsed', (done) => {
         parser.parse({
             filename: path.resolve(__dirname, 'event.markup.fire.svelte'),

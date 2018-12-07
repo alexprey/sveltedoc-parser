@@ -2,9 +2,9 @@ const path = require('path');
 const chai = require('chai');
 const expect = chai.expect;
 
-const parser = require('../../index');
+const parser = require('../../../index');
 
-describe('Basics', () => {
+describe('SvelteDoc - Basics', () => {
     it('Component name should be extracted', (done) => {
         parser.parse({
             filename: path.resolve(__dirname, 'basic.description.svelte'),

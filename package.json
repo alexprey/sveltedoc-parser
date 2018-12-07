@@ -4,7 +4,10 @@
     "description": "Generate a JSON documentation for a Svelte file",
     "main": "index.js",
     "scripts": {
-        "test": "mocha ./test/**/*.spec.js"
+        "test": "mocha ./test/**/*.spec.js",
+        "test:unit": "mocha ./test/unit/**/*.spec.js",
+        "test:integration": "mocha ./test/integration/**/*.spec.js",
+        "test:integration-overall": "mocha ./test/integration/overall/overall.main.spec.js"
     },
     "repository": {
         "type": "git",

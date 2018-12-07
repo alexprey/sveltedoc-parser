@@ -3,6 +3,10 @@ All notable changes to the "svelte-intellisense" extension will be documented in
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## Unreleased
+
+- [Fixed] Fix and refactor param keyword parsing to handle some wrong cases (fix and close issue #7)
+
 ## [1.1.3] 03.12.2018
 
 - [Fixed] Improve crash handling in parser logic, now all errors fall into `reject(...)` method instead throwing up

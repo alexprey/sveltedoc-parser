@@ -81,6 +81,14 @@ export default {
         window
     },
     methods: {
+        /**
+         * Do some action based on action name value
+         * @param {string} actionName - The name of action that should be performed.
+         */
+        doAction(actionName) {
+
+        },
+        /** @private */
         handleSkinChanged(event) {
             this.set({
                 skin: event.value

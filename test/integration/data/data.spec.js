@@ -2,9 +2,9 @@ const path = require('path');
 const chai = require('chai');
 const expect = chai.expect;
 
-const parser = require('../../index');
+const parser = require('../../../index');
 
-describe('Component data model', () => {
+describe('SvelteDoc - Component data model', () => {
     it('Data model should be parsed', (done) => {
         parser.parse({
             filename: path.resolve(__dirname, 'data.plain.svelte'),

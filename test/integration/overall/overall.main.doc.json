@@ -160,9 +160,41 @@
     ],
     "methods": [
         {
+            "keywords": [
+                {
+                    "name": "param",
+                    "description": "{string} actionName - The name of action that should be performed."
+                }
+            ],
             "visibility": "public",
-            "description": null,
-            "keywords": [],
+            "description": "Do some action based on action name value",
+            "name": "doAction",
+            "args": [
+                "actionName"
+            ],
+            "params": [
+                {
+                    "type": {
+                        "kind": "type",
+                        "text": "string",
+                        "type": "string"
+                    },
+                    "name": "actionName",
+                    "optional": false,
+                    "default": null,
+                    "description": "The name of action that should be performed."
+                }
+            ]
+        },
+        {
+            "keywords": [
+                {
+                    "name": "private",
+                    "description": ""
+                }
+            ],
+            "visibility": "private",
+            "description": "",
             "name": "handleSkinChanged",
             "args": [
                 "event"

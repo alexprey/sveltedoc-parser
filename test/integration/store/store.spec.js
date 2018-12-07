@@ -2,9 +2,9 @@ const path = require('path');
 const chai = require('chai');
 const expect = chai.expect;
 
-const parser = require('../../index');
+const parser = require('../../../index');
 
-xdescribe('Store', () => {
+xdescribe('SvelteDoc - Store', () => {
     it('Reading store properties in markup should be parsed', (done) => {
         parser.parse({
             filename: path.resolve(__dirname, 'store.get.markup.svelte'),

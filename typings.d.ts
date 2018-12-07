@@ -72,9 +72,38 @@ export interface SvelteComputedItem extends ISvelteItem {
     dependencies: string[]    
 }
 
+export interface SvelteMethodArgumentItem {
+    /**
+     * The name of method parameter.
+     */
+    name: string;
+    /**
+     * The JS type.
+     */
+    type: JSDocType;
+    /**
+     * Indicates, that this parameter is repeated.
+     */
+    repeated?: boolean;
+    /**
+     * Indicates, that this parameter is optional.
+     */
+    optional?: boolean;
+    /**
+     * The default value of optional parameter.
+     */
+    default?: string;
+    /**
+     * The description of the parameter.
+     */
+    description?: string;
+}
+
 export interface SvelteMethodItem extends ISvelteItem {
-    // TODO
-    args?: any[]
+    /**
+     * The list of parameter items for specified method.
+     */
+    args?: SvelteMethodArgumentItem[]
 }
 
 export interface SvelteComponentItem extends ISvelteItem {

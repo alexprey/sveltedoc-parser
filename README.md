@@ -30,6 +30,11 @@ npm install --save sveltedoc-parser
     - Custom event handlers with `private` visibility scope
 - Extract list of used default and named `slots`
 - Extract component methods
+    - Extract description from JSDoc comment
+    - Extract parameters description from JSDoc comment
+    - Extract JS type from JSDoc for parameters (`@param {string} parameter`)
+    - Identify optional parameters (`@param [parameter]`), Google Closure Compiler syntax supported as well (`@param {string=} parameter`)
+    - Identify default values for optional parameters (`@param [parameter=Default value]`)
 - Extract component helpers
 - Extract component actions
 - Extract component transitions

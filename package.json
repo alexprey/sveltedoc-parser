@@ -1,6 +1,6 @@
 {
     "name": "sveltedoc-parser",
-    "version": "1.1.3",
+    "version": "1.1.4",
     "description": "Generate a JSON documentation for a Svelte file",
     "main": "index.js",
     "scripts": {

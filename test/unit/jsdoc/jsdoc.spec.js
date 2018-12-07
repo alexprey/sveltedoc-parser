@@ -139,6 +139,24 @@ describe('JSDoc parser module tests', () => {
             expect(param.optional).is.not.true;
         });
 
+        it('Property parameter should be parsed', () => {
+            const param = jsdoc.parseParamKeyword('{string} parameter.name - Description');
+
+            expect(param).is.exist;
+            expect(param.name).is.equal('parameter.name');
+            expect(param.description).is.equal('Description');
+            expect(param.optional).is.not.true;
+        });
+
+        it('Property parameter or array should be parsed', () => {
+            const param = jsdoc.parseParamKeyword('{string} parameter[].name - Description');
+
+            expect(param).is.exist;
+            expect(param.name).is.equal('parameter[].name');
+            expect(param.description).is.equal('Description');
+            expect(param.optional).is.not.true;
+        });
+
         it('Optional parameter name should be parsed', () => {
             const param = jsdoc.parseParamKeyword('{string} [parameter]');
             
@@ -148,6 +166,19 @@ describe('JSDoc parser module tests', () => {
             expect(param.optional).is.true;
         });
 
+        it('(Google Closure Compiler syntax) Optional parameter name should be parsed', () => {
+            const param = jsdoc.parseParamKeyword('{string=} parameter');
+            
+            expect(param).is.exist;
+            expect(param.name).is.equal('parameter');
+            expect(param.default).is.not.exist;
+            expect(param.optional).is.true;
+
+            expect(param.type).is.exist;
+            expect(param.type.kind).is.equal('type');
+            expect(param.type.type).is.equal('string');
+        });
+
         it('Optional parameter name with default value should be parsed', () => {
             const param = jsdoc.parseParamKeyword('{string} [parameter=Default value]');
             
@@ -155,6 +186,10 @@ describe('JSDoc parser module tests', () => {
             expect(param.name).is.equal('parameter');
             expect(param.default).is.equal('Default value');
             expect(param.optional).is.true;
+
+            expect(param.type).is.exist;
+            expect(param.type.kind).is.equal('type');
+            expect(param.type.type).is.equal('string');
         });
 
         it('Parameter without type', () => {
@@ -164,6 +199,15 @@ describe('JSDoc parser module tests', () => {
             expect(param.type).is.exist;
             expect(param.type.kind).is.equal('type');
             expect(param.type.type).is.equal('any');
+        });
+
+        it('Repeatable parameter', () => {
+            const param = jsdoc.parseParamKeyword('{...string} parameter');
+
+            expect(param.type).is.exist;
+            expect(param.repeated).is.true;
+            expect(param.type.kind).is.equal('type');
+            expect(param.type.type).is.equal('string');
         });
 
         it('Any object with star declaration', () => {

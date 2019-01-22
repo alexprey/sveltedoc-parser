@@ -1,4 +1,4 @@
-<div>
+<div on:click="fire('markupEvent')">
 </div>
 
 <script>
@@ -11,8 +11,8 @@ export default {
     methods: {
         hello() {
             console.log('hello');
-        },
-        helloV2: () => console.log('hello v2')
+            this.fire('codeEvent');
+        }
     }
 }
 </script>

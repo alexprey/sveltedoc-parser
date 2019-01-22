@@ -330,17 +330,29 @@
             "parent": null,
             "description": "",
             "visibility": "public",
-            "keywords": []
+            "keywords": [],
+            "loc": {
+                "start": 2390,
+                "end": 2403
+            }
         }
     ],
     "slots": [
         {
             "name": "default",
-            "description": null
+            "description": null,
+            "loc": {
+                "start": 384,
+                "end": 389
+            }
         },
         {
             "name": "footer",
-            "description": null
+            "description": null,
+            "loc": {
+                "start": 571,
+                "end": 590
+            }
         }
     ],
     "transitions": [
@@ -364,35 +376,55 @@
             "parent": "div",
             "visibility": "public",
             "description": "",
-            "keywords": []
+            "keywords": [],
+            "loc": {
+                "start": 41,
+                "end": 56
+            }
         },
         {
             "name": "menu",
             "parent": "div",
             "visibility": "public",
             "description": "",
-            "keywords": []
+            "keywords": [],
+            "loc": {
+                "start": 180,
+                "end": 193
+            }
         },
         {
             "name": "menuComponent",
             "parent": "Menu",
             "visibility": "public",
             "description": "",
-            "keywords": []
+            "keywords": [],
+            "loc": {
+                "start": 204,
+                "end": 227
+            }
         },
         {
             "name": "body",
             "parent": "div",
             "visibility": "public",
             "description": "",
-            "keywords": []
+            "keywords": [],
+            "loc": {
+                "start": 360,
+                "end": 373
+            }
         },
         {
             "name": "footer",
             "parent": "div",
             "visibility": "public",
             "description": "",
-            "keywords": []
+            "keywords": [],
+            "loc": {
+                "start": 545,
+                "end": 560
+            }
         }
     ],
     "store": []

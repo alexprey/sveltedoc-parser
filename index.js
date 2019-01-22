@@ -94,6 +94,7 @@ function extractContentFromHtmlBlock(content, blockName) {
     let leftContent = content;
     let innerBlockContent = '';
     let attributes = '';
+    let offset = 0;
 
     const blockStart = leftContent.indexOf(`<${blockName}`);
 
@@ -105,6 +106,7 @@ function extractContentFromHtmlBlock(content, blockName) {
 
             attributes = leftContent.substr(blockStart + blockName.length + 1, openTagEndIndex - blockStart - blockName.length - 1);
             innerBlockContent = leftContent.substr(openTagEndIndex + 1, blockEnd - openTagEndIndex - 1);
+            offset = openTagEndIndex + 1;
 
             leftContent = leftContent.substr(0, blockStart) + leftContent.substr(blockEnd + blockName.length + 3);
         }
@@ -113,7 +115,8 @@ function extractContentFromHtmlBlock(content, blockName) {
     return {
         leftContent: leftContent,
         innerContent: innerBlockContent,
-        attributes: attributes
+        attributes: attributes,
+        offset: offset
     };
 }
 
@@ -124,6 +127,8 @@ function loadSourceFromFileContent(fileContent) {
     return {
         template: style.leftContent,
         script: script.innerContent,
-        style: style.innerContent
+        scriptOffset: script.offset,
+        style: style.innerContent,
+        styleOffset: style.offset
     };
 }

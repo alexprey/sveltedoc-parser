@@ -3,6 +3,10 @@ All notable changes to the "svelte-intellisense" extension will be documented in
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [1.2.0] UNRELEASED
+
+- [Added] Implement source locations provider for most of component symbols.
+
 ## [1.1.5] 07.12.2018
 
 - [Fixed] Fix and refactor param keyword parsing to handle some wrong cases (fix and close issue #7)

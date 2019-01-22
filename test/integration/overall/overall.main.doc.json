@@ -12,6 +12,10 @@
             "description": "The skin type for layout.",
             "value": "default",
             "name": "skin",
+            "loc": {
+                "start": 1128,
+                "end": 1132
+            },
             "type": {
                 "kind": "union",
                 "text": "'default'|'night'",
@@ -41,6 +45,10 @@
             "visibility": "public",
             "description": "The list of menu items.",
             "name": "menuItems",
+            "loc": {
+                "start": 1256,
+                "end": 1265
+            },
             "type": {
                 "kind": "type",
                 "text": "Array<any>",
@@ -62,6 +70,10 @@
             "description": "The page header.",
             "value": "",
             "name": "pageHeader",
+            "loc": {
+                "start": 1406,
+                "end": 1416
+            },
             "type": {
                 "kind": "type",
                 "text": "string",
@@ -83,6 +95,10 @@
             "description": "The page content.",
             "value": "",
             "name": "pageContent",
+            "loc": {
+                "start": 1558,
+                "end": 1569
+            },
             "type": {
                 "kind": "type",
                 "text": "string",
@@ -95,6 +111,10 @@
             "keywords": [],
             "value": false,
             "name": "showSkinSelector",
+            "loc": {
+                "start": 1588,
+                "end": 1604
+            },
             "type": {
                 "kind": "type",
                 "text": "boolean",
@@ -107,6 +127,10 @@
             "keywords": [],
             "value": {},
             "name": "userKpiData",
+            "loc": {
+                "start": 1626,
+                "end": 1637
+            },
             "type": {
                 "kind": "type",
                 "text": "any",
@@ -119,6 +143,10 @@
             "keywords": [],
             "value": 10,
             "name": "newsFeedUpdateTimeout",
+            "loc": {
+                "start": 1656,
+                "end": 1677
+            },
             "type": {
                 "kind": "type",
                 "text": "number",
@@ -131,6 +159,10 @@
             "keywords": [],
             "value": "",
             "name": "copyright",
+            "loc": {
+                "start": 1696,
+                "end": 1705
+            },
             "type": {
                 "kind": "type",
                 "text": "string",
@@ -144,6 +176,10 @@
             "visibility": "public",
             "description": "Indicates that mobile device are used.",
             "name": "isMobile",
+            "loc": {
+                "start": 1834,
+                "end": 1842
+            },
             "dependencies": [
                 "_"
             ]
@@ -153,6 +189,10 @@
             "description": null,
             "keywords": [],
             "name": "hasMenu",
+            "loc": {
+                "start": 1890,
+                "end": 1897
+            },
             "dependencies": [
                 "menuItems"
             ]
@@ -169,6 +209,10 @@
             "visibility": "public",
             "description": "Do some action based on action name value",
             "name": "doAction",
+            "loc": {
+                "start": 2191,
+                "end": 2199
+            },
             "args": [
                 "actionName"
             ],
@@ -196,6 +240,10 @@
             "visibility": "private",
             "description": "",
             "name": "handleSkinChanged",
+            "loc": {
+                "start": 2262,
+                "end": 2279
+            },
             "args": [
                 "event"
             ]
@@ -207,6 +255,10 @@
             "description": null,
             "keywords": [],
             "name": "tooltip",
+            "loc": {
+                "start": 2457,
+                "end": 2464
+            },
             "args": [
                 "node"
             ]
@@ -218,7 +270,11 @@
             "description": null,
             "keywords": [],
             "value": "window",
-            "name": "window"
+            "name": "window",
+            "loc": {
+                "start": 1985,
+                "end": 1991
+            }
         }
     ],
     "components": [
@@ -227,28 +283,44 @@
             "description": null,
             "keywords": [],
             "value": "./Header.svelte",
-            "name": "Header"
+            "name": "Header",
+            "loc": {
+                "start": 805,
+                "end": 811
+            }
         },
         {
             "visibility": "public",
             "description": null,
             "keywords": [],
             "value": "./Menu.svelte",
-            "name": "Menu"
+            "name": "Menu",
+            "loc": {
+                "start": 841,
+                "end": 845
+            }
         },
         {
             "visibility": "public",
             "description": null,
             "keywords": [],
             "value": "./MenuItem.svelte",
-            "name": "MenuItem"
+            "name": "MenuItem",
+            "loc": {
+                "start": 873,
+                "end": 881
+            }
         },
         {
             "visibility": "public",
             "description": null,
             "keywords": [],
             "value": "./MarkdownContent.svelte",
-            "name": "MarkdownContent"
+            "name": "MarkdownContent",
+            "loc": {
+                "start": 913,
+                "end": 928
+            }
         }
     ],
     "description": "The entry-point component for 'Overall' page of Web-Application.",
@@ -277,6 +349,10 @@
             "description": null,
             "keywords": [],
             "name": "delay",
+            "loc": {
+                "start": 2683,
+                "end": 2688
+            },
             "args": [
                 "node"
             ]

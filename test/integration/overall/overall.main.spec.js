@@ -9,6 +9,7 @@ const parser = require('../../../index');
 describe('SvelteDoc - Overall', () => {
     it('Component should be parsed with all features', (done) => {
         parser.parse({
+            includeSourceLocations: true,
             filename: path.resolve(__dirname, 'main.svelte'),
             ignoredVisibilities: []
         }).then((doc) => {

@@ -38,6 +38,7 @@ npm install --save sveltedoc-parser
 - Extract component helpers
 - Extract component actions
 - Extract component transitions
+- Extract source locations for component symbols
 
 ## Configuration
 
@@ -48,6 +49,7 @@ npm install --save sveltedoc-parser
 | **encoding** | The file encoding. | `utf8` |
 | **features** | The component features to parse and extracting. | By default used all supported features (see below). |
 | **ignoredVisibilities** | The list of ignored visibilities. | `['private', 'protected']` |
+| **includeSourceLocations** | Flag, which indicates that source locations should be provided for component symbols. | `false` |
 
 ### Supported feature names
 

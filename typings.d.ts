@@ -35,11 +35,33 @@ export interface JSDocType {
     value?: any
 }
 
+/**
+ * Represents a source location of symbol.
+ */
+export interface SourceLocation {
+    /**
+     * The symbol start offset from document beginning.
+     */
+    start: number;
+
+    /**
+     * The symbol end offset from document beginning.
+     */
+    end: number;
+}
+
 export interface ISvelteItem {
     /**
      * The name of the item.
      */
     name: string;
+
+    /**
+     * The source code location of this item.
+     * Provided only if requested by specific option parameter.
+     */
+    loc?: SourceLocation;
+
     /**
      * The description of the item, provided from related comment.
      */

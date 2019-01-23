@@ -16,8 +16,8 @@ describe('SvelteDoc - Source locations', () => {
             const property = doc.data[0];
 
             expect(property.loc).is.deep.equals({
-                start: 120,
-                end: 130
+                start: 174,
+                end: 184
             });
 
             done();
@@ -37,8 +37,50 @@ describe('SvelteDoc - Source locations', () => {
             const method = doc.methods[0];
 
             expect(method.loc).is.deep.equals({
-                start: 179,
-                end: 184
+                start: 233,
+                end: 238
+            });
+
+            done();
+        }).catch(e => {
+            done(e);
+        });
+    });
+
+    it('Source locations for component refs should be extracted', (done) => {
+        parser.parse({
+            includeSourceLocations: true,
+            filename: path.resolve(__dirname, 'main.svelte'),
+            features: ['refs'],
+            ignoredVisibilities: []
+        }).then((doc) => {
+            expect(doc.refs.length).is.equals(1);
+            const ref = doc.refs[0];
+
+            expect(ref.loc).is.deep.equals({
+                start: 4,
+                end: 15
+            });
+
+            done();
+        }).catch(e => {
+            done(e);
+        });
+    });
+
+    it('Source locations for component slots should be extracted', (done) => {
+        parser.parse({
+            includeSourceLocations: true,
+            filename: path.resolve(__dirname, 'main.svelte'),
+            features: ['slots'],
+            ignoredVisibilities: []
+        }).then((doc) => {
+            expect(doc.slots.length).is.equals(1);
+            const slot = doc.slots[0];
+
+            expect(slot.loc).is.deep.equals({
+                start: 65,
+                end: 82
             });
 
             done();
@@ -54,19 +96,26 @@ describe('SvelteDoc - Source locations', () => {
             features: ['events'],
             ignoredVisibilities: []
         }).then((doc) => {
-            expect(doc.events.length).is.equals(2);
+            expect(doc.events.length).is.equals(3);
+            const markupPropogatedEvent = doc.events.find(e => e.name === "mousemove");
+            expect(markupPropogatedEvent).is.not.empty;
+            expect(markupPropogatedEvent.loc).is.deep.equals({
+                start: 44,
+                end: 58
+            });
+
             const codeEvent = doc.events.find(e => e.name === "codeEvent");
-            expect(codeEvent).is.not.null;
+            expect(codeEvent).is.not.empty;
             expect(codeEvent.loc).is.deep.equals({
-                start: 247,
-                end: 258
+                start: 301,
+                end: 312
             });
 
             const markupEvent = doc.events.find(e => e.name === "markupEvent");
-            expect(markupEvent).is.not.null;
+            expect(markupEvent).is.not.empty;
             expect(markupEvent.loc).is.deep.equals({
-                start: 0,
-                end: 35
+                start: 15,
+                end: 44
             });
 
             done();

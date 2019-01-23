@@ -374,57 +374,57 @@
         {
             "name": "header",
             "parent": "div",
+            "loc": {
+                "start": 45,
+                "end": 56
+            },
             "visibility": "public",
             "description": "",
-            "keywords": [],
-            "loc": {
-                "start": 41,
-                "end": 56
-            }
+            "keywords": []
         },
         {
             "name": "menu",
             "parent": "div",
+            "loc": {
+                "start": 184,
+                "end": 193
+            },
             "visibility": "public",
             "description": "",
-            "keywords": [],
-            "loc": {
-                "start": 180,
-                "end": 193
-            }
+            "keywords": []
         },
         {
             "name": "menuComponent",
             "parent": "Menu",
+            "loc": {
+                "start": 209,
+                "end": 227
+            },
             "visibility": "public",
             "description": "",
-            "keywords": [],
-            "loc": {
-                "start": 204,
-                "end": 227
-            }
+            "keywords": []
         },
         {
             "name": "body",
             "parent": "div",
+            "loc": {
+                "start": 364,
+                "end": 373
+            },
             "visibility": "public",
             "description": "",
-            "keywords": [],
-            "loc": {
-                "start": 360,
-                "end": 373
-            }
+            "keywords": []
         },
         {
             "name": "footer",
             "parent": "div",
+            "loc": {
+                "start": 549,
+                "end": 560
+            },
             "visibility": "public",
             "description": "",
-            "keywords": [],
-            "loc": {
-                "start": 545,
-                "end": 560
-            }
+            "keywords": []
         }
     ],
     "store": []

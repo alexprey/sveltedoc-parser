@@ -39,6 +39,11 @@ npm install --save sveltedoc-parser
 - Extract component actions
 - Extract component transitions
 - Extract source locations for component symbols
+    - data
+    - slots
+    - methods
+    - refs
+    - events
 
 ## Configuration
 

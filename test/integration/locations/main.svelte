@@ -1,4 +1,5 @@
-<div on:click="fire('markupEvent')">
+<div ref:block on:click="fire('markupEvent')" on:mousemove>
+    <slot name="body"></slot>
 </div>
 
 <script>

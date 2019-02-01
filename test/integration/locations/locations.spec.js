@@ -123,4 +123,31 @@ describe('SvelteDoc - Source locations', () => {
             done(e);
         });
     });
+
+    it('Source locations for component helpers should be extracted', (done) => {
+        parser.parse({
+            includeSourceLocations: true,
+            filename: path.resolve(__dirname, 'main.svelte'),
+            features: ['helpers'],
+            ignoredVisibilities: []
+        }).then((doc) => {
+            expect(doc.helpers.length).is.equals(2);
+            const firstHelper = doc.helpers.find(h => h.name === 'window');
+            const secondHelper = doc.helpers.find(h => h.name === 'helperFunc');
+
+            expect(firstHelper.loc).is.deep.equals({
+                start: 359,
+                end: 365
+            });
+
+            expect(secondHelper.loc).is.deep.equals({
+                start: 376,
+                end: 386
+            });
+
+            done();
+        }).catch(e => {
+            done(e);
+        });
+    });
 });

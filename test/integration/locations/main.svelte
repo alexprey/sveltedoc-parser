@@ -14,6 +14,13 @@ export default {
             console.log('hello');
             this.fire('codeEvent');
         }
+    },
+    helpers: {
+        window,
+        helperFunc() {
+            console.log('Helper function');
+            return 42;
+        }
     }
 }
 </script>

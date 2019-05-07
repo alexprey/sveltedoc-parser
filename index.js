@@ -104,3 +104,9 @@ module.exports.parse = (options) => new Promise((resolve, reject) => {
         reject(error);
     }
 });
+
+module.exports.detectVersion = (options) => {
+    validateOptions(options); 
+
+    return SvelteVersionDetector.detectVersionFromOptions(options);
+};

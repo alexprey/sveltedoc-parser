@@ -162,6 +162,10 @@ export interface SvelteComponentDoc {
      */
     name?: string|null;
     /**
+     * The Svelte compiler version that used for this document.
+     */
+    version?: number,
+    /**
      * The component description.
      */
     description?: string|null;

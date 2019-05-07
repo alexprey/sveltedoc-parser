@@ -6,8 +6,14 @@
     "scripts": {
         "test": "mocha ./test/**/*.spec.js",
         "test:unit": "mocha ./test/unit/**/*.spec.js",
-        "test:integration": "mocha ./test/integration/**/*.spec.js",
-        "test:integration-overall": "mocha ./test/integration/overall/overall.main.spec.js"
+        "test:integration": "mocha ./test/**/integration/**/*.spec.js",
+        "test:integration-overall": "mocha ./test/**/integration/overall/overall.main.spec.js",
+        "test:svelte2": "mocha ./test/svelte2/**/*.spec.js",
+        "test:svelte2:unit": "mocha ./test/svelte2/unit/**/*.spec.js",
+        "test:svelte2:integration": "mocha ./test/svelte2/integration/**/*.spec.js",
+        "test:svelte3": "mocha ./test/svelte3/**/*.spec.js",
+        "test:svelte3:unit": "mocha ./test/svelte3/unit/**/*.spec.js",
+        "test:svelte3:integration": "mocha ./test/svelte3/integration/**/*.spec.js"
     },
     "repository": {
         "type": "git",

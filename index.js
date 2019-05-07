@@ -1,134 +1,106 @@
-const fs = require('fs');
-const path = require('path');
-
-const Parser = require('./lib/parser');
+const { loadFileStructureFromOptions } = require('./lib/helpers');
+const SvelteVersionDetector = require('./lib/detector');
 
 const DEFAULT_ENCODING = 'utf8';
 const DEFAULT_IGNORED_VISIBILITIES = ['protected', 'private'];
 
-function parseOptions(options) {
+function validateOptions(options) {
     if (!options || (!options.filename && !options.fileContent)) {
         throw new Error('One of options.filename or options.filecontent is required');
     }
+}
 
+function normalizeOptions(options) {
     options.encoding = options.encoding || DEFAULT_ENCODING;
     options.ignoredVisibilities = options.ignoredVisibilities || DEFAULT_IGNORED_VISIBILITIES;
 }
 
+function parseSvelte2(structure, options, resolve, reject) {
+    const component = {
+        version: SvelteVersionDetector.SVELTE_VERSION_2
+    };
+
+    const Parser = require('./lib/parser');
+
+    // Convert structure object to old version source options
+    const hasScript = structure.scripts && structure.scripts.length > 0;
+    const hasStyle = structure.styles && structure.styles.length > 0;
+
+    options.source = {
+        template: structure.template,
+        script: hasScript ? structure.scripts[0].content : '',
+        scriptOffset: hasScript ? structure.scripts[0].offset : 0,
+        style: hasStyle ? structure.styles[0].content : '',
+        styleOffset: hasStyle ? structure.styles[0].offset : 0,
+    };
+
+    const parser = new Parser(options);
+
+    parser.features.forEach((feature) => {
+        switch (feature) {
+            case 'name':
+            case 'description':
+                component[feature] = null;
+                parser.on(feature, (value) => (component[feature] = value));
+                break;
+
+            case 'keywords':
+                component[feature] = [];
+                parser.on(feature, (value) => (component[feature] = value));
+                break;
+
+            default:
+                component[feature] = [];
+
+                const eventName = Parser.getEventName(feature);
+
+                parser.on(eventName, (value) => {
+                    const itemIndex = component[feature].findIndex(item => item.name === value.name);
+
+                    if (itemIndex < 0) {
+                        component[feature].push(value);
+                    } else {
+                        component[feature][itemIndex] = value;
+                    }
+                });
+        }
+    });
+
+    parser.on('end', () => {
+        parser.features.forEach((feature) => {
+            if (component[feature] instanceof Array) {
+                component[feature] = component[feature].filter((item) => {
+                    return !options.ignoredVisibilities.includes(item.visibility);
+                });
+            }
+        });
+
+        resolve(component);
+    });
+
+    parser.on('failure', (error) => {
+        reject(error);
+    });
+
+    parser.walk();
+}
+
 module.exports.parse = (options) => new Promise((resolve, reject) => {
     try {
-        parseOptions(options);
+        validateOptions(options);
+        normalizeOptions(options);
 
-        if (!options.source) {
-            if (options.filename) {
-                if (path.extname(options.filename) === '.js') {
-                    options.source = {
-                        template: '',
-                        script: fs.readFileSync(options.filename, options.encoding)
-                    };
-                } else {
-                    options.source = loadSourceFromFileContent(
-                        fs.readFileSync(options.filename, options.encoding));
-                }
-            } else {
-                options.source = loadSourceFromFileContent(options.fileContent);
-            }
+        const structure = loadFileStructureFromOptions(options);      
+
+        const version = options.version || SvelteVersionDetector.detectVersionFromStructure(structure);
+
+        if (version === SvelteVersionDetector.SVELTE_VERSION_2) {
+            parseSvelte2(structure, options, resolve, reject);
+            return;
         }
-
-        const component = {};
-        const parser = new Parser(options);
-
-        parser.features.forEach((feature) => {
-            switch (feature) {
-                case 'name':
-                case 'description':
-                    component[feature] = null;
-                    parser.on(feature, (value) => (component[feature] = value));
-                    break;
-
-                case 'keywords':
-                    component[feature] = [];
-                    parser.on(feature, (value) => (component[feature] = value));
-                    break;
-
-                default:
-                    component[feature] = [];
-
-                    const eventName = Parser.getEventName(feature);
-
-                    parser.on(eventName, (value) => {
-                        const itemIndex = component[feature].findIndex(item => item.name === value.name);
-
-                        if (itemIndex < 0) {
-                            component[feature].push(value);
-                        } else {
-                            component[feature][itemIndex] = value;
-                        }
-                    });
-            }
-        });
-
-        parser.on('end', () => {
-            parser.features.forEach((feature) => {
-                if (component[feature] instanceof Array) {
-                    component[feature] = component[feature].filter((item) => {
-                        return !options.ignoredVisibilities.includes(item.visibility);
-                    });
-                }
-            });
-
-            resolve(component);
-        });
-
-        parser.on('failure', (error) => {
-            reject(error);
-        });
-
-        parser.walk();
+        
+        reject(new Error(`Svelte V${version} is not supported`));
     } catch (error) {
         reject(error);
     }
 });
-
-function extractContentFromHtmlBlock(content, blockName) {
-    let leftContent = content;
-    let innerBlockContent = '';
-    let attributes = '';
-    let offset = 0;
-
-    const blockStart = leftContent.indexOf(`<${blockName}`);
-
-    if (blockStart >= 0) {
-        const blockEnd = leftContent.indexOf(`</${blockName}>`, blockStart + blockName.length + 1);
-
-        if (blockEnd >= 0) {
-            const openTagEndIndex = leftContent.indexOf('>', blockStart + blockName.length);
-
-            attributes = leftContent.substr(blockStart + blockName.length + 1, openTagEndIndex - blockStart - blockName.length - 1);
-            innerBlockContent = leftContent.substr(openTagEndIndex + 1, blockEnd - openTagEndIndex - 1);
-            offset = openTagEndIndex + 1;
-
-            leftContent = leftContent.substr(0, blockStart) + leftContent.substr(blockEnd + blockName.length + 3);
-        }
-    }
-
-    return {
-        leftContent: leftContent,
-        innerContent: innerBlockContent,
-        attributes: attributes,
-        offset: offset
-    };
-}
-
-function loadSourceFromFileContent(fileContent) {
-    const script = extractContentFromHtmlBlock(fileContent, 'script');
-    const style = extractContentFromHtmlBlock(script.leftContent, 'style');
-
-    return {
-        template: style.leftContent,
-        script: script.innerContent,
-        scriptOffset: script.offset,
-        style: style.innerContent,
-        styleOffset: style.offset
-    };
-}

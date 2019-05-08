@@ -135,11 +135,25 @@ export interface SvelteComponentItem extends ISvelteItem {
     value: string;
 }
 
+/**
+ * Represents the event modificators.
+ * 
+ * @since Svelte V2.5
+ * @since Svelte V3
+ * @since {2.0.0}
+ */
+export type SvelteEventModificator = 'preventDefault'|'stopPropagation'|'passive'|'capture'|'once';
+
 export interface SvelteEventItem extends ISvelteItem {
     /**
      * The name of HTML element if propagated standart JS Dom event or null.
      */
     parent?: string|null;
+
+    /**
+     * The list of event modificators.
+     */
+    modificators?: SvelteEventModificator[];
 }
 
 /**

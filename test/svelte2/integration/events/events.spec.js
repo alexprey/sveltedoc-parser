@@ -11,6 +11,7 @@ describe('SvelteDoc - Events', () => {
             features: ['events'],
             ignoredVisibilities: []
         }).then((doc) => {
+            version: 2,
             expect(doc, 'Document should be provided').to.exist;
             expect(doc.events, 'Document events should be parsed').to.exist;
 
@@ -31,6 +32,7 @@ describe('SvelteDoc - Events', () => {
 
     it('Fired events in component methods should be parsed', (done) => {
         parser.parse({
+            version: 2,
             filename: path.resolve(__dirname, 'event.method.fire.svelte'),
             features: ['events'],
             ignoredVisibilities: []
@@ -55,6 +57,7 @@ describe('SvelteDoc - Events', () => {
 
     xit('Fired events with identifier event name in component methods should be parsed', (done) => {
         parser.parse({
+            version: 2,
             filename: path.resolve(__dirname, 'event.method.fire.identifier.svelte'),
             features: ['events'],
             ignoredVisibilities: []
@@ -79,6 +82,7 @@ describe('SvelteDoc - Events', () => {
 
     it('Propogated events in markup should be parsed', (done) => {
         parser.parse({
+            version: 2,
             filename: path.resolve(__dirname, 'event.markup.propogate.svelte'),
             features: ['events'],
             ignoredVisibilities: []

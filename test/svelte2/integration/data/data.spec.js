@@ -7,6 +7,7 @@ const parser = require('../../../../index');
 describe('SvelteDoc - Component data model', () => {
     it('Data model should be parsed', (done) => {
         parser.parse({
+            version: 2,
             filename: path.resolve(__dirname, 'data.plain.svelte'),
             features: ['data'],
             ignoredVisibilities: []
@@ -31,6 +32,7 @@ describe('SvelteDoc - Component data model', () => {
 
     it('Description for data properties should be parsed', (done) => {
         parser.parse({
+            version: 2,
             filename: path.resolve(__dirname, 'data.description.svelte'),
             features: ['data'],
             ignoredVisibilities: []
@@ -56,6 +58,7 @@ describe('SvelteDoc - Component data model', () => {
 
     it('Type of data property should be parsed from JSDoc', (done) => {
         parser.parse({
+            version: 2,
             filename: path.resolve(__dirname, 'data.typeFromDescription.svelte'),
             features: ['data'],
             ignoredVisibilities: []
@@ -110,6 +113,7 @@ describe('SvelteDoc - Component data model', () => {
 
     it('Type of data property should be parsed from JSDoc', (done) => {
         parser.parse({
+            version: 2,
             filename: path.resolve(__dirname, 'data.typeFromValue.svelte'),
             features: ['data'],
             ignoredVisibilities: []

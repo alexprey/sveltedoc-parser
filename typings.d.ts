@@ -142,8 +142,22 @@ export interface SvelteEventItem extends ISvelteItem {
     parent?: string|null;
 }
 
-export interface SvelteSlotItem extends ISvelteItem {
+/**
+ * The exposed slot parameter.
+ * @since Svelte V3
+ * @since {2.0.0}
+ */
+export interface SvelteSlotParameter extends ISvelteItem {
 
+}
+
+export interface SvelteSlotItem extends ISvelteItem {
+    /**
+     * List of exposed slot parameters.
+     * @since Svelte V3
+     * @since {2.0.0}
+     */
+    parameters?: SvelteSlotParameter[];
 }
 
 export interface SvelteRefItem extends ISvelteItem {

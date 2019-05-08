@@ -15,11 +15,7 @@ function normalizeOptions(options) {
     options.ignoredVisibilities = options.ignoredVisibilities || DEFAULT_IGNORED_VISIBILITIES;
 }
 
-function parseSvelte2(structure, options, resolve, reject) {
-    const component = {
-        version: SvelteVersionDetector.SVELTE_VERSION_2
-    };
-
+function buildSvelte2Parser(structure, options) {
     const Parser = require('./lib/parser');
 
     // Convert structure object to old version source options
@@ -34,7 +30,41 @@ function parseSvelte2(structure, options, resolve, reject) {
         styleOffset: hasStyle ? structure.styles[0].offset : 0,
     };
 
-    const parser = new Parser(options);
+    return new Parser(options);
+}
+
+function buildSvelte3Parser(structure, options) {
+    const Parser = require('./lib/v3/parser');
+
+    return new Parser(structure, options);
+}
+
+function buildSvelteParser(structure, options, version) {
+    if (version === SvelteVersionDetector.SVELTE_VERSION_3) {
+        return buildSvelte3Parser(structure, options);
+    }
+
+    if (version === SvelteVersionDetector.SVELTE_VERSION_2) {
+        return buildSvelte2Parser(structure, options);
+    }
+
+    if (version) {
+        throw new Error(`Svelte V${version} is not supported`);
+    }
+
+    throw new Error(`Undefined Svelte version is not supported, you should specify default version in options`);
+}
+
+function getEventName(feature) {
+    return feature.endsWith('s')
+        ? feature.substring(0, feature.length - 1)
+        : feature;
+}
+
+function subscribeOnParserEvents(parser, options, version, resolve, reject) {
+    const component = {
+        version: version
+    };
 
     parser.features.forEach((feature) => {
         switch (feature) {
@@ -52,7 +82,7 @@ function parseSvelte2(structure, options, resolve, reject) {
             default:
                 component[feature] = [];
 
-                const eventName = Parser.getEventName(feature);
+                const eventName = getEventName(feature);
 
                 parser.on(eventName, (value) => {
                     const itemIndex = component[feature].findIndex(item => item.name === value.name);
@@ -81,8 +111,6 @@ function parseSvelte2(structure, options, resolve, reject) {
     parser.on('failure', (error) => {
         reject(error);
     });
-
-    parser.walk();
 }
 
 module.exports.parse = (options) => new Promise((resolve, reject) => {
@@ -94,12 +122,11 @@ module.exports.parse = (options) => new Promise((resolve, reject) => {
 
         const version = options.version || SvelteVersionDetector.detectVersionFromStructure(structure);
 
-        if (version === SvelteVersionDetector.SVELTE_VERSION_2) {
-            parseSvelte2(structure, options, resolve, reject);
-            return;
-        }
+        const parser = buildSvelteParser(structure, options, version);
         
-        reject(new Error(`Svelte V${version} is not supported`));
+        subscribeOnParserEvents(parser, options, version, resolve, reject);
+
+        parser.walk();
     } catch (error) {
         reject(error);
     }

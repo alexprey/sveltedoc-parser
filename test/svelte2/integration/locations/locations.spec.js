@@ -7,6 +7,7 @@ const parser = require('../../../../index');
 describe('SvelteDoc - Source locations', () => {
     it('Source locations for component data properties should be extracted', (done) => {
         parser.parse({
+            version: 2,
             includeSourceLocations: true,
             filename: path.resolve(__dirname, 'main.svelte'),
             features: ['data'],
@@ -28,6 +29,7 @@ describe('SvelteDoc - Source locations', () => {
 
     it('Source locations for component methods should be extracted', (done) => {
         parser.parse({
+            version: 2,
             includeSourceLocations: true,
             filename: path.resolve(__dirname, 'main.svelte'),
             features: ['methods'],
@@ -49,6 +51,7 @@ describe('SvelteDoc - Source locations', () => {
 
     it('Source locations for component refs should be extracted', (done) => {
         parser.parse({
+            version: 2,
             includeSourceLocations: true,
             filename: path.resolve(__dirname, 'main.svelte'),
             features: ['refs'],
@@ -70,6 +73,7 @@ describe('SvelteDoc - Source locations', () => {
 
     it('Source locations for component slots should be extracted', (done) => {
         parser.parse({
+            version: 2,
             includeSourceLocations: true,
             filename: path.resolve(__dirname, 'main.svelte'),
             features: ['slots'],
@@ -91,6 +95,7 @@ describe('SvelteDoc - Source locations', () => {
 
     it('Source locations for component events should be extracted', (done) => {
         parser.parse({
+            version: 2,
             includeSourceLocations: true,
             filename: path.resolve(__dirname, 'main.svelte'),
             features: ['events'],
@@ -126,6 +131,7 @@ describe('SvelteDoc - Source locations', () => {
 
     it('Source locations for component helpers should be extracted', (done) => {
         parser.parse({
+            version: 2,
             includeSourceLocations: true,
             filename: path.resolve(__dirname, 'main.svelte'),
             features: ['helpers'],

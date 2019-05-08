@@ -7,6 +7,7 @@ const parser = require('../../../../index');
 describe('SvelteDoc - Basics', () => {
     it('Component name should be extracted', (done) => {
         parser.parse({
+            version: 2,
             filename: path.resolve(__dirname, 'basic.description.svelte'),
             features: ['name'],
             ignoredVisibilities: []
@@ -22,6 +23,7 @@ describe('SvelteDoc - Basics', () => {
 
     it('Component description should be parsed', (done) => {
         parser.parse({
+            version: 2,
             filename: path.resolve(__dirname, 'basic.description.svelte'),
             features: ['description'],
             ignoredVisibilities: []

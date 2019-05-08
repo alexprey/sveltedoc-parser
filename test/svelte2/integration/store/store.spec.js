@@ -7,6 +7,7 @@ const parser = require('../../../../index');
 xdescribe('SvelteDoc - Store', () => {
     it('Reading store properties in markup should be parsed', (done) => {
         parser.parse({
+            version: 2,
             filename: path.resolve(__dirname, 'store.get.markup.svelte'),
             features: ['store'],
             ignoredVisibilities: []
@@ -30,6 +31,7 @@ xdescribe('SvelteDoc - Store', () => {
 
     it('Changing store properties in markup should be parsed', (done) => {
         parser.parse({
+            version: 2,
             filename: path.resolve(__dirname, 'store.set.markup.svelte'),
             features: ['store'],
             ignoredVisibilities: []
@@ -53,6 +55,7 @@ xdescribe('SvelteDoc - Store', () => {
 
     it('Reading & changing store properties in markup should be parsed', (done) => {
         parser.parse({
+            version: 2,
             filename: path.resolve(__dirname, 'store.set.markup.svelte'),
             features: ['store'],
             ignoredVisibilities: []

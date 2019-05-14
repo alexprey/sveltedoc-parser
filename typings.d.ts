@@ -82,6 +82,25 @@ export interface SvelteDataItem extends ISvelteItem {
      */
     type?: JSDocType;
     /**
+     * Kind of variable declaration.
+     * @since Svelte V3
+     * @since {2.0.0}
+     */
+    let?: 'var'|'let'|'const';
+    /**
+     * Indicates that this data item of component located in static context.
+     * Variable should be declared in `<script scope="module" />` block.
+     * @since Svelte V3
+     * @since {2.0.0}
+     */
+    static?: boolean;
+    /**
+     * Indicates that this data item is declared as a readonly variable.
+     * @since Svelte V3
+     * @since {2.0.0}
+     */
+    readonly?: boolean;
+    /**
      * The default value of property, if provided.
      */
     value?: any

@@ -120,7 +120,7 @@ module.exports.parse = (options) => new Promise((resolve, reject) => {
 
         const structure = loadFileStructureFromOptions(options);      
 
-        const version = options.version || SvelteVersionDetector.detectVersionFromStructure(structure);
+        const version = options.version || SvelteVersionDetector.detectVersionFromStructure(structure, options.defaultVersion);
 
         const parser = buildSvelteParser(structure, options, version);
         

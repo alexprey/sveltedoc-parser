@@ -55,6 +55,8 @@ npm install --save sveltedoc-parser
 | **features** | The component features to parse and extracting. | By default used all supported features (see below). |
 | **ignoredVisibilities** | The list of ignored visibilities. | `['private', 'protected']` |
 | **includeSourceLocations** | Flag, which indicates that source locations should be provided for component symbols. | `false` |
+| **version** | Optional. Use 2 or 3 to specify which svelte syntax should be used. | `undefined` |
+| **defaultVersion** | Optional. Specify default version of svelte syntax, if auto-detector can't indetify correct version. | `undefined` |
 
 ### Supported feature names
 
@@ -93,6 +95,20 @@ sveltedoc.parse(options)
         console.error(e);
     });
 ```
+
+## API
+
+### parse(options)
+
+Method to parse svelte component and provide doc object structure with details information.
+
+### detectVersion(options)
+
+Method to detect svelte syntax version
+
+- Returns `3` when Svelte 3 special syntax feature are used
+- Returns `2` when Svelte 2 special syntax feature are used
+- Returns `defaultVersion` or `undefined` when specific version can't be identified
 
 ## Issues
 

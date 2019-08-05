@@ -3,7 +3,9 @@ All notable changes to the "svelte-intellisense" extension will be documented in
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [2.0.0] UNRELEASED
+## [2.0.0] 05.08.2019
+
+- [Added] Support for V3 syntax
 
 ## [1.2.0] 01.02.2019
 

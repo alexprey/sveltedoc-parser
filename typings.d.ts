@@ -138,6 +138,13 @@ export interface SvelteMethodArgumentItem {
      * The description of the parameter.
      */
     description?: string;
+    /**
+     * Indicates that this data item of component located in static context.
+     * Variable should be declared in `<script scope="module" />` block.
+     * @since Svelte V3
+     * @since {2.0.0}
+     */
+    static?: boolean;
 }
 
 export interface SvelteMethodItem extends ISvelteItem {

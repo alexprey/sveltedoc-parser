@@ -37,7 +37,7 @@ describe('SvelteDoc v3 - Methods', () => {
         parser.parse({
             version: 3,
             filename: path.resolve(__dirname, 'method.public.svelte'),
-            features: ['methods'],
+            features: ['methods', 'description'],
             ignoredVisibilities: []
         }).then((doc) => {
             expect(doc, 'Document should be provided').to.exist;
@@ -48,6 +48,7 @@ describe('SvelteDoc v3 - Methods', () => {
             expect(method.name).to.equal('publicMethod');
             expect(method.visibility).to.equal('public');
             expect(method.static).to.be.false;
+            expect(method.description).to.be.equal('The method comment.');
 
             expect(method.args, 'Method arguments should be parsed').to.exist;
             expect(method.args.length).to.equal(2);

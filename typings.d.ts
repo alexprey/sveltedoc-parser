@@ -266,4 +266,11 @@ export interface SvelteComponentDoc {
      * The list of transition methods to animate DOM elements.
      */
     transitions?: SvelteMethodItem[];
+
+    /**
+     * The list of event dispatchers that was created in this component.
+     * @since Svelte V3
+     * @since {2.1.0}
+     */
+    dispatchers?: SvelteMethodItem[];
 }

@@ -76,6 +76,18 @@ export interface ISvelteItem {
     keywords?: JSDocKeyword[];
 }
 
+export interface SvelteDataBindMapping {
+    /**
+     * The parent component name or DOM element from which are was binded.
+     */
+    source: string;
+
+    /**
+     * The name of the property which are was binded.
+     */
+    property: string;
+}
+
 export interface SvelteDataItem extends ISvelteItem {
     /**
      * The JS type of property.
@@ -87,6 +99,12 @@ export interface SvelteDataItem extends ISvelteItem {
      * @since {2.0.0}
      */
     let?: 'var'|'let'|'const';
+    /**
+     * Provides information about property binding.
+     * @since Svelte V3
+     * @since {2.1.0}
+     */
+    bind?: SvelteDataBindMapping;
     /**
      * Indicates that this data item of component located in static context.
      * Variable should be declared in `<script scope="module" />` block.

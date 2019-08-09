@@ -82,6 +82,29 @@ describe('SvelteDoc v3 - Events', () => {
         });
     });
 
+    it('Dispatch event from markup expression should be found', (done) => {
+        parser.parse({
+            version: 3,
+            filename: path.resolve(__dirname, 'event.markup.dispatcher.default.svelte'),
+            features: ['events'],
+            ignoredVisibilities: []
+        }).then((doc) => {
+            expect(doc, 'Document should be provided').to.exist;
+            expect(doc.events, 'Document events should be parsed').to.exist;
+
+            expect(doc.events.length).to.equal(1);
+            const event = doc.events[0];
+
+            expect(event, 'Event should be a valid entity').to.exist;
+            expect(event.name).to.equal('notify');
+            expect(event.visibility).to.equal('public');
+
+            done();
+        }).catch(e => {
+            done(e);
+        });
+    });
+
     it('Dispatch event from code method should be found', (done) => {
         parser.parse({
             version: 3,
@@ -134,10 +157,56 @@ describe('SvelteDoc v3 - Events', () => {
         });
     });
 
+    it('Dispatch event from markup expression with custom dispatcher name should be found', (done) => {
+        parser.parse({
+            version: 3,
+            filename: path.resolve(__dirname, 'event.markup.dispatcher.custom.svelte'),
+            features: ['events'],
+            ignoredVisibilities: []
+        }).then((doc) => {
+            expect(doc, 'Document should be provided').to.exist;
+            expect(doc.events, 'Document events should be parsed').to.exist;
+
+            expect(doc.events.length).to.equal(1);
+            const event = doc.events[0];
+
+            expect(event, 'Event should be a valid entity').to.exist;
+            expect(event.name).to.equal('notify');
+            expect(event.visibility).to.equal('public');
+
+            done();
+        }).catch(e => {
+            done(e);
+        });
+    });
+
     it('Dispatch event from code with custom dispatcher name and custom constructor should be found', (done) => {
         parser.parse({
             version: 3,
             filename: path.resolve(__dirname, 'event.dispatcher.customConstructor.svelte'),
+            features: ['events'],
+            ignoredVisibilities: []
+        }).then((doc) => {
+            expect(doc, 'Document should be provided').to.exist;
+            expect(doc.events, 'Document events should be parsed').to.exist;
+
+            expect(doc.events.length).to.equal(1);
+            const event = doc.events[0];
+
+            expect(event, 'Event should be a valid entity').to.exist;
+            expect(event.name).to.equal('notify');
+            expect(event.visibility).to.equal('public');
+
+            done();
+        }).catch(e => {
+            done(e);
+        });
+    });
+
+    it('Dispatch event from markup expression with custom dispatcher name and custom constructor should be found', (done) => {
+        parser.parse({
+            version: 3,
+            filename: path.resolve(__dirname, 'event.markup.dispatcher.customConstructor.svelte'),
             features: ['events'],
             ignoredVisibilities: []
         }).then((doc) => {

@@ -98,7 +98,7 @@ export interface SvelteDataItem extends ISvelteItem {
      * @since Svelte V3
      * @since {2.0.0}
      */
-    let?: 'var'|'let'|'const';
+    kind?: 'var'|'let'|'const';
     /**
      * Provides information about property binding.
      * @since Svelte V3

@@ -61,6 +61,39 @@ function getEventName(feature) {
         : feature;
 }
 
+function convertVisibilityToLevel(visibility) {
+    switch (visibility) {
+        case 'public':
+            return 3;
+        case 'protected':
+            return 2;
+        case 'private':
+            return 1;
+    }
+
+    return 0;
+}
+
+function mergeItems(currentItem, newItem) {
+    if (convertVisibilityToLevel(currentItem.visibility) < convertVisibilityToLevel(newItem.visibility)) {
+        currentItem.visibility = newItem.visibility;
+    }
+
+    if (!currentItem.description && newItem.description) {
+        currentItem.description = newItem;
+    }
+
+    if (!currentItem.keywords && newItem.keywords) {
+        currentItem.keywords = newItem.keywords;
+    }
+
+    if (!currentItem.bind && newItem.bind) {
+        currentItem.bind = newItem.bind;
+    }
+
+    return currentItem;
+}
+
 function subscribeOnParserEvents(parser, options, version, resolve, reject) {
     const component = {
         version: version
@@ -90,7 +123,13 @@ function subscribeOnParserEvents(parser, options, version, resolve, reject) {
                     if (itemIndex < 0) {
                         component[feature].push(value);
                     } else {
-                        component[feature][itemIndex] = value;
+                        // Use merge logic of items information for specific features
+                        if (['data'].includes(feature)) {
+                            const currentItem = component[feature][itemIndex];
+                            component[feature][itemIndex] = mergeItems(currentItem, value);
+                        } else {
+                            component[feature][itemIndex] = value;
+                        }
                     }
                 });
         }

@@ -3,6 +3,14 @@ All notable changes to the "svelte-intellisense" extension will be documented in
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [2.1.0] 09.08.2019
+
+- [Added] Svelte V3: Implement support for property binding parsing (`bind:proprty={...}`)
+- [Added] Svelte V3: Implement support for event parsing which dispatched from code (`dispatch(...)`)
+- [Added] Svelte V3: Implement support for event parsing which dispatched from markup expressions (`<button on:click="{() => dispatch(....)}">`)
+- [Added] Svelte V3: Implement support for ref parsing (`bind:this={...}`)
+- [Fixed] Spec: Property `SvelteDataItem.let` changed to `SvelteDateItem.kind`, that was named as `let` by mistake
+
 ## [2.0.0] 05.08.2019
 
 - [Added] Support for V3 syntax

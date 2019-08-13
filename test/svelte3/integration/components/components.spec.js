@@ -19,9 +19,27 @@ describe('SvelteDoc v3 - Components', () => {
             const component = doc.components[0];
             expect(component.name).to.equal('Nested');
             expect(component.value).to.equal('./components.nested.svelte');
+            expect(component.importPath).to.equal('./components.nested.svelte');
             expect(component.visibility).to.equal('private');
 
             expect(component.description).to.equal('The nested component.');
+            done();
+        }).catch(e => {
+            done(e);
+        });
+    });
+
+    it('Import with upper case in aliace by default should not be parsed as component', (done) => {
+        parser.parse({
+            version: 3,
+            filename: path.resolve(__dirname, 'components.import.aliace.svelte'),
+            features: ['components'],
+            ignoredVisibilities: []
+        }).then((doc) => {
+            expect(doc, 'Document should be provided').to.exist;
+            expect(doc.components, 'Document components should be parsed').to.exist;
+
+            expect(doc.components.length).to.equal(0);
             done();
         }).catch(e => {
             done(e);

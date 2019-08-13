@@ -149,10 +149,38 @@ describe('SvelteDoc v3 - Props', () => {
             expect(doc.data.length).to.equal(1);
             const prop = doc.data[0];
             expect(prop.name).to.equal('x');
+            expect(prop.originalName).to.equal('x');
+            expect(prop.importPath).to.equal('./importable.js');
             expect(prop.visibility).to.equal('private');
             expect(prop.static).to.be.false;
 
             expect(prop.description).to.equal('The import comment.');
+
+            expect(prop.type).to.equal('any');
+
+            done();
+        }).catch(e => {
+            done(e);
+        });
+    });
+
+    it('Imported default data with aliace should be parsed', (done) => {
+        parser.parse({
+            version: 3,
+            filename: path.resolve(__dirname, 'data.import.aliace.svelte'),
+            features: ['data'],
+            ignoredVisibilities: []
+        }).then((doc) => {
+            expect(doc, 'Document should be provided').to.exist;
+            expect(doc.data, 'Document data should be parsed').to.exist;
+
+            expect(doc.data.length).to.equal(1);
+            const prop = doc.data[0];
+            expect(prop.name).to.equal('altY');
+            expect(prop.originalName).to.equal('y');
+            expect(prop.importPath).to.equal('./importable.js');
+            expect(prop.visibility).to.equal('private');
+            expect(prop.static).to.be.false;
 
             expect(prop.type).to.equal('any');
 

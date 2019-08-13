@@ -121,7 +121,22 @@ export interface SvelteDataItem extends ISvelteItem {
     /**
      * The default value of property, if provided.
      */
-    value?: any
+    value?: any;
+
+    /**
+     * The original name of the imported item.
+     * Used when aliace are used in import statement.
+     * @since Svelte V3
+     * @since {2.2.0}
+     */
+    originalName?: string;
+    /**
+     * The relative path of importing of this object.
+     * When not defined, so variable is not provided.
+     * @since Svelte V3
+     * @since {2.2.0}
+     */
+    importPath?: string;
 }
 
 export interface SvelteComputedItem extends ISvelteItem {
@@ -175,8 +190,17 @@ export interface SvelteMethodItem extends ISvelteItem {
 export interface SvelteComponentItem extends ISvelteItem {
     /**
      * The relative path to improted component.
+     * @deprecated Use `importPath` instead of this property.
      */
     value: string;
+
+    /**
+     * The relative path of importing of this object.
+     * When not defined, so variable is not provided.
+     * @since Svelte V3
+     * @since {2.2.0}
+     */
+    importPath?: string;
 }
 
 /**

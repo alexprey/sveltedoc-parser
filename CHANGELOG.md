@@ -3,6 +3,11 @@ All notable changes to the "svelte-intellisense" extension will be documented in
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [2.2.0] UNRELEASED
+
+- [Added] Svelte V3: Add a new properties for data items: `originalName` and `importPath`
+- [Changed] Property `value` for component items marked as depricated and new proprty `importPath` are used now
+
 ## [2.1.0] 09.08.2019
 
 - [Added] Svelte V3: Implement support for property binding parsing (`bind:proprty={...}`)

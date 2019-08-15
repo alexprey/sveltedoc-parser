@@ -10,6 +10,7 @@ describe('SvelteDoc v3 - Methods', () => {
             version: 3,
             filename: path.resolve(__dirname, 'method.private.svelte'),
             features: ['methods'],
+            includeSourceLocations: true,
             ignoredVisibilities: []
         }).then((doc) => {
             expect(doc, 'Document should be provided').to.exist;
@@ -27,6 +28,13 @@ describe('SvelteDoc v3 - Methods', () => {
             expect(method.args[1].name).to.equal('param2');
 
             expect(method.description).to.equal('The method comment.');
+
+            expect(method.locations, 'Code location should be included').to.be.exist;
+            expect(method.locations.length).to.be.equal(1);
+
+            const location = method.locations[0];
+            expect(location, 'Location should be correct identified').is.deep.equals({ start: 69, end: 82 });
+
             done();
         }).catch(e => {
             done(e);

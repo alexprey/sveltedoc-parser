@@ -10,6 +10,7 @@ describe('SvelteDoc v3 - Props', () => {
             version: 3,
             filename: path.resolve(__dirname, 'data.private.svelte'),
             features: ['data'],
+            includeSourceLocations: true,
             ignoredVisibilities: []
         }).then((doc) => {
             expect(doc, 'Document should be provided').to.exist;
@@ -25,6 +26,12 @@ describe('SvelteDoc v3 - Props', () => {
 
             expect(prop.type).to.exist;
             expect(prop.type).to.eql({ kind: 'type', text: 'string', type: 'string' });
+
+            expect(prop.locations, 'Code location for data item should be included').to.be.exist;
+            expect(prop.locations.length).to.be.equal(1);
+
+            const location = prop.locations[0];
+            expect(location, 'Location should be correct identified').is.deep.equals({ start: 89, end: 108 });
 
             done();
         }).catch(e => {
@@ -141,6 +148,7 @@ describe('SvelteDoc v3 - Props', () => {
             version: 3,
             filename: path.resolve(__dirname, 'data.import.default.svelte'),
             features: ['data'],
+            includeSourceLocations: true,
             ignoredVisibilities: []
         }).then((doc) => {
             expect(doc, 'Document should be provided').to.exist;
@@ -157,6 +165,9 @@ describe('SvelteDoc v3 - Props', () => {
             expect(prop.description).to.equal('The import comment.');
 
             expect(prop.type).to.equal('any');
+
+            expect(prop.locations, 'Code location should be parsed').to.be.exist;
+            expect(prop.locations[0]).is.deep.equals({ start: 67, end: 68 });
 
             done();
         }).catch(e => {
@@ -195,6 +206,7 @@ describe('SvelteDoc v3 - Props', () => {
             version: 3,
             filename: path.resolve(__dirname, 'data.import.many.svelte'),
             features: ['data'],
+            includeSourceLocations: true,
             ignoredVisibilities: []
         }).then((doc) => {
             expect(doc, 'Document should be provided').to.exist;
@@ -207,6 +219,9 @@ describe('SvelteDoc v3 - Props', () => {
             expect(prop1.visibility).to.equal('private');
             expect(prop1.static).to.be.false;
             expect(prop1.type).to.equal('any');
+
+            expect(prop1.locations, 'Code location should be parsed').to.be.exist;
+            expect(prop1.locations[0]).is.deep.equals({ start: 68, end: 69 });
 
             const prop2 = doc.data[1];
             expect(prop2.name).to.equal('z');

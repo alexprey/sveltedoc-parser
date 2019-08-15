@@ -74,7 +74,7 @@ function convertVisibilityToLevel(visibility) {
     return 0;
 }
 
-function mergeItems(currentItem, newItem) {
+function mergeItems(itemType, currentItem, newItem) {
     if (convertVisibilityToLevel(currentItem.visibility) < convertVisibilityToLevel(newItem.visibility)) {
         currentItem.visibility = newItem.visibility;
     }
@@ -87,16 +87,22 @@ function mergeItems(currentItem, newItem) {
         currentItem.keywords = newItem.keywords;
     }
 
-    if (newItem.bind && newItem.bind.length > 0) {
-        if (currentItem.bind) {
-            currentItem.bind.push(...newItem.bind);
+    if (newItem.locations && newItem.locations.length > 0) {
+        if (currentItem.locations) {
+            currentItem.locations.push(...newItem.locations);
         } else {
-            currentItem.bind = [...newItem.bind];
+            currentItem.locations = [...newItem.locations];
         }
     }
 
-    if (!currentItem.bind && newItem.bind) {
-        currentItem.bind = newItem.bind;
+    if (itemType === 'data') {
+        if (newItem.bind && newItem.bind.length > 0) {
+            if (currentItem.bind) {
+                currentItem.bind.push(...newItem.bind);
+            } else {
+                currentItem.bind = [...newItem.bind];
+            }
+        }
     }
 
     return currentItem;
@@ -131,13 +137,8 @@ function subscribeOnParserEvents(parser, options, version, resolve, reject) {
                     if (itemIndex < 0) {
                         component[feature].push(value);
                     } else {
-                        // Use merge logic of items information for specific features
-                        if (['data'].includes(feature)) {
-                            const currentItem = component[feature][itemIndex];
-                            component[feature][itemIndex] = mergeItems(currentItem, value);
-                        } else {
-                            component[feature][itemIndex] = value;
-                        }
+                        const currentItem = component[feature][itemIndex];
+                        component[feature][itemIndex] = mergeItems(feature, currentItem, value);
                     }
                 });
         }

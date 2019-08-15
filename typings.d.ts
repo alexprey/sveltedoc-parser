@@ -59,8 +59,15 @@ export interface ISvelteItem {
     /**
      * The source code location of this item.
      * Provided only if requested by specific option parameter.
+     * @deprecated This field marked as depricated, please use `locations` instead of this.
      */
     loc?: SourceLocation;
+
+    /**
+     * The list of source code locations for this item.
+     * Provided only if requested by specific option parameter.
+     */
+    locations?: SourceLocation[];
 
     /**
      * The description of the item, provided from related comment.

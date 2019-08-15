@@ -1,6 +1,6 @@
 {
-    "name": "main",
     "version": 2,
+    "name": "main",
     "data": [
         {
             "keywords": [
@@ -13,6 +13,12 @@
             "description": "The skin type for layout.",
             "value": "default",
             "name": "skin",
+            "locations": [
+                {
+                    "start": 1128,
+                    "end": 1132
+                }
+            ],
             "loc": {
                 "start": 1128,
                 "end": 1132
@@ -46,6 +52,12 @@
             "visibility": "public",
             "description": "The list of menu items.",
             "name": "menuItems",
+            "locations": [
+                {
+                    "start": 1256,
+                    "end": 1265
+                }
+            ],
             "loc": {
                 "start": 1256,
                 "end": 1265
@@ -71,6 +83,12 @@
             "description": "The page header.",
             "value": "",
             "name": "pageHeader",
+            "locations": [
+                {
+                    "start": 1406,
+                    "end": 1416
+                }
+            ],
             "loc": {
                 "start": 1406,
                 "end": 1416
@@ -96,6 +114,12 @@
             "description": "The page content.",
             "value": "",
             "name": "pageContent",
+            "locations": [
+                {
+                    "start": 1558,
+                    "end": 1569
+                }
+            ],
             "loc": {
                 "start": 1558,
                 "end": 1569
@@ -112,6 +136,12 @@
             "keywords": [],
             "value": false,
             "name": "showSkinSelector",
+            "locations": [
+                {
+                    "start": 1588,
+                    "end": 1604
+                }
+            ],
             "loc": {
                 "start": 1588,
                 "end": 1604
@@ -128,6 +158,12 @@
             "keywords": [],
             "value": {},
             "name": "userKpiData",
+            "locations": [
+                {
+                    "start": 1626,
+                    "end": 1637
+                }
+            ],
             "loc": {
                 "start": 1626,
                 "end": 1637
@@ -144,6 +180,12 @@
             "keywords": [],
             "value": 10,
             "name": "newsFeedUpdateTimeout",
+            "locations": [
+                {
+                    "start": 1656,
+                    "end": 1677
+                }
+            ],
             "loc": {
                 "start": 1656,
                 "end": 1677
@@ -160,6 +202,12 @@
             "keywords": [],
             "value": "",
             "name": "copyright",
+            "locations": [
+                {
+                    "start": 1696,
+                    "end": 1705
+                }
+            ],
             "loc": {
                 "start": 1696,
                 "end": 1705
@@ -177,6 +225,12 @@
             "visibility": "public",
             "description": "Indicates that mobile device are used.",
             "name": "isMobile",
+            "locations": [
+                {
+                    "start": 1834,
+                    "end": 1842
+                }
+            ],
             "loc": {
                 "start": 1834,
                 "end": 1842
@@ -190,6 +244,12 @@
             "description": null,
             "keywords": [],
             "name": "hasMenu",
+            "locations": [
+                {
+                    "start": 1890,
+                    "end": 1897
+                }
+            ],
             "loc": {
                 "start": 1890,
                 "end": 1897
@@ -210,6 +270,12 @@
             "visibility": "public",
             "description": "Do some action based on action name value",
             "name": "doAction",
+            "locations": [
+                {
+                    "start": 2191,
+                    "end": 2199
+                }
+            ],
             "loc": {
                 "start": 2191,
                 "end": 2199
@@ -241,6 +307,12 @@
             "visibility": "private",
             "description": "",
             "name": "handleSkinChanged",
+            "locations": [
+                {
+                    "start": 2262,
+                    "end": 2279
+                }
+            ],
             "loc": {
                 "start": 2262,
                 "end": 2279
@@ -256,6 +328,12 @@
             "description": null,
             "keywords": [],
             "name": "tooltip",
+            "locations": [
+                {
+                    "start": 2457,
+                    "end": 2464
+                }
+            ],
             "loc": {
                 "start": 2457,
                 "end": 2464
@@ -272,6 +350,12 @@
             "keywords": [],
             "value": "window",
             "name": "window",
+            "locations": [
+                {
+                    "start": 1985,
+                    "end": 1991
+                }
+            ],
             "loc": {
                 "start": 1985,
                 "end": 1991
@@ -285,6 +369,12 @@
             "keywords": [],
             "value": "./Header.svelte",
             "name": "Header",
+            "locations": [
+                {
+                    "start": 805,
+                    "end": 811
+                }
+            ],
             "loc": {
                 "start": 805,
                 "end": 811
@@ -296,6 +386,12 @@
             "keywords": [],
             "value": "./Menu.svelte",
             "name": "Menu",
+            "locations": [
+                {
+                    "start": 841,
+                    "end": 845
+                }
+            ],
             "loc": {
                 "start": 841,
                 "end": 845
@@ -307,6 +403,12 @@
             "keywords": [],
             "value": "./MenuItem.svelte",
             "name": "MenuItem",
+            "locations": [
+                {
+                    "start": 873,
+                    "end": 881
+                }
+            ],
             "loc": {
                 "start": 873,
                 "end": 881
@@ -318,6 +420,12 @@
             "keywords": [],
             "value": "./MarkdownContent.svelte",
             "name": "MarkdownContent",
+            "locations": [
+                {
+                    "start": 913,
+                    "end": 928
+                }
+            ],
             "loc": {
                 "start": 913,
                 "end": 928
@@ -332,6 +440,12 @@
             "description": "",
             "visibility": "public",
             "keywords": [],
+            "locations": [
+                {
+                    "start": 2390,
+                    "end": 2403
+                }
+            ],
             "loc": {
                 "start": 2390,
                 "end": 2403
@@ -342,6 +456,12 @@
         {
             "name": "default",
             "description": null,
+            "locations": [
+                {
+                    "start": 384,
+                    "end": 389
+                }
+            ],
             "loc": {
                 "start": 384,
                 "end": 389
@@ -350,6 +470,12 @@
         {
             "name": "footer",
             "description": null,
+            "locations": [
+                {
+                    "start": 571,
+                    "end": 590
+                }
+            ],
             "loc": {
                 "start": 571,
                 "end": 590
@@ -362,6 +488,12 @@
             "description": null,
             "keywords": [],
             "name": "delay",
+            "locations": [
+                {
+                    "start": 2683,
+                    "end": 2688
+                }
+            ],
             "loc": {
                 "start": 2683,
                 "end": 2688
@@ -375,6 +507,12 @@
         {
             "name": "header",
             "parent": "div",
+            "locations": [
+                {
+                    "start": 45,
+                    "end": 56
+                }
+            ],
             "loc": {
                 "start": 45,
                 "end": 56
@@ -386,6 +524,12 @@
         {
             "name": "menu",
             "parent": "div",
+            "locations": [
+                {
+                    "start": 184,
+                    "end": 193
+                }
+            ],
             "loc": {
                 "start": 184,
                 "end": 193
@@ -397,6 +541,12 @@
         {
             "name": "menuComponent",
             "parent": "Menu",
+            "locations": [
+                {
+                    "start": 209,
+                    "end": 227
+                }
+            ],
             "loc": {
                 "start": 209,
                 "end": 227
@@ -408,6 +558,12 @@
         {
             "name": "body",
             "parent": "div",
+            "locations": [
+                {
+                    "start": 364,
+                    "end": 373
+                }
+            ],
             "loc": {
                 "start": 364,
                 "end": 373
@@ -419,6 +575,12 @@
         {
             "name": "footer",
             "parent": "div",
+            "locations": [
+                {
+                    "start": 549,
+                    "end": 560
+                }
+            ],
             "loc": {
                 "start": 549,
                 "end": 560

@@ -3,6 +3,12 @@ All notable changes to the "svelte-intellisense" extension will be documented in
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## UNRELEASED
+
+- [Added] Svelte V3: Implement support of script element locations
+- [Added] Spec: Property `locations` was added to items and presents the list of item code locations
+- [Changed] Spec: Property `loc` for items marked as depricated, see `locations` property instead
+
 ## [2.2.0] 15.08.2019
 
 - [Added] Svelte V3: Add a new properties for data items: `originalName` and `importPath`

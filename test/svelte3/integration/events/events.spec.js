@@ -64,6 +64,7 @@ describe('SvelteDoc v3 - Events', () => {
             version: 3,
             filename: path.resolve(__dirname, 'event.dispatcher.default.svelte'),
             features: ['events'],
+            includeSourceLocations: true,
             ignoredVisibilities: []
         }).then((doc) => {
             expect(doc, 'Document should be provided').to.exist;
@@ -75,6 +76,12 @@ describe('SvelteDoc v3 - Events', () => {
             expect(event, 'Event should be a valid entity').to.exist;
             expect(event.name).to.equal('notify');
             expect(event.visibility).to.equal('public');
+
+            expect(event.locations, 'Code location should be included').to.be.exist;
+            expect(event.locations.length).to.be.equal(1);
+
+            const location = event.locations[0];
+            expect(location, 'Location should be correct identified').is.deep.equals({ start: 131, end: 139 });
 
             done();
         }).catch(e => {

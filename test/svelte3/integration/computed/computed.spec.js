@@ -10,6 +10,7 @@ describe('SvelteDoc v3 - Computed', () => {
             version: 3,
             filename: path.resolve(__dirname, 'computed.expression.svelte'),
             features: ['computed'],
+            includeSourceLocations: true,
             ignoredVisibilities: []
         }).then((doc) => {
             expect(doc, 'Document should be provided').to.exist;
@@ -25,6 +26,12 @@ describe('SvelteDoc v3 - Computed', () => {
 
             expect(prop.type).to.exist;
             expect(prop.type).to.eql({ kind: 'type', text: 'number', type: 'number' });
+
+            expect(prop.locations, 'Code location should be included').to.be.exist;
+            expect(prop.locations.length).to.be.equal(1);
+
+            const location = prop.locations[0];
+            expect(location, 'Location should be correct identified').is.deep.equals({ start: 132, end: 136 });
 
             done();
         }).catch(e => {

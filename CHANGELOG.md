@@ -7,10 +7,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - [Added] Svelte V3: Add a new properties for data items: `originalName` and `importPath`
 - [Changed] Property `value` for component items marked as depricated and new proprty `importPath` are used now
+- [Fixed] Issues with parsing
 
 ## [2.1.0] 09.08.2019
 
-- [Added] Svelte V3: Implement support for property binding parsing (`bind:proprty={...}`)
+- [Added] Svelte V3: Implement support for property binding parsing (`bind:property={...}`)
 - [Added] Svelte V3: Implement support for event parsing which dispatched from code (`dispatch(...)`)
 - [Added] Svelte V3: Implement support for event parsing which dispatched from markup expressions (`<button on:click="{() => dispatch(....)}">`)
 - [Added] Svelte V3: Implement support for ref parsing (`bind:this={...}`)

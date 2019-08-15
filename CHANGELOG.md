@@ -3,7 +3,7 @@ All notable changes to the "svelte-intellisense" extension will be documented in
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [2.2.0] UNRELEASED
+## [2.2.0] 15.08.2019
 
 - [Added] Svelte V3: Add a new properties for data items: `originalName` and `importPath`
 - [Changed] Svelte V3: Add support for multiple bindings to one data item, now `bind` property of the item are array

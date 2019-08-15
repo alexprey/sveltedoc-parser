@@ -104,7 +104,7 @@ export interface SvelteDataItem extends ISvelteItem {
      * @since Svelte V3
      * @since {2.1.0}
      */
-    bind?: SvelteDataBindMapping;
+    bind?: SvelteDataBindMapping[];
     /**
      * Indicates that this data item of component located in static context.
      * Variable should be declared in `<script scope="module" />` block.

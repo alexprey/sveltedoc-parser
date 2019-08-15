@@ -87,6 +87,14 @@ function mergeItems(currentItem, newItem) {
         currentItem.keywords = newItem.keywords;
     }
 
+    if (newItem.bind && newItem.bind.length > 0) {
+        if (currentItem.bind) {
+            currentItem.bind.push(...newItem.bind);
+        } else {
+            currentItem.bind = [...newItem.bind];
+        }
+    }
+
     if (!currentItem.bind && newItem.bind) {
         currentItem.bind = newItem.bind;
     }

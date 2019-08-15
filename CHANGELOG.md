@@ -6,6 +6,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [2.2.0] UNRELEASED
 
 - [Added] Svelte V3: Add a new properties for data items: `originalName` and `importPath`
+- [Changed] Svelte V3: Add support for multiple bindings to one data item, now `bind` property of the item are array
 - [Changed] Property `value` for component items marked as depricated and new proprty `importPath` are used now
 - [Fixed] Issues with parsing
 

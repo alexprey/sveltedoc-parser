@@ -6,6 +6,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## UNRELEASED
 
 - [Added] Svelte V3: Implement support of script element locations
+- [Fixed] Svelte V3: Fix parsing when component have multiple `<script>` blocks
 - [Added] Spec: Property `locations` was added to items and presents the list of item code locations
 - [Changed] Spec: Property `loc` for items marked as depricated, see `locations` property instead
 

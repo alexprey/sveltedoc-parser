@@ -3,7 +3,7 @@ All notable changes to the "svelte-intellisense" extension will be documented in
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## UNRELEASED
+## [2.3.0] 02.10.2019
 
 - [Added] Svelte V3: Implement support of script element locations
 - [Fixed] Svelte V3: Fix parsing when component have multiple `<script>` blocks

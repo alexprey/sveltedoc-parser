@@ -4,7 +4,14 @@ Generate a JSON documentation for a Svelte file
 
 [![npm](https://img.shields.io/npm/v/sveltedoc-parser.svg)](https://www.npmjs.com/package/sveltedoc-parser)
 
-Changelog of release versions can be found [here](/CHANGELOG.md)
+## Changelog: [2.3.0] 02.10.2019
+
+- [Added] Svelte V3: Implement support of script element locations
+- [Fixed] Svelte V3: Fix parsing when component have multiple `<script>` blocks
+- [Added] Spec: Property `locations` was added to items and presents the list of item code locations
+- [Changed] Spec: Property `loc` for items marked as depricated, see `locations` property instead
+
+Full changelog of release versions can be found [here](/CHANGELOG.md)
 
 ## Install
 

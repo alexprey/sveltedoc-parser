@@ -11,6 +11,10 @@ Generate a JSON documentation for a Svelte file
 - [Added] Spec: Property `locations` was added to items and presents the list of item code locations
 - [Changed] Spec: Property `loc` for items marked as depricated, see `locations` property instead
 
+### [2.3.1] 25.11.2019
+
+- [Fixed] Svelte V3: Fix parsing issues when anonymous functions are used in event handlers at markup (Issue #18)
+
 Full changelog of release versions can be found [here](/CHANGELOG.md)
 
 ## Install

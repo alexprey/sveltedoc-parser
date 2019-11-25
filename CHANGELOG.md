@@ -3,6 +3,10 @@ All notable changes to the "svelte-intellisense" extension will be documented in
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [2.3.1] 25.11.2019
+
+- [Fixed] Svelte V3: Fix parsing issues when anonymous functions are used in event handlers at markup (Issue #18)
+
 ## [2.3.0] 02.10.2019
 
 - [Added] Svelte V3: Implement support of script element locations

@@ -55,12 +55,16 @@ describe('SvelteDoc v3 - Props', () => {
             expect(variableItem.visibility).to.equal('public');
             expect(variableItem.static).to.be.false;
             expect(variableItem.description).to.be.null;
+            expect(variableItem.type).to.eql({ kind: 'type', text: 'string', type: 'string' });
+            expect(variableItem.defaultValue).to.equal('hello');
 
             const variableWithCommentItem = doc.data.find(item => item.name === 'propertyWithComment');
             expect(variableWithCommentItem).to.be.not.null;
             expect(variableWithCommentItem.visibility).to.equal('public');
             expect(variableWithCommentItem.static).to.be.false;
             expect(variableWithCommentItem.description).to.be.equal('The property comment.');
+            expect(variableWithCommentItem.type).to.equal('any');
+            expect(variableWithCommentItem.defaultValue).to.equal(undefined);
 
             done();
         }).catch(e => {

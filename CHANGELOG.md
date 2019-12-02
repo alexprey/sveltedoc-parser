@@ -3,6 +3,13 @@ All notable changes to the "svelte-intellisense" extension will be documented in
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [2.3.2] 02.12.2019
+
+Thanks to [Hostas](https://github.com/hontas) for following fixes:
+
+- [Fixed] Svelte V3: Improve type parsing for properties with default values.
+- [Fixed] Svelte V3: In some cases `type` property was setup with wrong structure and data, now it fixed.
+
 ## [2.3.1] 25.11.2019
 
 - [Fixed] Svelte V3: Fix parsing issues when anonymous functions are used in event handlers at markup (Issue #18)

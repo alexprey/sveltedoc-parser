@@ -63,7 +63,7 @@ describe('SvelteDoc v3 - Props', () => {
             expect(variableWithCommentItem.visibility).to.equal('public');
             expect(variableWithCommentItem.static).to.be.false;
             expect(variableWithCommentItem.description).to.be.equal('The property comment.');
-            expect(variableWithCommentItem.type).to.equal('any');
+            expect(variableWithCommentItem.type).to.eql({ kind: 'type', type: 'any', text: 'any' });
             expect(variableWithCommentItem.defaultValue).to.equal(undefined);
 
             done();
@@ -168,7 +168,7 @@ describe('SvelteDoc v3 - Props', () => {
 
             expect(prop.description).to.equal('The import comment.');
 
-            expect(prop.type).to.equal('any');
+            expect(prop.type).to.eql({ kind: 'type', type: 'any', text: 'any' });
 
             expect(prop.locations, 'Code location should be parsed').to.be.exist;
             expect(prop.locations[0]).is.deep.equals({ start: 67, end: 68 });
@@ -197,7 +197,7 @@ describe('SvelteDoc v3 - Props', () => {
             expect(prop.visibility).to.equal('private');
             expect(prop.static).to.be.false;
 
-            expect(prop.type).to.equal('any');
+            expect(prop.type).to.eql({ kind: 'type', type: 'any', text: 'any' });
 
             done();
         }).catch(e => {
@@ -222,7 +222,7 @@ describe('SvelteDoc v3 - Props', () => {
             expect(prop1.name).to.equal('y');
             expect(prop1.visibility).to.equal('private');
             expect(prop1.static).to.be.false;
-            expect(prop1.type).to.equal('any');
+            expect(prop1.type).to.eql({ kind: 'type', type: 'any', text: 'any' });
 
             expect(prop1.locations, 'Code location should be parsed').to.be.exist;
             expect(prop1.locations[0]).is.deep.equals({ start: 68, end: 69 });
@@ -231,7 +231,7 @@ describe('SvelteDoc v3 - Props', () => {
             expect(prop2.name).to.equal('z');
             expect(prop2.visibility).to.equal('private');
             expect(prop2.static).to.be.false;
-            expect(prop2.type).to.equal('any');
+            expect(prop2.type).to.eql({ kind: 'type', type: 'any', text: 'any' });
 
             done();
         }).catch(e => {

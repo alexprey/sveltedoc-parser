@@ -15,10 +15,18 @@
   topLevelFunction();
 </script>
 
-<style>
-
-</style>
-
+<div>
+  <div>
+    <!--
+        /**
+        * The component description
+        * @component ComponentName
+        * @example
+        * <ComponentName identifier={identifier} />
+        */
+        -->
+  </div>
+</div>
 <div>
   <h1>Header {identifier}</h1>
 </div>

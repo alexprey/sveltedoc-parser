@@ -64,4 +64,20 @@ describe('SvelteDoc v3 - Global component', () => {
             done();
         }).catch(done);
     });
+
+    it('Global component data should NOT be parsed when no comment exist', (done) => {
+        parser.parse({
+            version: 3,
+            filename: path.resolve(__dirname, 'globalComment.noComment.svelte'),
+            features: ['description', 'keywords'],
+            includeSourceLocations: true,
+            ignoredVisibilities: []
+        }).then((doc) => {
+            expect(doc, 'Document').to.exist;
+            expect(doc.description, 'Document description').to.not.exist;
+            expect(doc.keywords, 'Document keywords').to.be.empty;
+
+            done();
+        }).catch(done);
+    });
 });

@@ -9,7 +9,7 @@ Generate a JSON documentation for a Svelte file
 - [Added] Svelte V3: Implement support of script element locations
 - [Fixed] Svelte V3: Fix parsing when component have multiple `<script>` blocks
 - [Added] Spec: Property `locations` was added to items and presents the list of item code locations
-- [Changed] Spec: Property `loc` for items marked as depricated, see `locations` property instead
+- [Changed] Spec: Property `loc` for items marked as deprecated, see `locations` property instead
 
 ### [2.3.1] 25.11.2019
 
@@ -17,7 +17,7 @@ Generate a JSON documentation for a Svelte file
 
 ## [2.3.2] 02.12.2019
 
-Thanks to [Hostas](https://github.com/hontas) for following fixes:
+Thanks to [hontas](https://github.com/hontas) for following fixes:
 
 - [Fixed] Svelte V3: Improve type parsing for properties with default values.
 - [Fixed] Svelte V3: In some cases `type` property was setup with wrong structure and data, now it fixed.
@@ -35,6 +35,8 @@ npm install --save sveltedoc-parser
 - JSDoc support
     - Support description extraction for everything items
     - Support visibility scope from JSDoc keywords: `@public`, `@protected`, `@private`
+- Extract global component description and keywords from JSDoc comment (_Svelte 3_)
+    - top level comment must include `@component`. [Example script](/test/svelte3/integration/globalComment/globalComment.script.svelte), [Example html](/test/svelte3/integration/globalComment/globalComment.markup.svelte)
 - Extract list of imported components
     - Extract relative path to imported component (supports full-syntax and short-syntax import styles)
 - Extract data properties
@@ -43,8 +45,8 @@ npm install --save sveltedoc-parser
 - Extract computed properties with list of dependencies
 - Extract list of references that attached to components or HTML elements
 - Extract information about events
-    - Events that propogated from child component or HTML elements `<button on:click>...</button>`
-    - Parse event modificators `... on:click|once`
+    - Events that propagated from child component or HTML elements `<button on:click>...</button>`
+    - Parse event modifiers `... on:click|once`
 - Extract all fired events (_Svelte 2 only_)
     - Events that fired by this component by `fire(...)` method
     - Custom event handlers with `private` visibility scope

@@ -4,11 +4,11 @@ const expect = chai.expect;
 
 const parser = require('../../../../index');
 
-describe.only('SvelteDoc v3 - Global component', () => {
+describe('SvelteDoc v3 - Global component', () => {
     it('Global component data should be parsed with HTML comment', (done) => {
         parser.parse({
             version: 3,
-            filename: path.resolve(__dirname, 'globalComponent.markup.svelte'),
+            filename: path.resolve(__dirname, 'globalComment.markup.svelte'),
             features: ['description', 'keywords'],
             includeSourceLocations: true,
             ignoredVisibilities: []
@@ -17,6 +17,12 @@ describe.only('SvelteDoc v3 - Global component', () => {
             expect(doc.description, 'Document description should be parsed').to.exist;
             expect(doc.keywords, 'Document keywords should be parsed').to.exist;
 
+            expect(doc.description, 'Document description text').to.equal('The component description');
+            expect(doc.keywords, 'Document keywords length').to.have.length(2);
+            expect(doc.keywords, 'Document keywords content').to.eql([
+                { name: 'component', description: 'ComponentName' },
+                { name: 'example', description: '<ComponentName identifier={identifier} />' }
+            ]);
             done();
         }).catch(e => {
             done(e);
@@ -26,7 +32,7 @@ describe.only('SvelteDoc v3 - Global component', () => {
     it('Global component data should be parsed with JS comment', (done) => {
         parser.parse({
             version: 3,
-            filename: path.resolve(__dirname, 'globalComponent.script.svelte'),
+            filename: path.resolve(__dirname, 'globalComment.script.svelte'),
             features: ['description', 'keywords'],
             includeSourceLocations: true,
             ignoredVisibilities: []
@@ -35,10 +41,15 @@ describe.only('SvelteDoc v3 - Global component', () => {
             expect(doc.description, 'Document description should be parsed').to.exist;
             expect(doc.keywords, 'Document keywords should be parsed').to.exist;
 
-            expect(doc.keywordsdescription, 'Document description text').to.equal('sasda');
+            expect(doc.description, 'Document description text').to.equal('The component description');
+            expect(doc.keywords, 'Document keywords length').to.have.length(2);
+            expect(doc.keywords, 'Document keywords content').to.eql([
+                { name: 'component', description: 'ComponentName' },
+                { name: 'example', description: '<ComponentName identifier={identifier} />' }
+            ]);
             done();
         }).catch(e => {
             done(e);
         });
     });
-  });
+});

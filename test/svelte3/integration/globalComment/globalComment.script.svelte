@@ -2,10 +2,12 @@
   /**
    * The component description
    * @component ComponentName
+   * @example
+   * <ComponentName identifier={identifier} />
    */
   /**
    * The component identifier.
    * @type {int}
    */
-  let identifier = 1;
+  export let identifier = 1;
 </script>

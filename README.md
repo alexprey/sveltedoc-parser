@@ -3,6 +3,7 @@
 Generate a JSON documentation for a Svelte file
 
 [![npm](https://img.shields.io/npm/v/sveltedoc-parser.svg)](https://www.npmjs.com/package/sveltedoc-parser)
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/alexprey/sveltedoc-parser/Node%20CI/master)
 
 ## Changelog: [2.3.0] 02.10.2019
 

@@ -3,6 +3,12 @@ All notable changes to the "svelte-intellisense" extension will be documented in
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [2.3.3] 05.12.2019
+
+Thanks to [hontas](https://github.com/hontas) for following changes:
+
+- [Added] Svelte V3: Implement component documentation parsing provided by top level comment in HTML markup or in the JS section, marked with `@component` JSDoc attribute.
+
 ## [2.3.2] 02.12.2019
 
 Thanks to [Hostas](https://github.com/hontas) for following fixes:

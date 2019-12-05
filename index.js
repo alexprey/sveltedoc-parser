@@ -52,7 +52,7 @@ function buildSvelteParser(structure, options, version) {
         throw new Error(`Svelte V${version} is not supported`);
     }
 
-    throw new Error(`Undefined Svelte version is not supported, you should specify default version in options`);
+    throw new Error('Undefined Svelte version is not supported, you should specify default version in options');
 }
 
 function getEventName(feature) {
@@ -126,7 +126,7 @@ function subscribeOnParserEvents(parser, options, version, resolve, reject) {
                 parser.on(feature, (value) => (component[feature] = value));
                 break;
 
-            default:
+            default: {
                 component[feature] = [];
 
                 const eventName = getEventName(feature);
@@ -138,9 +138,11 @@ function subscribeOnParserEvents(parser, options, version, resolve, reject) {
                         component[feature].push(value);
                     } else {
                         const currentItem = component[feature][itemIndex];
+
                         component[feature][itemIndex] = mergeItems(feature, currentItem, value);
                     }
                 });
+            }
         }
     });
 
@@ -166,12 +168,12 @@ module.exports.parse = (options) => new Promise((resolve, reject) => {
         validateOptions(options);
         normalizeOptions(options);
 
-        const structure = loadFileStructureFromOptions(options);      
+        const structure = loadFileStructureFromOptions(options);
 
         const version = options.version || SvelteVersionDetector.detectVersionFromStructure(structure, options.defaultVersion);
 
         const parser = buildSvelteParser(structure, options, version);
-        
+
         subscribeOnParserEvents(parser, options, version, resolve, reject);
 
         parser.walk();
@@ -181,7 +183,7 @@ module.exports.parse = (options) => new Promise((resolve, reject) => {
 });
 
 module.exports.detectVersion = (options) => {
-    validateOptions(options); 
+    validateOptions(options);
 
     return SvelteVersionDetector.detectVersionFromOptions(options);
 };

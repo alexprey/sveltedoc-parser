@@ -29,7 +29,7 @@ describe('SvelteDoc v3 - Components', () => {
             expect(component.locations.length).to.be.equal(1);
 
             const location = component.locations[0];
-            expect(location, 'Location should be correct identified').is.deep.equals({ start: 55, end: 61 });
+            expect(location, 'Location should be correct identified').is.deep.equals({ start: 53, end: 59 });
 
             done();
         }).catch(e => {

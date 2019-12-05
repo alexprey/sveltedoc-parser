@@ -17,8 +17,8 @@ describe('SvelteDoc - Source locations', () => {
             const property = doc.data[0];
 
             expect(property.loc).is.deep.equals({
-                start: 174,
-                end: 184
+                start: 166,
+                end: 176
             });
 
             done();
@@ -39,8 +39,8 @@ describe('SvelteDoc - Source locations', () => {
             const method = doc.methods[0];
 
             expect(method.loc).is.deep.equals({
-                start: 233,
-                end: 238
+                start: 221,
+                end: 226
             });
 
             done();
@@ -83,8 +83,8 @@ describe('SvelteDoc - Source locations', () => {
             const slot = doc.slots[0];
 
             expect(slot.loc).is.deep.equals({
-                start: 65,
-                end: 82
+                start: 64,
+                end: 81
             });
 
             done();
@@ -112,8 +112,8 @@ describe('SvelteDoc - Source locations', () => {
             const codeEvent = doc.events.find(e => e.name === "codeEvent");
             expect(codeEvent).is.not.empty;
             expect(codeEvent.loc).is.deep.equals({
-                start: 301,
-                end: 312
+                start: 287,
+                end: 298
             });
 
             const markupEvent = doc.events.find(e => e.name === "markupEvent");
@@ -142,13 +142,13 @@ describe('SvelteDoc - Source locations', () => {
             const secondHelper = doc.helpers.find(h => h.name === 'helperFunc');
 
             expect(firstHelper.loc).is.deep.equals({
-                start: 359,
-                end: 365
+                start: 341,
+                end: 347
             });
 
             expect(secondHelper.loc).is.deep.equals({
-                start: 376,
-                end: 386
+                start: 357,
+                end: 367
             });
 
             done();

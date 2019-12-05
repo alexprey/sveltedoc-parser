@@ -31,7 +31,7 @@ describe('SvelteDoc v3 - Props', () => {
             expect(prop.locations.length).to.be.equal(1);
 
             const location = prop.locations[0];
-            expect(location, 'Location should be correct identified').is.deep.equals({ start: 89, end: 108 });
+            expect(location, 'Location should be correct identified').is.deep.equals({ start: 84, end: 103 });
 
             done();
         }).catch(e => {
@@ -171,7 +171,7 @@ describe('SvelteDoc v3 - Props', () => {
             expect(prop.type).to.eql({ kind: 'type', type: 'any', text: 'any' });
 
             expect(prop.locations, 'Code location should be parsed').to.be.exist;
-            expect(prop.locations[0]).is.deep.equals({ start: 67, end: 68 });
+            expect(prop.locations[0]).is.deep.equals({ start: 63, end: 64 });
 
             done();
         }).catch(e => {
@@ -225,7 +225,7 @@ describe('SvelteDoc v3 - Props', () => {
             expect(prop1.type).to.eql({ kind: 'type', type: 'any', text: 'any' });
 
             expect(prop1.locations, 'Code location should be parsed').to.be.exist;
-            expect(prop1.locations[0]).is.deep.equals({ start: 68, end: 69 });
+            expect(prop1.locations[0]).is.deep.equals({ start: 64, end: 65 });
 
             const prop2 = doc.data[1];
             expect(prop2.name).to.equal('z');

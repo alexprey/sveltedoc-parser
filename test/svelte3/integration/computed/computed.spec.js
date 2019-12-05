@@ -31,7 +31,7 @@ describe('SvelteDoc v3 - Computed', () => {
             expect(prop.locations.length).to.be.equal(1);
 
             const location = prop.locations[0];
-            expect(location, 'Location should be correct identified').is.deep.equals({ start: 132, end: 136 });
+            expect(location, 'Location should be correct identified').is.deep.equals({ start: 124, end: 128 });
 
             done();
         }).catch(e => {

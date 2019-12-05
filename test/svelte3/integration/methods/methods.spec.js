@@ -33,7 +33,7 @@ describe('SvelteDoc v3 - Methods', () => {
             expect(method.locations.length).to.be.equal(1);
 
             const location = method.locations[0];
-            expect(location, 'Location should be correct identified').is.deep.equals({ start: 69, end: 82 });
+            expect(location, 'Location should be correct identified').is.deep.equals({ start: 65, end: 78 });
 
             done();
         }).catch(e => {

@@ -3,6 +3,7 @@
 Generate a JSON documentation for a Svelte file
 
 [![npm](https://img.shields.io/npm/v/sveltedoc-parser.svg)](https://www.npmjs.com/package/sveltedoc-parser)
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/alexprey/sveltedoc-parser/Node%20CI/master)
 
 ## Changelog: [2.3.0] 02.10.2019
 
@@ -22,6 +23,12 @@ Thanks to [hontas](https://github.com/hontas) for following fixes:
 - [Fixed] Svelte V3: Improve type parsing for properties with default values.
 - [Fixed] Svelte V3: In some cases `type` property was setup with wrong structure and data, now it fixed.
 
+## [2.3.3] 05.12.2019
+
+Thanks to [hontas](https://github.com/hontas) for following changes:
+
+- [Added] Svelte V3: Implement component documentation parsing provided by top level comment in HTML markup or in the JS section, marked with `@component` JSDoc attribute.
+
 Full changelog of release versions can be found [here](/CHANGELOG.md)
 
 ## Install
@@ -36,7 +43,7 @@ npm install --save sveltedoc-parser
     - Support description extraction for everything items
     - Support visibility scope from JSDoc keywords: `@public`, `@protected`, `@private`
 - Extract global component description and keywords from JSDoc comment (_Svelte 3_)
-    - top level comment must include `@component`. [Example script](/test/svelte3/integration/globalComment/globalComment.script.svelte), [Example html](/test/svelte3/integration/globalComment/globalComment.markup.svelte)
+    - Top level comment must include `@component`. [Example script](/test/svelte3/integration/globalComment/globalComment.script.svelte), [Example html](/test/svelte3/integration/globalComment/globalComment.markup.svelte)
 - Extract list of imported components
     - Extract relative path to imported component (supports full-syntax and short-syntax import styles)
 - Extract data properties

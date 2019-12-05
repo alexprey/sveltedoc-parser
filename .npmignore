@@ -2,3 +2,5 @@
 .eslintrc.json
 .gitignore
 yarn.lock
+.github
+.vscode

@@ -15,13 +15,13 @@
             "name": "skin",
             "locations": [
                 {
-                    "start": 1128,
-                    "end": 1132
+                    "start": 1080,
+                    "end": 1084
                 }
             ],
             "loc": {
-                "start": 1128,
-                "end": 1132
+                "start": 1080,
+                "end": 1084
             },
             "type": {
                 "kind": "union",
@@ -54,13 +54,13 @@
             "name": "menuItems",
             "locations": [
                 {
-                    "start": 1256,
-                    "end": 1265
+                    "start": 1203,
+                    "end": 1212
                 }
             ],
             "loc": {
-                "start": 1256,
-                "end": 1265
+                "start": 1203,
+                "end": 1212
             },
             "type": {
                 "kind": "type",
@@ -85,13 +85,13 @@
             "name": "pageHeader",
             "locations": [
                 {
-                    "start": 1406,
-                    "end": 1416
+                    "start": 1347,
+                    "end": 1357
                 }
             ],
             "loc": {
-                "start": 1406,
-                "end": 1416
+                "start": 1347,
+                "end": 1357
             },
             "type": {
                 "kind": "type",
@@ -116,13 +116,13 @@
             "name": "pageContent",
             "locations": [
                 {
-                    "start": 1558,
-                    "end": 1569
+                    "start": 1493,
+                    "end": 1504
                 }
             ],
             "loc": {
-                "start": 1558,
-                "end": 1569
+                "start": 1493,
+                "end": 1504
             },
             "type": {
                 "kind": "type",
@@ -138,13 +138,13 @@
             "name": "showSkinSelector",
             "locations": [
                 {
-                    "start": 1588,
-                    "end": 1604
+                    "start": 1522,
+                    "end": 1538
                 }
             ],
             "loc": {
-                "start": 1588,
-                "end": 1604
+                "start": 1522,
+                "end": 1538
             },
             "type": {
                 "kind": "type",
@@ -160,13 +160,13 @@
             "name": "userKpiData",
             "locations": [
                 {
-                    "start": 1626,
-                    "end": 1637
+                    "start": 1559,
+                    "end": 1570
                 }
             ],
             "loc": {
-                "start": 1626,
-                "end": 1637
+                "start": 1559,
+                "end": 1570
             },
             "type": {
                 "kind": "type",
@@ -182,13 +182,13 @@
             "name": "newsFeedUpdateTimeout",
             "locations": [
                 {
-                    "start": 1656,
-                    "end": 1677
+                    "start": 1588,
+                    "end": 1609
                 }
             ],
             "loc": {
-                "start": 1656,
-                "end": 1677
+                "start": 1588,
+                "end": 1609
             },
             "type": {
                 "kind": "type",
@@ -204,13 +204,13 @@
             "name": "copyright",
             "locations": [
                 {
-                    "start": 1696,
-                    "end": 1705
+                    "start": 1627,
+                    "end": 1636
                 }
             ],
             "loc": {
-                "start": 1696,
-                "end": 1705
+                "start": 1627,
+                "end": 1636
             },
             "type": {
                 "kind": "type",
@@ -227,13 +227,13 @@
             "name": "isMobile",
             "locations": [
                 {
-                    "start": 1834,
-                    "end": 1842
+                    "start": 1758,
+                    "end": 1766
                 }
             ],
             "loc": {
-                "start": 1834,
-                "end": 1842
+                "start": 1758,
+                "end": 1766
             },
             "dependencies": [
                 "_"
@@ -246,13 +246,13 @@
             "name": "hasMenu",
             "locations": [
                 {
-                    "start": 1890,
-                    "end": 1897
+                    "start": 1813,
+                    "end": 1820
                 }
             ],
             "loc": {
-                "start": 1890,
-                "end": 1897
+                "start": 1813,
+                "end": 1820
             },
             "dependencies": [
                 "menuItems"
@@ -272,13 +272,13 @@
             "name": "doAction",
             "locations": [
                 {
-                    "start": 2191,
-                    "end": 2199
+                    "start": 2104,
+                    "end": 2112
                 }
             ],
             "loc": {
-                "start": 2191,
-                "end": 2199
+                "start": 2104,
+                "end": 2112
             },
             "args": [
                 "actionName"
@@ -309,13 +309,13 @@
             "name": "handleSkinChanged",
             "locations": [
                 {
-                    "start": 2262,
-                    "end": 2279
+                    "start": 2171,
+                    "end": 2188
                 }
             ],
             "loc": {
-                "start": 2262,
-                "end": 2279
+                "start": 2171,
+                "end": 2188
             },
             "args": [
                 "event"
@@ -330,13 +330,13 @@
             "name": "tooltip",
             "locations": [
                 {
-                    "start": 2457,
-                    "end": 2464
+                    "start": 2357,
+                    "end": 2364
                 }
             ],
             "loc": {
-                "start": 2457,
-                "end": 2464
+                "start": 2357,
+                "end": 2364
             },
             "args": [
                 "node"
@@ -352,13 +352,13 @@
             "name": "window",
             "locations": [
                 {
-                    "start": 1985,
-                    "end": 1991
+                    "start": 1905,
+                    "end": 1911
                 }
             ],
             "loc": {
-                "start": 1985,
-                "end": 1991
+                "start": 1905,
+                "end": 1911
             }
         }
     ],
@@ -371,13 +371,13 @@
             "name": "Header",
             "locations": [
                 {
-                    "start": 805,
-                    "end": 811
+                    "start": 768,
+                    "end": 774
                 }
             ],
             "loc": {
-                "start": 805,
-                "end": 811
+                "start": 768,
+                "end": 774
             }
         },
         {
@@ -388,13 +388,13 @@
             "name": "Menu",
             "locations": [
                 {
-                    "start": 841,
-                    "end": 845
+                    "start": 803,
+                    "end": 807
                 }
             ],
             "loc": {
-                "start": 841,
-                "end": 845
+                "start": 803,
+                "end": 807
             }
         },
         {
@@ -405,13 +405,13 @@
             "name": "MenuItem",
             "locations": [
                 {
-                    "start": 873,
-                    "end": 881
+                    "start": 834,
+                    "end": 842
                 }
             ],
             "loc": {
-                "start": 873,
-                "end": 881
+                "start": 834,
+                "end": 842
             }
         },
         {
@@ -422,13 +422,13 @@
             "name": "MarkdownContent",
             "locations": [
                 {
-                    "start": 913,
-                    "end": 928
+                    "start": 873,
+                    "end": 888
                 }
             ],
             "loc": {
-                "start": 913,
-                "end": 928
+                "start": 873,
+                "end": 888
             }
         }
     ],
@@ -442,13 +442,13 @@
             "keywords": [],
             "locations": [
                 {
-                    "start": 2390,
-                    "end": 2403
+                    "start": 2294,
+                    "end": 2307
                 }
             ],
             "loc": {
-                "start": 2390,
-                "end": 2403
+                "start": 2294,
+                "end": 2307
             }
         }
     ],
@@ -458,13 +458,13 @@
             "description": null,
             "locations": [
                 {
-                    "start": 384,
-                    "end": 389
+                    "start": 370,
+                    "end": 375
                 }
             ],
             "loc": {
-                "start": 384,
-                "end": 389
+                "start": 370,
+                "end": 375
             }
         },
         {
@@ -472,13 +472,13 @@
             "description": null,
             "locations": [
                 {
-                    "start": 571,
-                    "end": 590
+                    "start": 548,
+                    "end": 567
                 }
             ],
             "loc": {
-                "start": 571,
-                "end": 590
+                "start": 548,
+                "end": 567
             }
         }
     ],
@@ -490,13 +490,13 @@
             "name": "delay",
             "locations": [
                 {
-                    "start": 2683,
-                    "end": 2688
+                    "start": 2571,
+                    "end": 2576
                 }
             ],
             "loc": {
-                "start": 2683,
-                "end": 2688
+                "start": 2571,
+                "end": 2576
             },
             "args": [
                 "node"
@@ -509,13 +509,13 @@
             "parent": "div",
             "locations": [
                 {
-                    "start": 45,
-                    "end": 56
+                    "start": 44,
+                    "end": 55
                 }
             ],
             "loc": {
-                "start": 45,
-                "end": 56
+                "start": 44,
+                "end": 55
             },
             "visibility": "public",
             "description": "",
@@ -526,13 +526,13 @@
             "parent": "div",
             "locations": [
                 {
-                    "start": 184,
-                    "end": 193
+                    "start": 178,
+                    "end": 187
                 }
             ],
             "loc": {
-                "start": 184,
-                "end": 193
+                "start": 178,
+                "end": 187
             },
             "visibility": "public",
             "description": "",
@@ -543,13 +543,13 @@
             "parent": "Menu",
             "locations": [
                 {
-                    "start": 209,
-                    "end": 227
+                    "start": 202,
+                    "end": 220
                 }
             ],
             "loc": {
-                "start": 209,
-                "end": 227
+                "start": 202,
+                "end": 220
             },
             "visibility": "public",
             "description": "",
@@ -560,13 +560,13 @@
             "parent": "div",
             "locations": [
                 {
-                    "start": 364,
-                    "end": 373
+                    "start": 351,
+                    "end": 360
                 }
             ],
             "loc": {
-                "start": 364,
-                "end": 373
+                "start": 351,
+                "end": 360
             },
             "visibility": "public",
             "description": "",
@@ -577,13 +577,13 @@
             "parent": "div",
             "locations": [
                 {
-                    "start": 549,
-                    "end": 560
+                    "start": 527,
+                    "end": 538
                 }
             ],
             "loc": {
-                "start": 549,
-                "end": 560
+                "start": 527,
+                "end": 538
             },
             "visibility": "public",
             "description": "",

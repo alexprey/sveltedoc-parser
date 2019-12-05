@@ -26,12 +26,12 @@ describe('SvelteDoc v3 - Locations', () => {
             const static = doc.data.find(p => p.name === 'staticVariable');
             expect(static, '"staticVariable" should be presented in data items of the doc').to.exist;
             expect(static.static).to.be.true;
-            assertDataItemLocation(static, 83, 97);
+            assertDataItemLocation(static, 79, 93);
 
             const local = doc.data.find(p => p.name === 'variable');
             expect(local, '"variable" should be presented in data items of the doc').to.exist;
             expect(local.static).to.be.false;
-            assertDataItemLocation(local, 135, 143);
+            assertDataItemLocation(local, 127, 135);
 
             done();
         }).catch(e => {

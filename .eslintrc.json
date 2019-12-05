@@ -18,6 +18,7 @@
     "settings": {
     },
     "rules": {
+        "curly": ["error", "all"],
         "no-var": "error",
         "indent": ["error", 4, { "SwitchCase": 1 }],
         "semi": ["error", "always"],

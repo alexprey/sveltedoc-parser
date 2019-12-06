@@ -88,7 +88,7 @@ npm install --save sveltedoc-parser
 | **ignoredVisibilities** | The list of ignored visibilities. | `['private', 'protected']` |
 | **includeSourceLocations** | Flag, which indicates that source locations should be provided for component symbols. | `false` |
 | **version** | Optional. Use `2` or `3` to specify which svelte syntax should be used. When that is not provided, parser try to detect version of the syntax. | `undefined` |
-| **defaultVersion** | Optional. Specify default version of svelte syntax, if auto-detector can't indetify correct version. | `undefined` |
+| **defaultVersion** | Optional. Specify default version of svelte syntax, if auto-detector can't identify correct version. | `undefined` |
 
 ### Supported feature names
 

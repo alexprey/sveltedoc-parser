@@ -1,8 +1,9 @@
 <script>
-    export let variable = 'hello';
+  export let variable = "hello";
 
-    /**
-     * The property comment.
-     */
-    export let propertyWithComment;
+  /**
+   * The property comment.
+   * @type {string}
+   */
+  export let propertyWithComment;
 </script>

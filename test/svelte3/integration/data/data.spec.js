@@ -43,11 +43,11 @@ describe('SvelteDoc v3 - Props', () => {
         parser.parse({
             version: 3,
             filename: path.resolve(__dirname, 'data.public.svelte'),
-            features: ['data', 'description'],
+            features: ['data'],
             ignoredVisibilities: []
         }).then((doc) => {
             expect(doc, 'Document should be provided').to.exist;
-            expect(doc.data, 'Document events should be parsed').to.exist;
+            expect(doc.data, 'Document data should be parsed').to.exist;
 
             expect(doc.data.length).to.equal(2);
             const variableItem = doc.data.find(item => item.name === 'variable');
@@ -63,7 +63,7 @@ describe('SvelteDoc v3 - Props', () => {
             expect(variableWithCommentItem.visibility).to.equal('public');
             expect(variableWithCommentItem.static).to.be.false;
             expect(variableWithCommentItem.description).to.be.equal('The property comment.');
-            expect(variableWithCommentItem.type).to.eql({ kind: 'type', type: 'any', text: 'any' });
+            expect(variableWithCommentItem.type).to.eql({ kind: 'type', type: 'string', text: 'string' });
             expect(variableWithCommentItem.defaultValue).to.equal(undefined);
 
             done();

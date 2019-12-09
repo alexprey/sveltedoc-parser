@@ -43,7 +43,7 @@ describe('SvelteDoc v3 - Props', () => {
         parser.parse({
             version: 3,
             filename: path.resolve(__dirname, 'data.public.svelte'),
-            features: ['data', 'description', 'keywords'],
+            features: ['data'],
             ignoredVisibilities: []
         }).then((doc) => {
             expect(doc, 'Document should be provided').to.exist;

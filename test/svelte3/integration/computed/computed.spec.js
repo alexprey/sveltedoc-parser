@@ -18,6 +18,7 @@ describe('SvelteDoc v3 - Computed', () => {
 
             expect(doc.computed.length).to.equal(1);
             const prop = doc.computed[0];
+
             expect(prop.name).to.equal('area');
             expect(prop.visibility).to.equal('private');
             expect(prop.static).to.be.false;
@@ -31,6 +32,7 @@ describe('SvelteDoc v3 - Computed', () => {
             expect(prop.locations.length).to.be.equal(1);
 
             const location = prop.locations[0];
+
             expect(location, 'Location should be correct identified').is.deep.equals({ start: 124, end: 128 });
 
             done();
@@ -51,6 +53,7 @@ describe('SvelteDoc v3 - Computed', () => {
 
             expect(doc.computed.length).to.equal(1);
             const prop = doc.computed[0];
+
             expect(prop.name).to.equal('area');
             expect(prop.visibility).to.equal('private');
             expect(prop.static).to.be.false;

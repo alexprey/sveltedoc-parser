@@ -18,6 +18,7 @@ describe('SvelteDoc v3 - Components', () => {
 
             expect(doc.components.length).to.equal(1);
             const component = doc.components[0];
+
             expect(component.name).to.equal('Nested');
             expect(component.value).to.equal('./components.nested.svelte');
             expect(component.importPath).to.equal('./components.nested.svelte');
@@ -29,6 +30,7 @@ describe('SvelteDoc v3 - Components', () => {
             expect(component.locations.length).to.be.equal(1);
 
             const location = component.locations[0];
+
             expect(location, 'Location should be correct identified').is.deep.equals({ start: 53, end: 59 });
 
             done();

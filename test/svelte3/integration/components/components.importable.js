@@ -1,2 +1,3 @@
-export let X = 1;
-export let y = 2;
+export const X = 1;
+
+export const y = 2;

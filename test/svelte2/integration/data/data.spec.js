@@ -75,9 +75,9 @@ describe('SvelteDoc - Component data model', () => {
             expect(firstProperty.name).to.be.equal('inlineTest');
             expect(firstProperty.type).to.be.exist;
             expect(firstProperty.type).to.be.deep.equal({
-                'kind': 'type',
-                'text': 'string',
-                'type': 'string'
+                kind: 'type',
+                text: 'string',
+                type: 'string'
             });
             expect(firstProperty.visibility).to.be.equal('public');
 
@@ -86,20 +86,20 @@ describe('SvelteDoc - Component data model', () => {
             expect(secondProperty.name).to.be.equal('kind');
             expect(secondProperty.type).to.be.exist;
             expect(secondProperty.type).to.be.deep.equal({
-                'kind': 'union',
-                'text': '\'white\'|\'black\'',
-                'type': [
+                kind: 'union',
+                text: '\'white\'|\'black\'',
+                type: [
                     {
-                        'kind': 'const',
-                        'text': '\'white\'',
-                        'type': 'string',
-                        'value': 'white'
+                        kind: 'const',
+                        text: '\'white\'',
+                        type: 'string',
+                        value: 'white'
                     },
                     {
-                        'kind': 'const',
-                        'text': '\'black\'',
-                        'type': 'string',
-                        'value': 'black'
+                        kind: 'const',
+                        text: '\'black\'',
+                        type: 'string',
+                        value: 'black'
                     },
                 ]
             });
@@ -127,13 +127,13 @@ describe('SvelteDoc - Component data model', () => {
 
             const validatePropertyType = (propertyName, expectedType) => {
                 const property = properties.find(p => p.name === propertyName);
-                
+
                 expect(property, `Data property "${propertyName}" should be exist`).to.be.exist;
                 expect(property.type, `Type property for "${propertyName}" should be exist`).to.be.exist;
                 expect(property.type, `Type property for "${propertyName}" should be parsed`).to.be.deep.equal({
-                    'kind': 'type',
-                    'text': expectedType,
-                    'type': expectedType
+                    kind: 'type',
+                    text: expectedType,
+                    type: expectedType
                 });
             };
 

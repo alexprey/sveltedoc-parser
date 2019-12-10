@@ -46,10 +46,12 @@ describe('SvelteDoc v3 - Slots', () => {
             expect(slot.visibility).to.equal('public');
 
             const parameters = slot.parameters;
+
             expect(parameters).to.exist;
             expect(parameters.length).to.equal(1);
 
             const parameter = parameters[0];
+
             expect(parameter).to.exist;
             expect(parameter.name).to.equal('item');
             expect(parameter.visibility).to.equal('public');

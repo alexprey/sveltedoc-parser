@@ -7,11 +7,11 @@ const parser = require('../../../../index');
 describe('SvelteDoc - Events', () => {
     it('Fired events in markup should be parsed', (done) => {
         parser.parse({
+            version: 2,
             filename: path.resolve(__dirname, 'event.markup.fire.svelte'),
             features: ['events'],
             ignoredVisibilities: []
         }).then((doc) => {
-            version: 2,
             expect(doc, 'Document should be provided').to.exist;
             expect(doc.events, 'Document events should be parsed').to.exist;
 
@@ -123,7 +123,7 @@ describe('SvelteDoc - Events', () => {
             expect(event.visibility).to.equal('public');
             expect(event.parent).to.be.equal('button');
             expect(event.description).to.equal('Event fired when user clicked on button.');
-            
+
             expect(event.modificators).to.eql([
                 'once', 'preventDefault'
             ]);

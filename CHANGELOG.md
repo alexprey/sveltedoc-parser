@@ -3,6 +3,14 @@ All notable changes to the "svelte-intellisense" extension will be documented in
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [2.3.4] 10.12.2019
+
+- [Fixed] Now `keywords` feature correctly supported.
+
+Thanks to [hontas](https://github.com/hontas) for following changes:
+
+- [Fixed] Svelte V3: Fix parsing of types for data items, defined by `@type` keyword.
+
 ## [2.3.3] 05.12.2019
 
 Thanks to [hontas](https://github.com/hontas) for following changes:

@@ -18,6 +18,7 @@ describe('SvelteDoc v3 - Props', () => {
 
             expect(doc.data.length).to.equal(1);
             const prop = doc.data[0];
+
             expect(prop.name).to.equal('variableWithDefault');
             expect(prop.visibility).to.equal('private');
             expect(prop.static).to.be.false;
@@ -31,6 +32,7 @@ describe('SvelteDoc v3 - Props', () => {
             expect(prop.locations.length).to.be.equal(1);
 
             const location = prop.locations[0];
+
             expect(location, 'Location should be correct identified').is.deep.equals({ start: 84, end: 103 });
 
             done();
@@ -51,6 +53,7 @@ describe('SvelteDoc v3 - Props', () => {
 
             expect(doc.data.length).to.equal(2);
             const variableItem = doc.data.find(item => item.name === 'variable');
+
             expect(variableItem).to.be.not.null;
             expect(variableItem.visibility).to.equal('public');
             expect(variableItem.static).to.be.false;
@@ -59,6 +62,7 @@ describe('SvelteDoc v3 - Props', () => {
             expect(variableItem.defaultValue).to.equal('hello');
 
             const variableWithCommentItem = doc.data.find(item => item.name === 'propertyWithComment');
+
             expect(variableWithCommentItem).to.be.not.null;
             expect(variableWithCommentItem.visibility).to.equal('public');
             expect(variableWithCommentItem.static).to.be.false;
@@ -84,6 +88,7 @@ describe('SvelteDoc v3 - Props', () => {
 
             expect(doc.data.length).to.equal(1);
             const prop = doc.data[0];
+
             expect(prop.name).to.equal('staticVariable');
             expect(prop.static).to.be.true;
 
@@ -104,7 +109,7 @@ describe('SvelteDoc v3 - Props', () => {
             expect(doc.data, 'Document events should be parsed').to.exist;
 
             expect(doc.data.length).to.equal(3);
-            
+
             expect(doc.data[0].name).to.equal('a');
             expect(doc.data[0].visibility).to.equal('private');
 
@@ -131,7 +136,7 @@ describe('SvelteDoc v3 - Props', () => {
             expect(doc.data, 'Document events should be parsed').to.exist;
 
             expect(doc.data.length).to.equal(3);
-            
+
             expect(doc.data[0].name).to.equal('a');
             expect(doc.data[0].visibility).to.equal('private');
 
@@ -160,6 +165,7 @@ describe('SvelteDoc v3 - Props', () => {
 
             expect(doc.data.length).to.equal(1);
             const prop = doc.data[0];
+
             expect(prop.name).to.equal('x');
             expect(prop.originalName).to.equal('x');
             expect(prop.importPath).to.equal('./importable.js');
@@ -191,6 +197,7 @@ describe('SvelteDoc v3 - Props', () => {
 
             expect(doc.data.length).to.equal(1);
             const prop = doc.data[0];
+
             expect(prop.name).to.equal('altY');
             expect(prop.originalName).to.equal('y');
             expect(prop.importPath).to.equal('./importable.js');
@@ -219,6 +226,7 @@ describe('SvelteDoc v3 - Props', () => {
             expect(doc.data.length).to.equal(2);
 
             const prop1 = doc.data[0];
+
             expect(prop1.name).to.equal('y');
             expect(prop1.visibility).to.equal('private');
             expect(prop1.static).to.be.false;
@@ -228,6 +236,7 @@ describe('SvelteDoc v3 - Props', () => {
             expect(prop1.locations[0]).is.deep.equals({ start: 64, end: 65 });
 
             const prop2 = doc.data[1];
+
             expect(prop2.name).to.equal('z');
             expect(prop2.visibility).to.equal('private');
             expect(prop2.static).to.be.false;

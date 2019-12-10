@@ -108,10 +108,12 @@ describe('SvelteDoc v3 - Bind', () => {
             expect(item.bind.length, 'Bind should be an array').to.be.equal(2);
 
             const bindInput = item.bind.find(b => b.source === 'input');
+
             expect(bindInput.source).to.equal('input');
             expect(bindInput.property).to.equal('value');
 
             const bindControl = item.bind.find(b => b.source === 'PlusMinusControl');
+
             expect(bindControl.source).to.equal('PlusMinusControl');
             expect(bindControl.property).to.equal('numberValue');
 

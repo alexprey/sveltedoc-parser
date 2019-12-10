@@ -102,21 +102,24 @@ describe('SvelteDoc - Source locations', () => {
             ignoredVisibilities: []
         }).then((doc) => {
             expect(doc.events.length).is.equals(3);
-            const markupPropogatedEvent = doc.events.find(e => e.name === "mousemove");
+            const markupPropogatedEvent = doc.events.find(e => e.name === 'mousemove');
+
             expect(markupPropogatedEvent).is.not.empty;
             expect(markupPropogatedEvent.loc).is.deep.equals({
                 start: 44,
                 end: 58
             });
 
-            const codeEvent = doc.events.find(e => e.name === "codeEvent");
+            const codeEvent = doc.events.find(e => e.name === 'codeEvent');
+
             expect(codeEvent).is.not.empty;
             expect(codeEvent.loc).is.deep.equals({
                 start: 287,
                 end: 298
             });
 
-            const markupEvent = doc.events.find(e => e.name === "markupEvent");
+            const markupEvent = doc.events.find(e => e.name === 'markupEvent');
+
             expect(markupEvent).is.not.empty;
             expect(markupEvent.loc).is.deep.equals({
                 start: 15,

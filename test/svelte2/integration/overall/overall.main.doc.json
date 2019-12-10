@@ -433,6 +433,12 @@
         }
     ],
     "description": "The entry-point component for 'Overall' page of Web-Application.",
+    "keywords": [
+        {
+            "name": "author",
+            "description": "Alexey Mulyukin"
+        }
+    ],
     "events": [
         {
             "name": "skinChanged",

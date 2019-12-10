@@ -1,7 +1,7 @@
 const chai = require('chai');
 const expect = chai.expect;
 
-const helpers = require("../../../lib/helpers");
+const helpers = require('../../../lib/helpers');
 
 describe('Helpers parser module tests', () => {
     describe('helpers.extractHtmlBlock', () => {
@@ -14,9 +14,10 @@ let variable = 1;
 `;
 
             const result = helpers.extractHtmlBlock(content, 'script');
-            
+
             expect(result).is.exist;
             const block = result.block;
+
             expect(block).is.exist;
             expect(block.content).is.eq('\nlet variable = 1;\n');
             expect(block.offset).is.eq(34);
@@ -35,9 +36,10 @@ let variable = 1;
 `;
 
             const result = helpers.extractHtmlBlock(content, 'script');
-            
+
             expect(result).is.exist;
             const block = result.block;
+
             expect(block).is.exist;
             expect(block.attributes).is.eq(' scope="module"');
         });
@@ -57,6 +59,7 @@ let variable = 2;
 
             expect(result).is.exist;
             const block = result.block;
+
             expect(block).is.exist;
             expect(block.content).is.eq('\nlet variable = 2;\n');
             expect(block.offset).is.eq(71);
@@ -76,12 +79,13 @@ let variable = 1;
 </script>
             `;
             const result = helpers.extractAllHtmlBlocks(content, 'script');
-            
+
             expect(result).is.exist;
             expect(result.blocks).is.exist;
             expect(result.blocks.length).is.eq(1);
 
             const block = result.blocks[0];
+
             expect(block).is.exist;
             expect(block.offset).is.eq(34);
             expect(block.content).is.eq('\nlet variable = 1;\n');
@@ -99,12 +103,13 @@ let variable = 2;
 </script>
             `;
             const result = helpers.extractAllHtmlBlocks(content, 'script');
-            
+
             expect(result).is.exist;
             expect(result.blocks).is.exist;
             expect(result.blocks.length).is.eq(2);
 
             let block = result.blocks[0];
+
             expect(block).is.exist;
             expect(block.offset).is.eq(34);
             expect(block.content).is.eq('\nlet variable = 1;\n');

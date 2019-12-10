@@ -16,18 +16,26 @@ Generate a JSON documentation for a Svelte file
 
 - [Fixed] Svelte V3: Fix parsing issues when anonymous functions are used in event handlers at markup (Issue #18)
 
-## [2.3.2] 02.12.2019
+### [2.3.2] 02.12.2019
 
 Thanks to [hontas](https://github.com/hontas) for following fixes:
 
 - [Fixed] Svelte V3: Improve type parsing for properties with default values.
 - [Fixed] Svelte V3: In some cases `type` property was setup with wrong structure and data, now it fixed.
 
-## [2.3.3] 05.12.2019
+### [2.3.3] 05.12.2019
 
 Thanks to [hontas](https://github.com/hontas) for following changes:
 
 - [Added] Svelte V3: Implement component documentation parsing provided by top level comment in HTML markup or in the JS section, marked with `@component` JSDoc attribute.
+
+### [2.3.4] 10.12.2019
+
+- [Fixed] Now `keywords` feature correctly supported.
+
+Thanks to [hontas](https://github.com/hontas) for following changes:
+
+- [Fixed] Svelte V3: Fix parsing of types for data items, defined by `@type` keyword.
 
 Full changelog of release versions can be found [here](/CHANGELOG.md)
 
@@ -100,6 +108,7 @@ npm install --save sveltedoc-parser
 - `'helpers'` - Extract the list of component helpers (_Supported by Svelte 2_).
 - `'components'` - Extract the list of imported components (_Supported by Svelte 2 and Svelte 3_).
 - `'description'` - Extract the component description (_Supported by Svelte 2 and Svelte 3_).
+- `'keywords'` - Extract the component keywords (_Supported by Svelte 2 and Svelte 3_).
 - `'events'` - Extract the list of events that fired by this component (_Supported by Svelte 2 and Svelte 3_).
 - `'slots'` - Extract the list of slots provided by this component (_Supported by Svelte 2 and Svelte 3_).
 - `'transitions'` - Extract the list of transitions used by this component (_Supported by Svelte 2_).

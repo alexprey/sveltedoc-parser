@@ -18,6 +18,7 @@ describe('SvelteDoc v3 - Methods', () => {
 
             expect(doc.methods.length).to.equal(1);
             const method = doc.methods[0];
+
             expect(method.name).to.equal('privateMethod');
             expect(method.visibility).to.equal('private');
             expect(method.static).to.be.false;
@@ -33,6 +34,7 @@ describe('SvelteDoc v3 - Methods', () => {
             expect(method.locations.length).to.be.equal(1);
 
             const location = method.locations[0];
+
             expect(location, 'Location should be correct identified').is.deep.equals({ start: 65, end: 78 });
 
             done();
@@ -53,6 +55,7 @@ describe('SvelteDoc v3 - Methods', () => {
 
             expect(doc.methods.length).to.equal(1);
             const method = doc.methods[0];
+
             expect(method.name).to.equal('publicMethod');
             expect(method.visibility).to.equal('public');
             expect(method.static).to.be.false;

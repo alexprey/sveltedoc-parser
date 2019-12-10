@@ -14,10 +14,12 @@ xdescribe('SvelteDoc - Store', () => {
         }).then((doc) => {
             expect(doc, 'Document should be provided').to.exist;
             expect(doc.store, 'Store information should be provided').to.exist;
-            expect(storeDoc.length).to.equal(1);
 
+            const storeDoc = doc.store;
+
+            expect(storeDoc.length).to.equal(1);
             const storeProperty = storeDoc[0];
-            
+
             expect(storeProperty).to.exist;
             expect(storeProperty.name).to.equal('ApplicationName');
             expect(storeProperty.read).is.true;
@@ -38,10 +40,12 @@ xdescribe('SvelteDoc - Store', () => {
         }).then((doc) => {
             expect(doc, 'Document should be provided').to.exist;
             expect(doc.store, 'Store information should be provided').to.exist;
-            expect(storeDoc.length).to.equal(1);
 
+            const storeDoc = doc.store;
+
+            expect(storeDoc.length).to.equal(1);
             const storeProperty = storeDoc[0];
-            
+
             expect(storeProperty).to.exist;
             expect(storeProperty.name).to.equal('ApplicationName');
             expect(storeProperty.read).is.false;
@@ -62,10 +66,12 @@ xdescribe('SvelteDoc - Store', () => {
         }).then((doc) => {
             expect(doc, 'Document should be provided').to.exist;
             expect(doc.store, 'Store information should be provided').to.exist;
-            expect(storeDoc.length).to.equal(1);
 
+            const storeDoc = doc.store;
+
+            expect(storeDoc.length).to.equal(1);
             const storeProperty = storeDoc[0];
-            
+
             expect(storeProperty).to.exist;
             expect(storeProperty.name).to.equal('ApplicationName');
             expect(storeProperty.read).is.true;

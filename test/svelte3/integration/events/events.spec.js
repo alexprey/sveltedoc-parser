@@ -81,6 +81,7 @@ describe('SvelteDoc v3 - Events', () => {
             expect(event.locations.length).to.be.equal(1);
 
             const location = event.locations[0];
+
             expect(location, 'Location should be correct identified').is.deep.equals({ start: 126, end: 134 });
 
             done();

@@ -17,6 +17,7 @@ describe('SvelteDoc file version detector', () => {
     describe('Svelte V2 files check', () => {
         const folderPath = path.resolve(__dirname, 'v2');
         const files = fs.readdirSync(folderPath);
+
         files
             .filter(file => file.endsWith('.svelte'))
             .forEach(file => {
@@ -31,8 +32,9 @@ describe('SvelteDoc file version detector', () => {
     });
 
     describe('Svelte V3 files check', () => {
-        const folderPath = path.resolve(__dirname + '/v3');
+        const folderPath = path.resolve(__dirname, 'v3');
         const files = fs.readdirSync(folderPath);
+
         files
             .filter(file => file.endsWith('.svelte'))
             .forEach(file => {

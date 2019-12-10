@@ -1,8 +1,7 @@
-const path = require('path');
 const chai = require('chai');
 const expect = chai.expect;
 
-const jsdoc = require("../../../lib/jsdoc");
+const jsdoc = require('../../../lib/jsdoc');
 
 describe('JSDoc parser module tests', () => {
     describe('Parse type keyword', () => {
@@ -45,7 +44,7 @@ describe('JSDoc parser module tests', () => {
             expect(type.kind).is.equal('type');
             expect(type.type).is.equal('Array<Array<string>>');
         });
-        
+
         it('Array with bracet declaration', () => {
             const type = jsdoc.parseTypeKeyword('{string[]}');
 
@@ -115,7 +114,7 @@ describe('JSDoc parser module tests', () => {
     describe('Parse parameter keyword', () => {
         it('Parameter name should be parsed', () => {
             const param = jsdoc.parseParamKeyword('{string} parameter');
-            
+
             expect(param).is.exist;
             expect(param.name).is.equal('parameter');
             expect(param.optional).is.not.true;
@@ -123,7 +122,7 @@ describe('JSDoc parser module tests', () => {
 
         it('Description should be parsed', () => {
             const param = jsdoc.parseParamKeyword('{string} parameter Description');
-            
+
             expect(param).is.exist;
             expect(param.name).is.equal('parameter');
             expect(param.description).is.equal('Description');
@@ -132,7 +131,7 @@ describe('JSDoc parser module tests', () => {
 
         it('Description with hyphen should be parsed', () => {
             const param = jsdoc.parseParamKeyword('{string} parameter - Description');
-            
+
             expect(param).is.exist;
             expect(param.name).is.equal('parameter');
             expect(param.description).is.equal('Description');
@@ -159,7 +158,7 @@ describe('JSDoc parser module tests', () => {
 
         it('Optional parameter name should be parsed', () => {
             const param = jsdoc.parseParamKeyword('{string} [parameter]');
-            
+
             expect(param).is.exist;
             expect(param.name).is.equal('parameter');
             expect(param.default).is.not.exist;
@@ -168,7 +167,7 @@ describe('JSDoc parser module tests', () => {
 
         it('(Google Closure Compiler syntax) Optional parameter name should be parsed', () => {
             const param = jsdoc.parseParamKeyword('{string=} parameter');
-            
+
             expect(param).is.exist;
             expect(param.name).is.equal('parameter');
             expect(param.default).is.not.exist;
@@ -181,7 +180,7 @@ describe('JSDoc parser module tests', () => {
 
         it('Optional parameter name with default value should be parsed', () => {
             const param = jsdoc.parseParamKeyword('{string} [parameter=Default value]');
-            
+
             expect(param).is.exist;
             expect(param.name).is.equal('parameter');
             expect(param.default).is.equal('Default value');
@@ -194,7 +193,7 @@ describe('JSDoc parser module tests', () => {
 
         it('Parameter without type', () => {
             const param = jsdoc.parseParamKeyword('parameter');
-            
+
             expect(param.name).is.equal('parameter');
             expect(param.type).is.exist;
             expect(param.type.kind).is.equal('type');
@@ -212,7 +211,7 @@ describe('JSDoc parser module tests', () => {
 
         it('Any object with star declaration', () => {
             const param = jsdoc.parseParamKeyword('{*} parameter');
-            
+
             expect(param.type).is.exist;
             expect(param.type.kind).is.equal('type');
             expect(param.type.type).is.equal('any');
@@ -249,7 +248,7 @@ describe('JSDoc parser module tests', () => {
             expect(param.type.kind).is.equal('type');
             expect(param.type.type).is.equal('Array<Array<string>>');
         });
-        
+
         it('Array with bracet declaration', () => {
             const param = jsdoc.parseParamKeyword('{string[]} parameter');
 
@@ -304,7 +303,7 @@ describe('JSDoc parser module tests', () => {
 
         it('Union of string constants', () => {
             const param = jsdoc.parseParamKeyword('{\'plain\'|\'primary<alert>\'|\'secondary\'|\'plain-inverse\'} parameter');
-            
+
             expect(param.type).is.exist;
             expect(param.type.kind).is.equal('union');
             expect(param.type.type.length).is.equal(4);
@@ -317,7 +316,7 @@ describe('JSDoc parser module tests', () => {
 
         it('Union of string constants with missing quote', () => {
             const param = jsdoc.parseParamKeyword('{\'plain\'|\'primary<alert>\'|secondary\'|\'plain-inverse\'} parameter');
-            
+
             expect(param.type).is.exist;
             expect(param.type.kind).is.equal('union');
             expect(param.type.type.length).is.equal(4);
@@ -330,7 +329,7 @@ describe('JSDoc parser module tests', () => {
 
         it('Union of string constants with figure bracet', () => {
             const param = jsdoc.parseParamKeyword('{\'plain\'|\'primary<alert>\'|\'seco{ndary}\'|\'plain-inverse\'} parameter');
-            
+
             expect(param.type).is.exist;
         });
     });

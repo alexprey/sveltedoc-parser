@@ -5,37 +5,15 @@ Generate a JSON documentation for a Svelte file
 [![npm](https://img.shields.io/npm/v/sveltedoc-parser.svg)](https://www.npmjs.com/package/sveltedoc-parser)
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/alexprey/sveltedoc-parser/Node%20CI/master)
 
-## Changelog: [2.3.0] 02.10.2019
+## Changelog 
 
-- [Added] Svelte V3: Implement support of script element locations
-- [Fixed] Svelte V3: Fix parsing when component have multiple `<script>` blocks
-- [Added] Spec: Property `locations` was added to items and presents the list of item code locations
-- [Changed] Spec: Property `loc` for items marked as deprecated, see `locations` property instead
+### [3.0.0] 08.08.2020
 
-### [2.3.1] 25.11.2019
-
-- [Fixed] Svelte V3: Fix parsing issues when anonymous functions are used in event handlers at markup (Issue #18)
-
-### [2.3.2] 02.12.2019
-
-Thanks to [hontas](https://github.com/hontas) for following fixes:
-
-- [Fixed] Svelte V3: Improve type parsing for properties with default values.
-- [Fixed] Svelte V3: In some cases `type` property was setup with wrong structure and data, now it fixed.
-
-### [2.3.3] 05.12.2019
-
-Thanks to [hontas](https://github.com/hontas) for following changes:
-
-- [Added] Svelte V3: Implement component documentation parsing provided by top level comment in HTML markup or in the JS section, marked with `@component` JSDoc attribute.
-
-### [2.3.4] 10.12.2019
-
-- [Fixed] Now `keywords` feature correctly supported.
-
-Thanks to [hontas](https://github.com/hontas) for following changes:
-
-- [Fixed] Svelte V3: Fix parsing of types for data items, defined by `@type` keyword.
+- [Fixed] Solve vulnerability issues:
+    - Update `espree` to `7.2.0`
+    - Update `htmlparser2` to `3.9.2`
+    - Add dependency to `eslint` to fix issues after upgrading to new versions
+- [Breaking] Increase requirement of Node.js to `10.0.0`, Node.js v8 now is not supported, this is related with security isssues above. Please let me know if it still required.
 
 Full changelog of release versions can be found [here](/CHANGELOG.md)
 

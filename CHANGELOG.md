@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
     - Update `espree` to `7.2.0`
     - Update `htmlparser2` to `3.9.2`
     - Add dependency to `eslint` to fix issues after upgrading to new versions
+- [Braking] Increase requirement of Node.js to `10.0.0`, Node.js v8 now is not supported, this is related with security isssues above. Please let me know if it still required.
 
 ## [2.3.4] 10.12.2019
 

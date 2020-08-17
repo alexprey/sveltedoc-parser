@@ -4,3 +4,4 @@
 yarn.lock
 .github
 .vscode
+yarn-error.log

@@ -69,6 +69,13 @@ describe('SvelteDoc v3 - Props', () => {
             expect(variableWithCommentItem.description).to.be.equal('The property comment.');
             expect(variableWithCommentItem.type).to.eql({ kind: 'type', type: 'string', text: 'string' });
             expect(variableWithCommentItem.defaultValue).to.equal(undefined);
+            expect(variableWithCommentItem.keywords).to.be.exist;
+            expect(variableWithCommentItem.keywords.length).to.equal(1);
+
+            const keyword = variableWithCommentItem.keywords[0];
+
+            expect(keyword.name).to.equal('type');
+            expect(keyword.description).to.equal('{string}');
 
             done();
         }).catch(e => {

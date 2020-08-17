@@ -270,8 +270,8 @@ describe('SvelteDoc v3 - Props', () => {
             expect(prop1.type).to.eql({ kind: 'type', type: 'number', text: 'number' });
 
             expect(prop1.locations, 'Code location should be parsed').to.be.exist;
-            expect(prop1.locations[0]).is.deep.equals({ start: 58, end: 59 });
-            expect(prop1.locations[1]).is.deep.equals({ start: 102, end: 103 });
+            expect(prop1.locations[0]).is.deep.equals({ start: 56, end: 57 });
+            expect(prop1.locations[1]).is.deep.equals({ start: 97, end: 98 });
 
             const prop2 = doc.data.find(d => d.name === 'b');
 
@@ -310,7 +310,7 @@ describe('SvelteDoc v3 - Props', () => {
             expect(prop.type).to.eql({ kind: 'type', type: 'Array<string>', text: 'Array<string>' });
 
             expect(prop.locations, 'Code location should be parsed').to.be.exist;
-            expect(prop.locations[0]).is.deep.equals({ start: 189, end: 194 });
+            expect(prop.locations[0]).is.deep.equals({ start: 181, end: 186 });
 
             const localProp = doc.data.find(d => d.name === 'classes');
 

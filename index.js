@@ -74,24 +74,32 @@ function convertVisibilityToLevel(visibility) {
     return 0;
 }
 
-function mergeItems(itemType, currentItem, newItem) {
+function mergeItems(itemType, currentItem, newItem, ignoreLocations) {
     if (convertVisibilityToLevel(currentItem.visibility) < convertVisibilityToLevel(newItem.visibility)) {
         currentItem.visibility = newItem.visibility;
     }
 
     if (!currentItem.description && newItem.description) {
-        currentItem.description = newItem;
+        currentItem.description = newItem.description;
+    }
+
+    if (!currentItem.type || currentItem.type.type === 'any') {
+        if (newItem.type && newItem.type.type !== 'any') {
+            currentItem.type = newItem.type;
+        }
     }
 
     if (!currentItem.keywords && newItem.keywords) {
         currentItem.keywords = newItem.keywords;
     }
 
-    if (newItem.locations && newItem.locations.length > 0) {
-        if (currentItem.locations) {
-            currentItem.locations.push(...newItem.locations);
-        } else {
-            currentItem.locations = [...newItem.locations];
+    if (!ignoreLocations) {
+        if (newItem.locations && newItem.locations.length > 0) {
+            if (currentItem.locations) {
+                currentItem.locations.push(...newItem.locations);
+            } else {
+                currentItem.locations = [...newItem.locations];
+            }
         }
     }
 
@@ -133,6 +141,14 @@ function subscribeOnParserEvents(parser, options, version, resolve, reject) {
 
                 parser.on(eventName, (value) => {
                     const itemIndex = component[feature].findIndex(item => item.name === value.name);
+
+                    if (value.localName) {
+                        const localItem = component[feature].find(item => item.name === value.localName);
+
+                        if (localItem) {
+                            value = mergeItems(feature, value, localItem, true);
+                        }
+                    }
 
                     if (itemIndex < 0) {
                         component[feature].push(value);

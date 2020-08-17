@@ -137,6 +137,20 @@ export interface SvelteDataItem extends ISvelteItem {
      * @since {2.2.0}
      */
     originalName?: string;
+
+    /**
+     * The local name of the prop that was exported with aliace statement
+     * @example
+     * ```js
+     * const local = 1;
+     * export { local as public };
+     * // `name` of this item will be `'public'`
+     * // `localName` of this item will be `'local'`
+     * ```
+     * @since {3.0.1}
+     */
+    localName?: string;
+
     /**
      * The relative path of importing of this object.
      * When not defined, so variable is not provided.

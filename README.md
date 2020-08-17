@@ -7,6 +7,11 @@ Generate a JSON documentation for a Svelte file
 
 ## Changelog 
 
+### [3.0.1] 17.08.2020
+
+- [Fixed] Solve issue #26, support `export { variables as var }` statement.
+- [Added] now interface `SvelteDataItem` provides a new property `localName` with information about internal name of component property.
+
 ### [3.0.0] 08.08.2020
 
 - [Fixed] Solve vulnerability issues:

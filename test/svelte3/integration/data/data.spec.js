@@ -247,4 +247,78 @@ describe('SvelteDoc v3 - Props', () => {
             done(e);
         });
     });
+
+    it('Export object statement with multiple variables should be parsed as public props', done => {
+        parser.parse({
+            version: 3,
+            filename: path.resolve(__dirname, 'data.export.many.svelte'),
+            features: ['data'],
+            includeSourceLocations: true,
+            ignoredVisibilities: []
+        }).then((doc) => {
+            expect(doc, 'Document should be provided').to.exist;
+            expect(doc.data, 'Document data should be parsed').to.exist;
+
+            expect(doc.data.length).to.equal(2);
+
+            const prop1 = doc.data.find(d => d.name === 'a');
+
+            expect(prop1.name).to.equal('a');
+            expect(prop1.visibility).to.equal('public');
+            expect(prop1.static).to.be.false;
+            expect(prop1.description).to.be.equal('The `a` variable description');
+            expect(prop1.type).to.eql({ kind: 'type', type: 'number', text: 'number' });
+
+            expect(prop1.locations, 'Code location should be parsed').to.be.exist;
+            expect(prop1.locations[0]).is.deep.equals({ start: 58, end: 59 });
+            expect(prop1.locations[1]).is.deep.equals({ start: 102, end: 103 });
+
+            const prop2 = doc.data.find(d => d.name === 'b');
+
+            expect(prop2.name).to.equal('b');
+            expect(prop2.visibility).to.equal('public');
+            expect(prop2.static).to.be.false;
+            expect(prop2.type).to.eql({ kind: 'type', type: 'string', text: 'string' });
+
+            done();
+        }).catch(e => {
+            done(e);
+        });
+    });
+
+    it('Export object statement with variable and aliace for that should be parsed as public prop', done => {
+        parser.parse({
+            version: 3,
+            filename: path.resolve(__dirname, 'data.export.aliace.svelte'),
+            features: ['data'],
+            includeSourceLocations: true,
+            ignoredVisibilities: []
+        }).then((doc) => {
+            expect(doc, 'Document should be provided').to.exist;
+            expect(doc.data, 'Document data should be parsed').to.exist;
+
+            expect(doc.data.length).to.equal(2);
+
+            const prop = doc.data.find(d => d.name === 'class');
+
+            expect(prop).to.exist;
+            expect(prop.name, 'Aliace name must be exposed instead of original name').to.equal('class');
+            expect(prop.localName, 'Local name must be stored').to.equal('classes');
+            expect(prop.visibility).to.equal('public');
+            expect(prop.static).to.be.false;
+            expect(prop.description).to.be.equal('Description for variable that must be exported later');
+            expect(prop.type).to.eql({ kind: 'type', type: 'Array<string>', text: 'Array<string>' });
+
+            expect(prop.locations, 'Code location should be parsed').to.be.exist;
+            expect(prop.locations[0]).is.deep.equals({ start: 189, end: 194 });
+
+            const localProp = doc.data.find(d => d.name === 'classes');
+
+            expect(localProp, 'Local prop definition also must be provided').to.exist;
+
+            done();
+        }).catch(e => {
+            done(e);
+        });
+    });
 });

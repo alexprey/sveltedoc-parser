@@ -1,0 +1,138 @@
+{
+    "version": 3,
+    "name": "button",
+    "data": [
+        {
+            "keywords": [
+                {
+                    "name": "type",
+                    "description": "{string}"
+                }
+            ],
+            "visibility": "public",
+            "description": "The text content of the button.",
+            "name": "text",
+            "kind": "let",
+            "static": false,
+            "readonly": false,
+            "type": {
+                "kind": "type",
+                "text": "string",
+                "type": "string"
+            },
+            "defaultValue": ""
+        },
+        {
+            "keywords": [
+                {
+                    "name": "type",
+                    "description": "{'default'|'primary'|'danger'|'success'}"
+                }
+            ],
+            "visibility": "public",
+            "description": "The style type of the button.",
+            "name": "type",
+            "kind": "let",
+            "static": false,
+            "readonly": false,
+            "type": {
+                "kind": "union",
+                "text": "'default'|'primary'|'danger'|'success'",
+                "type": [
+                    {
+                        "kind": "const",
+                        "text": "'default'",
+                        "type": "string",
+                        "value": "default"
+                    },
+                    {
+                        "kind": "const",
+                        "text": "'primary'",
+                        "type": "string",
+                        "value": "primary"
+                    },
+                    {
+                        "kind": "const",
+                        "text": "'danger'",
+                        "type": "string",
+                        "value": "danger"
+                    },
+                    {
+                        "kind": "const",
+                        "text": "'success'",
+                        "type": "string",
+                        "value": "success"
+                    }
+                ]
+            },
+            "defaultValue": "default"
+        },
+        {
+            "keywords": [
+                {
+                    "name": "type",
+                    "description": "{'small'|'normal'|'big'}"
+                }
+            ],
+            "visibility": "public",
+            "description": "The size of the button.",
+            "name": "size",
+            "kind": "let",
+            "static": false,
+            "readonly": false,
+            "type": {
+                "kind": "union",
+                "text": "'small'|'normal'|'big'",
+                "type": [
+                    {
+                        "kind": "const",
+                        "text": "'small'",
+                        "type": "string",
+                        "value": "small"
+                    },
+                    {
+                        "kind": "const",
+                        "text": "'normal'",
+                        "type": "string",
+                        "value": "normal"
+                    },
+                    {
+                        "kind": "const",
+                        "text": "'big'",
+                        "type": "string",
+                        "value": "big"
+                    }
+                ]
+            },
+            "defaultValue": "normal"
+        }
+    ],
+    "computed": [],
+    "methods": [],
+    "components": [],
+    "description": "The simple component button.",
+    "keywords": [
+        {
+            "name": "component",
+            "description": "Button"
+        },
+        {
+            "name": "example",
+            "description": "<Button text=\"Click there!\" on:click={() => ...} />"
+        }
+    ],
+    "events": [
+        {
+            "name": "click",
+            "parent": "button",
+            "modificators": [],
+            "locations": null,
+            "loc": null,
+            "visibility": "public",
+            "description": "",
+            "keywords": []
+        }
+    ],
+    "slots": [],
+    "refs": []
+}

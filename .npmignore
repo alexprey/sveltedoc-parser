@@ -1,4 +1,6 @@
 /test
+/examples
+/scripts
 .eslintrc.json
 .gitignore
 yarn.lock

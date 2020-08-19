@@ -1,0 +1,73 @@
+{
+    "version": 3,
+    "name": "alert",
+    "data": [
+        {
+            "visibility": "private",
+            "description": null,
+            "keywords": [],
+            "name": "createEventDispatcher",
+            "kind": "const",
+            "static": false,
+            "readonly": true,
+            "type": {
+                "kind": "type",
+                "text": "any",
+                "type": "any"
+            },
+            "importPath": "svelte",
+            "originalName": "createEventDispatcher"
+        },
+        {
+            "visibility": "private",
+            "description": null,
+            "keywords": [],
+            "name": "dispatch",
+            "kind": "const",
+            "static": false,
+            "readonly": true,
+            "type": {
+                "kind": "type",
+                "text": "any",
+                "type": "any"
+            }
+        },
+        {
+            "visibility": "public",
+            "description": null,
+            "keywords": [],
+            "name": "closable",
+            "kind": "let",
+            "static": false,
+            "readonly": false,
+            "type": {
+                "kind": "type",
+                "text": "boolean",
+                "type": "boolean"
+            },
+            "defaultValue": false
+        }
+    ],
+    "computed": [],
+    "methods": [],
+    "components": [],
+    "description": null,
+    "keywords": [],
+    "events": [
+        {
+            "visibility": "public",
+            "description": null,
+            "keywords": [],
+            "name": "close"
+        }
+    ],
+    "slots": [
+        {
+            "name": "default",
+            "description": "The internal content of the alert block.",
+            "visibility": "public",
+            "parameters": []
+        }
+    ],
+    "refs": []
+}

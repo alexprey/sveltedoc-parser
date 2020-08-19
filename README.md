@@ -101,6 +101,8 @@ npm install --save sveltedoc-parser
 
 Output format are described at [this document](/typings.d.ts).
 
+Please follow to [Examples](/examples/) folder to check how Svelte components transforms to JSON document.
+
 See example of output for Svelte 2 component [here](/test/svelte2/integration/overall/overall.main.doc.json) presented in JSON format for [this component](/test/svelte2/integration/overall/main.svelte).
 
 ## Usage

@@ -10,4 +10,12 @@
     const anotherHandler = () => {
         dispatch('notify2');
     };
+
+    export function publicMethodHandler() {
+        dispatch('notify3');
+    }
+
+    export const publicArrow = () => {
+        dispatch('notify4');
+    };
 </script>

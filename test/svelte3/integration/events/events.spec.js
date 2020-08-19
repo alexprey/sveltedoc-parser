@@ -146,18 +146,29 @@ describe('SvelteDoc v3 - Events', () => {
             expect(doc, 'Document should be provided').to.exist;
             expect(doc.events, 'Document events should be parsed').to.exist;
 
-            expect(doc.events.length).to.equal(2);
-            const event1 = doc.events[0];
+            const event1 = doc.events.find(e => e.name === 'notify');
 
-            expect(event1, 'Event should be a valid entity').to.exist;
+            expect(event1, 'Event from regular function must be parsed').to.exist;
             expect(event1.name).to.equal('notify');
             expect(event1.visibility).to.equal('public');
 
-            const event2 = doc.events[1];
+            const event2 = doc.events.find(e => e.name === 'notify2');
 
-            expect(event2, 'Event should be a valid entity').to.exist;
+            expect(event2, 'Event from arrow function must be parsed').to.exist;
             expect(event2.name).to.equal('notify2');
             expect(event2.visibility).to.equal('public');
+
+            const event3 = doc.events.find(e => e.name === 'notify3');
+
+            expect(event3, 'Event from exported function must be parsed').to.exist;
+            expect(event3.name).to.equal('notify3');
+            expect(event3.visibility).to.equal('public');
+
+            const event4 = doc.events.find(e => e.name === 'notify4');
+
+            expect(event4, 'Event from exported arrow function must be parsed').to.exist;
+            expect(event4.name).to.equal('notify4');
+            expect(event4.visibility).to.equal('public');
 
             done();
         }).catch(e => {

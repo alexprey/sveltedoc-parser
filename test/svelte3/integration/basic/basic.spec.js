@@ -13,7 +13,7 @@ describe('SvelteDoc v3 - Basic', () => {
             ignoredVisibilities: []
         }).then((doc) => {
             expect(doc, 'Document should be provided').to.exist;
-            expect(doc.name, 'Document should have proper name').to.equal('basic.name');
+            expect(doc.name, 'Document should have proper name').to.equal('BasicName');
 
             done();
         }).catch(e => {

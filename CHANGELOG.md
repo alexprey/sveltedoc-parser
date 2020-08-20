@@ -5,6 +5,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## UNRELEASED
 
+- 🛠 [Fixed] Fix issue #6 (Build a correct component name from a file name)
+```
+round.button.svelte -> RoundButton
+```
 - 🛠 [Fixed] Fix issue #27 (Events is not exposed from exported functions and arrow functions)
 
 ## [3.0.1] 17.08.2020

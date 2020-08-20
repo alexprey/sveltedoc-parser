@@ -147,3 +147,7 @@ Found a new issues? Please contribute and write detailed description [here](http
 Author [Alexey Mulyukin](https://github.com/alexprey)
 
 Based on [vuedoc-parse](https://gitlab.com/vuedoc/parser)
+
+## License
+
+[MIT](/LICENSE)

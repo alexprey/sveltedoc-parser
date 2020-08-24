@@ -3,13 +3,15 @@ All notable changes to the "svelte-intellisense" extension will be documented in
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## UNRELEASED
+## [3.0.2] 24.08.2020
 
 - 🛠 [Fixed] Fix issue #6 (Build a correct component name from a file name)
 ```
 round.button.svelte -> RoundButton
 ```
 - 🛠 [Fixed] Fix issue #27 (Events is not exposed from exported functions and arrow functions)
+- 🛠 [Fixed] Fix issue #31 (Propogated events in markup should be parsed even it was before handled)
+- 🛠 [Fixed] Fix issue #32 (Event is not registered when dispatched from functions used as a parameters of another functions)
 
 ## [3.0.1] 17.08.2020
 

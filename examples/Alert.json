@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "name": "alert",
+    "name": "Alert",
     "data": [
         {
             "visibility": "private",
@@ -51,8 +51,17 @@
     "computed": [],
     "methods": [],
     "components": [],
-    "description": null,
-    "keywords": [],
+    "description": "Simple box with constrast styling to notify users.",
+    "keywords": [
+        {
+            "name": "component",
+            "description": ""
+        },
+        {
+            "name": "example",
+            "description": "<Alert closable={true} on:close={() => ...}>\nUser-defined content\n</Alert>"
+        }
+    ],
     "events": [
         {
             "visibility": "public",

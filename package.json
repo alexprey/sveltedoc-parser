@@ -1,6 +1,6 @@
 {
     "name": "sveltedoc-parser",
-    "version": "3.0.1",
+    "version": "3.0.2",
     "description": "Generate a JSON documentation for a Svelte file",
     "main": "index.js",
     "scripts": {
@@ -50,7 +50,8 @@
         "eslint-plugin-node": "10.0.0",
         "eslint-plugin-promise": "4.2.1",
         "eslint-plugin-standard": "4.0.1",
-        "mocha": "8.1.1"
+        "mocha": "8.1.1",
+        "glob": "7.1.6"
     },
     "engines": {
         "node": ">=10.0.0"

@@ -1,4 +1,15 @@
 <script>
+    /**
+     * Simple box with constrast styling to notify users.
+     * 
+     * @component
+     * 
+     * @example
+     * <Alert closable={true} on:close={() => ...}>
+     *      User-defined content
+     * </Alert>
+     */
+
     import { createEventDispatcher } from 'svelte';
     const dispatch = createEventDispatcher();
 
@@ -12,7 +23,11 @@
     </div>
     {#if closable}
         <div>
-            <button on:click="{e => dispatch('close')}"></button>
+            <!-- 
+                The `close` event fired when user click to X button in the panel. 
+                @event CloseEvent#close
+            -->
+            <button on:click="{e => dispatch('close')}">&times;</button>
         </div>
     {/if}
 </div>

@@ -7,18 +7,28 @@ Generate a JSON documentation for a Svelte file
 
 ## Changelog 
 
+### [3.0.2] 24.08.2020
+
+- 🛠 **[Fixed]** Fix issue #6 (Build a correct component name from a file name)
+```
+round.button.svelte -> RoundButton
+```
+- 🛠 **[Fixed]** Fix issue #27 (Events is not exposed from exported functions and arrow functions)
+- 🛠 **[Fixed]** Fix issue #31 (Propogated events in markup should be parsed even it was before handled)
+- 🛠 **[Fixed]** Fix issue #32 (Event is not registered when dispatched from functions used as a parameters of another functions)
+
 ### [3.0.1] 17.08.2020
 
-- [Fixed] Solve issue #26, support `export { variables as var }` statement.
-- [Added] now interface `SvelteDataItem` provides a new property `localName` with information about internal name of component property.
+- 🛠 **[Fixed]** Solve issue #26, support `export { variables as var }` statement.
+- ✔ **[Added]** now interface `SvelteDataItem` provides a new property `localName` with information about internal name of component property.
 
 ### [3.0.0] 08.08.2020
 
-- [Fixed] Solve vulnerability issues:
+- 🛠 **[Fixed]** Solve vulnerability issues:
     - Update `espree` to `7.2.0`
     - Update `htmlparser2` to `3.9.2`
     - Add dependency to `eslint` to fix issues after upgrading to new versions
-- [Breaking] Increase requirement of Node.js to `10.0.0`, Node.js v8 now is not supported, this is related with security isssues above. Please let me know if it still required.
+- 🔥 **[Breaking]** Increase requirement of Node.js to `10.0.0`, Node.js v8 now is not supported, this is related with security isssues above. Please let me know if it still required.
 
 Full changelog of release versions can be found [here](/CHANGELOG.md)
 

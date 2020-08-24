@@ -267,4 +267,26 @@ describe('SvelteDoc v3 - Events', () => {
             done(e);
         });
     });
+
+    it('Dispatch event from external callback', (done) => {
+        parser.parse({
+            version: 3,
+            filename: path.resolve(__dirname, 'event.dispatcher.externalCallback.svelte'),
+            features: ['events'],
+            ignoredVisibilities: []
+        }).then((doc) => {
+            expect(doc, 'Document should be provided').to.exist;
+            expect(doc.events, 'Document events should be parsed').to.exist;
+
+            const event = doc.events.find(e => e.name === 'change');
+
+            expect(event, 'Event should be a valid entity').to.exist;
+            expect(event.name).to.equal('change');
+            expect(event.visibility).to.equal('public');
+
+            done();
+        }).catch(e => {
+            done(e);
+        });
+    });
 });

@@ -59,6 +59,30 @@ describe('SvelteDoc v3 - Events', () => {
         });
     });
 
+    it('Propogated events in markup should be parsed even it was before handled', (done) => {
+        parser.parse({
+            version: 3,
+            filename: path.resolve(__dirname, 'event.markup.handleAndPropogate.svelte'),
+            features: ['events'],
+            ignoredVisibilities: []
+        }).then((doc) => {
+            expect(doc, 'Document should be provided').to.exist;
+            expect(doc.events, 'Document events should be parsed').to.exist;
+
+            const event = doc.events.find(e => e.name === 'click');
+
+            expect(event, 'Event should be a valid entity').to.exist;
+            expect(event.name).to.equal('click');
+            expect(event.visibility).to.equal('public');
+            expect(event.parent).to.be.equal('button');
+            expect(event.description).to.equal('Event fired when user clicked on button.');
+
+            done();
+        }).catch(e => {
+            done(e);
+        });
+    });
+
     it('Dispatch event from code should be found', (done) => {
         parser.parse({
             version: 3,

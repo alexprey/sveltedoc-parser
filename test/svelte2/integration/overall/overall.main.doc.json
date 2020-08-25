@@ -461,6 +461,7 @@
     "slots": [
         {
             "name": "default",
+            "visibility": "public",
             "description": null,
             "locations": [
                 {
@@ -475,6 +476,7 @@
         },
         {
             "name": "footer",
+            "visibility": "public",
             "description": null,
             "locations": [
                 {

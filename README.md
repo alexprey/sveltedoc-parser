@@ -7,6 +7,10 @@ Generate a JSON documentation for a Svelte file
 
 ## Changelog 
 
+### [3.0.4] 25.08.2020
+
+- 🛠 **[Fixed]** Fix [issue #5](https://github.com/alexprey/sveltedoc-parser/issues/5) (slots items have a private access level by default)
+
 ### [3.0.3] 25.08.2020
 
 - 🛠 **[Fixed]** Fix [issue #28](https://github.com/alexprey/sveltedoc-parser/issues/28) (Inline event handlers in markup cause errors when used without quotes)

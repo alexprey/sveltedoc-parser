@@ -1,11 +1,12 @@
 {
     "name": "sveltedoc-parser",
-    "version": "3.0.3",
+    "version": "3.0.4", 
     "description": "Generate a JSON documentation for a Svelte file",
     "main": "index.js",
     "scripts": {
         "lint": "eslint ./**/*.js",
         "test": "mocha ./test/**/*.spec.js",
+        "prepublish": "npm run test && npm run lint",
         "test:unit": "mocha ./test/unit/**/*.spec.js",
         "test:integration": "mocha ./test/**/integration/**/*.spec.js",
         "test:integration-overall": "mocha ./test/**/integration/overall/overall.main.spec.js",

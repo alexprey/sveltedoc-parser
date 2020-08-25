@@ -7,3 +7,7 @@
 <button on:click="{() => customDispatcherName('notify', 'data')}">
     FIRE!
 </button>
+
+<button on:click={() => customDispatcherName('notify2', 'data')}>
+    FIRE!
+</button>

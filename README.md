@@ -7,6 +7,11 @@ Generate a JSON documentation for a Svelte file
 
 ## Changelog 
 
+### [3.0.3] 25.08.2020
+
+- 🛠 **[Fixed]** Fix [issue #28](https://github.com/alexprey/sveltedoc-parser/issues/28) (Inline event handlers in markup cause errors when used without quotes)
+    - Change dependency from `htmlparser2` to [htmlparser2-svelte](https://www.npmjs.com/package/htmlparser2-svelte) special fork of [htmlparser2](https://www.npmjs.com/package/htmlparser2) to handle Svelte specific cases to parse markup
+
 ### [3.0.2] 24.08.2020
 
 - 🛠 **[Fixed]** Fix issue #6 (Build a correct component name from a file name)

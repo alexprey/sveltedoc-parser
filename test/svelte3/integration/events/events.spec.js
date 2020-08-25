@@ -147,12 +147,17 @@ describe('SvelteDoc v3 - Events', () => {
             expect(doc, 'Document should be provided').to.exist;
             expect(doc.events, 'Document events should be parsed').to.exist;
 
-            expect(doc.events.length).to.equal(1);
-            const event = doc.events[0];
+            const event1 = doc.events.find(e => e.name === 'notify');
 
-            expect(event, 'Event should be a valid entity').to.exist;
-            expect(event.name).to.equal('notify');
-            expect(event.visibility).to.equal('public');
+            expect(event1, 'Event should be a valid entity').to.exist;
+            expect(event1.name).to.equal('notify');
+            expect(event1.visibility).to.equal('public');
+
+            const event2 = doc.events.find(e => e.name === 'notify2');
+
+            expect(event2, 'Event should be a valid entity').to.exist;
+            expect(event2.name).to.equal('notify2');
+            expect(event2.visibility).to.equal('public');
 
             done();
         }).catch(e => {
@@ -279,12 +284,17 @@ describe('SvelteDoc v3 - Events', () => {
             expect(doc, 'Document should be provided').to.exist;
             expect(doc.events, 'Document events should be parsed').to.exist;
 
-            expect(doc.events.length).to.equal(1);
-            const event = doc.events[0];
+            const event1 = doc.events.find(e => e.name === 'notify');
 
-            expect(event, 'Event should be a valid entity').to.exist;
-            expect(event.name).to.equal('notify');
-            expect(event.visibility).to.equal('public');
+            expect(event1, 'Event should be a valid entity').to.exist;
+            expect(event1.name).to.equal('notify');
+            expect(event1.visibility).to.equal('public');
+
+            const event2 = doc.events.find(e => e.name === 'notify2');
+
+            expect(event2, 'Event should be a valid entity').to.exist;
+            expect(event2.name).to.equal('notify2');
+            expect(event2.visibility).to.equal('public');
 
             done();
         }).catch(e => {

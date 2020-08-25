@@ -27,7 +27,7 @@
                 The `close` event fired when user click to X button in the panel. 
                 @event CloseEvent#close
             -->
-            <button on:click="{e => dispatch('close')}">&times;</button>
+            <button on:click={() => dispatch('close')}>&times;</button>
         </div>
     {/if}
 </div>

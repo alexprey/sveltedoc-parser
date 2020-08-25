@@ -7,3 +7,7 @@
 <button on:click="{function () { dispatch('notify'); }}">
     CLICK!
 </button>
+
+<button on:click={function () { dispatch('notify2'); }}>
+    CLICK!
+</button>

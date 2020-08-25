@@ -43,7 +43,7 @@ describe('SvelteDoc v3 - Bind', () => {
             expect(doc, 'Document should be provided').to.exist;
             expect(doc.data, 'Document data should be parsed').to.exist;
 
-            expect(doc.data.length).to.equal(1);
+            expect(doc.data.length, 'Found following data items - ' + doc.data.map(d => d.name).join(', ')).to.equal(1);
             const item = doc.data[0];
 
             expect(item, 'Bind item should be a valid entity').to.exist;
@@ -98,7 +98,7 @@ describe('SvelteDoc v3 - Bind', () => {
             expect(doc, 'Document should be provided').to.exist;
             expect(doc.data, 'Document data should be parsed').to.exist;
 
-            expect(doc.data.length).to.equal(1);
+            expect(doc.data.length, 'Found following data items - ' + doc.data.map(d => d.name).join(', ')).to.equal(1);
             const item = doc.data[0];
 
             expect(item, 'Bind item should be a valid entity').to.exist;

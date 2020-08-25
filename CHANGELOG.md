@@ -3,15 +3,20 @@ All notable changes to the "svelte-intellisense" extension will be documented in
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [3.0.3] 25.08.2020
+
+- 🛠 **[Fixed]** Fix [issue #28](https://github.com/alexprey/sveltedoc-parser/issues/28) (Inline event handlers in markup cause errors when used without quotes)
+    - Change dependency from `htmlparser2` to [htmlparser2-svelte](https://www.npmjs.com/package/htmlparser2-svelte) special fork of [htmlparser2](https://www.npmjs.com/package/htmlparser2) to handle Svelte specific cases to parse markup
+
 ## [3.0.2] 24.08.2020
 
-- 🛠 [Fixed] Fix issue #6 (Build a correct component name from a file name)
+- 🛠 **[Fixed]** Fix issue #6 (Build a correct component name from a file name)
 ```
 round.button.svelte -> RoundButton
 ```
-- 🛠 [Fixed] Fix issue #27 (Events is not exposed from exported functions and arrow functions)
-- 🛠 [Fixed] Fix issue #31 (Propogated events in markup should be parsed even it was before handled)
-- 🛠 [Fixed] Fix issue #32 (Event is not registered when dispatched from functions used as a parameters of another functions)
+- 🛠 **[Fixed]** Fix [issue #27](https://github.com/alexprey/sveltedoc-parser/issues/27) (Events is not exposed from exported functions and arrow functions)
+- 🛠 **[Fixed]** Fix [issue #31](https://github.com/alexprey/sveltedoc-parser/issues/31) (Propogated events in markup should be parsed even it was before handled)
+- 🛠 **[Fixed]** Fix [issue #32](https://github.com/alexprey/sveltedoc-parser/issues/32) (Event is not registered when dispatched from functions used as a parameters of another functions)
 
 ## [3.0.1] 17.08.2020
 

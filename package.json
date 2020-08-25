@@ -1,6 +1,6 @@
 {
     "name": "sveltedoc-parser",
-    "version": "3.0.2",
+    "version": "3.0.3",
     "description": "Generate a JSON documentation for a Svelte file",
     "main": "index.js",
     "scripts": {
@@ -38,7 +38,7 @@
     "dependencies": {
         "espree": "7.2.0",
         "eslint": "7.6.0",
-        "htmlparser2": "3.9.2"
+        "htmlparser2-svelte": "4.1.0"
     },
     "devDependencies": {
         "chai": "4.1.2",

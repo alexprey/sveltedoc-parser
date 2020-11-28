@@ -29,7 +29,16 @@
      * Additional options for the button.
      * @type {{ rtl: boolean, lang: string }}
      */
-     export let options = { rtl: false, lang: 'en-us' };
+    export let options = { rtl: false, lang: 'en-us' };
+
+    /**
+     * Computes the answer to your question.
+     * @param {string} question a question about life, the universe, everything
+     * @returns {number} the answer to all your questions
+     */
+    export function computeAnswer(question) {
+       return question.indexOf("?") >= 0 ? 42 : 23;
+    };
 </script>
 
 <button type="button" on:click>

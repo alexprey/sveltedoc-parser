@@ -35,6 +35,28 @@ export interface JSDocType {
     value?: any
 }
 
+export interface JSDocTypeUnion extends JSDocType {
+    /**
+     * Kind of this type.
+     */
+    kind: 'union',
+    /**
+     * The list of types of this item. 
+     */
+    type: JSDocType[],
+}
+
+export interface JSDocTypeElement {
+    /**
+     * Kind of this type.
+     */
+    kind: 'type'|'const',
+    /**
+     * The type representation of this item.
+     */
+    type: string,
+}
+
 /**
  * Represents a source location of symbol.
  */
@@ -201,11 +223,37 @@ export interface SvelteMethodArgumentItem {
     static?: boolean;
 }
 
+export interface SvelteMethodReturnItem {
+    /**
+     * The JSDocType of the return value.
+     */
+    doctype: JSDocType;
+    /**
+     * The type of the return value, as a string.
+     */
+    type: string;
+    /**
+     * The description of the return value.
+     */
+    description?: string;
+    /**
+     * The description of the return value.
+     * @depracated use 'description' instead.
+     */
+    desc?: string;
+    
+}
+
 export interface SvelteMethodItem extends ISvelteItem {
     /**
-     * The list of parameter items for specified method.
+     * The list of parameter items of the method.
      */
-    args?: SvelteMethodArgumentItem[]
+    args?: SvelteMethodArgumentItem[];
+    /**
+     * The return item of the method. This exists if an item with 'name' equal
+     * to 'returns' or 'return' exists in 'keywords'.
+     */
+    return?: SvelteMethodReturnItem;
 }
 
 export interface SvelteComponentItem extends ISvelteItem {

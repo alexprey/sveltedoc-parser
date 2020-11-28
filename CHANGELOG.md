@@ -3,6 +3,10 @@ All notable changes to the "svelte-intellisense" extension will be documented in
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [3.0.5] 28.11.2020
+
+- 🛠 **[Fixed]** Fix [Issue #35](https://github.com/alexprey/sveltedoc-parser/issues/35): Object literals not supported in @type keyword. Thanks for @soft-decay
+
 ## [3.0.4] 25.08.2020
 
 - 🛠 **[Fixed]** Fix [issue #5](https://github.com/alexprey/sveltedoc-parser/issues/5) (slots items have a private access level by default)

@@ -24,6 +24,12 @@
      * @type {'small'|'normal'|'big'}
      */
     export let size = 'normal';
+
+    /**
+     * Additional options for the button.
+     * @type {{ rtl: boolean, lang: string }}
+     */
+     export let options = { rtl: false, lang: 'en-us' };
 </script>
 
 <button type="button" on:click>

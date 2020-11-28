@@ -105,6 +105,25 @@
                 ]
             },
             "defaultValue": "normal"
+        },
+        {
+            "keywords": [
+                {
+                    "name": "type",
+                    "description": "{{ rtl: boolean, lang: string }}"
+                }
+            ],
+            "visibility": "public",
+            "description": "Additional options for the button.",
+            "name": "options",
+            "kind": "let",
+            "static": false,
+            "readonly": false,
+            "type": {
+                "kind": "type",
+                "text": "{ rtl: boolean, lang: string }",
+                "type": "{ rtl: boolean, lang: string }"
+            }
         }
     ],
     "computed": [],

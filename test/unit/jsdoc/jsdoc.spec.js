@@ -29,6 +29,22 @@ describe('JSDoc parser module tests', () => {
             expect(type.type).is.equal('string');
         });
 
+        it('Object literal', () => {
+            const type = jsdoc.parseTypeKeyword('{{ prop: string }}');
+
+            expect(type).is.exist;
+            expect(type.kind).is.equal('type');
+            expect(type.type).is.equal('{ prop: string }');
+        });
+
+        it('Nested object literals', () => {
+            const type = jsdoc.parseTypeKeyword('{{ prop: { internal: string } }}');
+
+            expect(type).is.exist;
+            expect(type.kind).is.equal('type');
+            expect(type.type).is.equal('{ prop: { internal: string } }');
+        });
+
         it('Array with generic declaration', () => {
             const type = jsdoc.parseTypeKeyword('{Array<string>}');
 
@@ -62,6 +78,17 @@ describe('JSDoc parser module tests', () => {
 
             expect(type.type.some(t => t.type === 'KeyboardEvent')).to.be.true;
             expect(type.type.some(t => t.type === 'MouseEvent')).to.be.true;
+        });
+
+        it('Union of object literals', () => {
+            const type = jsdoc.parseTypeKeyword('{{ some: string }|{ other: boolean }}');
+
+            expect(type).is.exist;
+            expect(type.kind).is.equal('union');
+            expect(type.type.length).is.equal(2);
+
+            expect(type.type.some(t => t.type === '{ some: string }')).to.be.true;
+            expect(type.type.some(t => t.type === '{ other: boolean }')).to.be.true;
         });
 
         it('Union of classes with spacings', () => {

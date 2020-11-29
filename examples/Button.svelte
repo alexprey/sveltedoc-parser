@@ -33,11 +33,11 @@
 
     /**
      * Computes the answer to your question.
-     * @param {string} question a question about life, the universe, everything
+     * @param {string} [question=Why?] a question about life, the universe, everything
      * @returns {number} the answer to all your questions
      */
     export function computeAnswer(question) {
-       return question.indexOf("?") >= 0 ? 42 : 23;
+       return question.indexOf('?') >= 0 ? 42 : 23;
     };
 </script>
 

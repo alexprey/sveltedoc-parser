@@ -132,7 +132,7 @@
             "keywords": [
                 {
                     "name": "param",
-                    "description": "{string} question a question about life, the universe, everything"
+                    "description": "{string} [question=Why?] a question about life, the universe, everything"
                 },
                 {
                     "name": "returns",
@@ -142,9 +142,17 @@
             "visibility": "public",
             "description": "Computes the answer to your question.",
             "name": "computeAnswer",
-            "args": [
+            "params": [
                 {
-                    "name": "question"
+                    "type": {
+                        "kind": "type",
+                        "text": "string",
+                        "type": "string"
+                    },
+                    "name": "question",
+                    "optional": true,
+                    "default": "Why?",
+                    "description": "a question about life, the universe, everything"
                 }
             ],
             "return": {

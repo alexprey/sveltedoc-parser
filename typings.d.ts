@@ -189,7 +189,7 @@ export interface SvelteComputedItem extends ISvelteItem {
     dependencies: string[]    
 }
 
-export interface SvelteMethodArgumentItem {
+export interface SvelteMethodParamItem {
     /**
      * The name of method parameter.
      */
@@ -223,6 +223,9 @@ export interface SvelteMethodArgumentItem {
     static?: boolean;
 }
 
+export type SvelteArgItem = SvelteMethodParamItem;
+export type SvelteArgumentItem = SvelteMethodParamItem;
+
 export interface SvelteMethodReturnItem {
     /**
      * The JSDocType of the return value.
@@ -238,7 +241,7 @@ export interface SvelteMethodItem extends ISvelteItem {
     /**
      * The list of parameter items of the method.
      */
-    args?: SvelteMethodArgumentItem[];
+    params?: SvelteMethodParamItem[];
     /**
      * The return item of the method. This exists if an item with 'name' equal
      * to 'returns' or 'return' exists in 'keywords'.

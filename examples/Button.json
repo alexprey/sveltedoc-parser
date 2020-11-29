@@ -127,7 +127,37 @@
         }
     ],
     "computed": [],
-    "methods": [],
+    "methods": [
+        {
+            "keywords": [
+                {
+                    "name": "param",
+                    "description": "{string} question a question about life, the universe, everything"
+                },
+                {
+                    "name": "returns",
+                    "description": "{number} the answer to all your questions"
+                }
+            ],
+            "visibility": "public",
+            "description": "Computes the answer to your question.",
+            "name": "computeAnswer",
+            "args": [
+                {
+                    "name": "question"
+                }
+            ],
+            "return": {
+                "type": {
+                    "kind": "type",
+                    "text": "number",
+                    "type": "number"
+                },
+                "description": "the answer to all your questions"
+            },
+            "static": false
+        }
+    ],
     "components": [],
     "description": "The simple component button.",
     "keywords": [

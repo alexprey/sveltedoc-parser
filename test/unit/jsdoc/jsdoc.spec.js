@@ -366,60 +366,55 @@ describe('JSDoc parser module tests', () => {
             const returns = jsdoc.parseReturnKeyword('return description');
 
             expect(returns).to.exist;
-            expect(returns.type).to.equal('any');
             expect(returns.description).to.equal('return description');
             
-            expect(returns.doctype).to.exist;
-            expect(returns.doctype.kind).to.equal('type');
-            expect(returns.doctype.type).to.equal('any');
+            expect(returns.type).to.exist;
+            expect(returns.type.kind).to.equal('type');
+            expect(returns.type.type).to.equal('any');
         });
 
         it('prefixed description', () => {
             const returns = jsdoc.parseReturnKeyword(' -  return description');
 
             expect(returns).to.exist;
-            expect(returns.type).to.equal('any');
             expect(returns.description).to.equal('return description');
             
-            expect(returns.doctype).to.exist;
-            expect(returns.doctype.kind).to.equal('type');
-            expect(returns.doctype.type).to.equal('any');
+            expect(returns.type).to.exist;
+            expect(returns.type.kind).to.equal('type');
+            expect(returns.type.type).to.equal('any');
         });
 
         it('type', () => {
             const returns = jsdoc.parseReturnKeyword('{*}');
 
             expect(returns).to.exist;
-            expect(returns.type).to.equal('any');
             expect(returns.description).to.not.exist;
 
-            expect(returns.doctype).to.exist;
-            expect(returns.doctype.kind).to.equal('type');
-            expect(returns.doctype.type).to.equal('any');
+            expect(returns.type).to.exist;
+            expect(returns.type.kind).to.equal('type');
+            expect(returns.type.type).to.equal('any');
         });
 
         it('type with description', () => {
             const returns = jsdoc.parseReturnKeyword('{*} return description');
 
             expect(returns).to.exist;
-            expect(returns.type).to.equal('any');
             expect(returns.description).to.equal('return description');
 
-            expect(returns.doctype).to.exist;
-            expect(returns.doctype.kind).to.equal('type');
-            expect(returns.doctype.type).to.equal('any');
+            expect(returns.type).to.exist;
+            expect(returns.type.kind).to.equal('type');
+            expect(returns.type.type).to.equal('any');
         });
 
         it('type with prefixed description', () => {
             const returns = jsdoc.parseReturnKeyword('{*}  - return description');
 
             expect(returns).to.exist;
-            expect(returns.type).to.equal('any');
             expect(returns.description).to.equal('return description');
             
-            expect(returns.doctype).to.exist;
-            expect(returns.doctype.kind).to.equal('type');
-            expect(returns.doctype.type).to.equal('any');
+            expect(returns.type).to.exist;
+            expect(returns.type.kind).to.equal('type');
+            expect(returns.type.type).to.equal('any');
         });
     });
 });

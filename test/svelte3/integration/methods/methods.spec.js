@@ -30,12 +30,17 @@ describe('SvelteDoc v3 - Methods', () => {
 
             expect(method.description).to.equal('The method comment.');
 
+            expect(method.return, 'Method return keyword should be parsed').to.exist;
+            expect(method.return.type).to.exist;
+            expect(method.return.type.type).to.equal('number');
+            expect(method.return.description).to.equal('return value description');
+
             expect(method.locations, 'Code location should be included').to.be.exist;
             expect(method.locations.length).to.be.equal(1);
 
             const location = method.locations[0];
 
-            expect(location, 'Location should be correct identified').is.deep.equals({ start: 65, end: 78 });
+            expect(location, 'Location should be correct identified').is.deep.equals({ start: 117, end: 130 });
 
             done();
         }).catch(e => {
@@ -59,12 +64,17 @@ describe('SvelteDoc v3 - Methods', () => {
             expect(method.name).to.equal('publicMethod');
             expect(method.visibility).to.equal('public');
             expect(method.static).to.be.false;
-            expect(method.description).to.be.equal('The method comment.');
+            expect(method.description).to.equal('The method comment.');
 
             expect(method.args, 'Method arguments should be parsed').to.exist;
             expect(method.args.length).to.equal(2);
             expect(method.args[0].name).to.equal('param1');
             expect(method.args[1].name).to.equal('param2');
+
+            expect(method.return, 'Method return keyword should be parsed').to.exist;
+            expect(method.return.type).to.exist;
+            expect(method.return.type.type).to.equal('number');
+            expect(method.return.description).to.equal('return value description');
 
             done();
         }).catch(e => {

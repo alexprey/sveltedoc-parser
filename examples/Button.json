@@ -148,13 +148,11 @@
                 }
             ],
             "return": {
-                "doctype": {
+                "type": {
                     "kind": "type",
                     "text": "number",
                     "type": "number"
                 },
-                "type": "number",
-                "desc": "the answer to all your questions",
                 "description": "the answer to all your questions"
             },
             "static": false

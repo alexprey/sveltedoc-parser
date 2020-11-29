@@ -46,7 +46,7 @@ export interface JSDocTypeUnion extends JSDocType {
     type: JSDocType[],
 }
 
-export interface JSDocTypeElement {
+export interface JSDocTypeElement extends JSDocType {
     /**
      * Kind of this type.
      */
@@ -227,21 +227,11 @@ export interface SvelteMethodReturnItem {
     /**
      * The JSDocType of the return value.
      */
-    doctype: JSDocType;
-    /**
-     * The type of the return value, as a string.
-     */
-    type: string;
+    type: JSDocType;
     /**
      * The description of the return value.
      */
     description?: string;
-    /**
-     * The description of the return value.
-     * @depracated use 'description' instead.
-     */
-    desc?: string;
-    
 }
 
 export interface SvelteMethodItem extends ISvelteItem {

@@ -13,25 +13,25 @@ describe('SvelteDoc v3 - Components', () => {
             includeSourceLocations: true,
             ignoredVisibilities: []
         }).then((doc) => {
+            // Document
             expect(doc, 'Document should be provided').to.exist;
             expect(doc.components, 'Document components should be parsed').to.exist;
-
             expect(doc.components.length).to.equal(1);
+
+            // Component
             const component = doc.components[0];
 
             expect(component.name).to.equal('Nested');
-            expect(component.value).to.equal('./components.nested.svelte');
             expect(component.importPath).to.equal('./components.nested.svelte');
             expect(component.visibility).to.equal('private');
-
             expect(component.description).to.equal('The nested component.');
-
             expect(component.locations, 'Code location should be included').to.be.exist;
-            expect(component.locations.length).to.be.equal(1);
+            expect(component.locations.length).to.equal(1);
 
+            // Location
             const location = component.locations[0];
 
-            expect(location, 'Location should be correct identified').is.deep.equals({ start: 53, end: 59 });
+            expect(location, 'Location should be correctly identified').is.deep.equal({ start: 53, end: 59 });
 
             done();
         }).catch(e => {

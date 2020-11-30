@@ -23,10 +23,10 @@ describe('SvelteDoc v3 - Methods', () => {
             expect(method.visibility).to.equal('private');
             expect(method.static).to.be.false;
 
-            expect(method.args, 'Method arguments should be parsed').to.exist;
-            expect(method.args.length).to.equal(2);
-            expect(method.args[0].name).to.equal('param1');
-            expect(method.args[1].name).to.equal('param2');
+            expect(method.params, 'Method arguments should be parsed').to.exist;
+            expect(method.params.length).to.equal(2);
+            expect(method.params[0].name).to.equal('param1');
+            expect(method.params[1].name).to.equal('param2');
 
             expect(method.description).to.equal('The method comment.');
 
@@ -56,9 +56,10 @@ describe('SvelteDoc v3 - Methods', () => {
             ignoredVisibilities: []
         }).then((doc) => {
             expect(doc, 'Document should be provided').to.exist;
-            expect(doc.methods, 'Document methods should be parsed').to.exist;
 
+            expect(doc.methods, 'Document methods should be parsed').to.exist;
             expect(doc.methods.length).to.equal(1);
+
             const method = doc.methods[0];
 
             expect(method.name).to.equal('publicMethod');
@@ -66,11 +67,23 @@ describe('SvelteDoc v3 - Methods', () => {
             expect(method.static).to.be.false;
             expect(method.description).to.equal('The method comment.');
 
-            expect(method.args, 'Method arguments should be parsed').to.exist;
-            expect(method.args.length).to.equal(2);
-            expect(method.args[0].name).to.equal('param1');
-            expect(method.args[1].name).to.equal('param2');
+            // @param keywords
+            expect(method.params, 'Method arguments should be parsed').to.exist;
+            expect(method.params.length).to.equal(2);
 
+            const param0 = method.params[0];
+
+            expect(param0.name).to.equal('param1');
+            expect(param0.description).to.equal('the first parameter');
+            expect(param0.optional).to.be.false;
+
+            const param1 = method.params[1];
+
+            expect(param1.name).to.equal('param2');
+            expect(param1.description).to.equal('the second parameter');
+            expect(param1.optional).to.be.true;
+
+            // @returns keyword
             expect(method.return, 'Method return keyword should be parsed').to.exist;
             expect(method.return.type).to.exist;
             expect(method.return.type.type).to.equal('number');

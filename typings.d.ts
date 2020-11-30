@@ -18,7 +18,7 @@ export interface JSDocType {
     /**
      * Kind of this type.
      */
-    kind: 'type'|'union'|'const',
+    kind: 'type' | 'union' | 'const',
     /**
      * The text representation of this type.
      */
@@ -28,7 +28,7 @@ export interface JSDocType {
      * @see `'type'|'const'` in `kind` field, then this field provide the name of JS type.
      * @see `'union'` in `kind` field, then this field provide the list of @see JSDocType  
      */
-    type: string|JSDocType[],
+    type: string | JSDocType[],
     /**
      * The constant value related to this type, if can be provided.
      */
@@ -50,7 +50,7 @@ export interface JSDocTypeElement extends JSDocType {
     /**
      * Kind of this type.
      */
-    kind: 'type'|'const',
+    kind: 'type' | 'const',
     /**
      * The type representation of this item.
      */
@@ -87,11 +87,11 @@ export interface ISvelteItem {
     /**
      * The description of the item, provided from related comment.
      */
-    description?: string|null;
+    description?: string | null;
     /**
      * The visibility of item.
      */
-    visibility?: 'public'|'protected'|'private';
+    visibility?: 'public' | 'protected' | 'private';
     /**
      * The list of parsed JSDoc keywords from related comment.
      */
@@ -120,7 +120,7 @@ export interface SvelteDataItem extends ISvelteItem {
      * @since Svelte V3
      * @since {2.0.0}
      */
-    kind?: 'var'|'let'|'const';
+    kind?: 'var' | 'let' | 'const';
     /**
      * Provides information about property binding.
      * @since Svelte V3
@@ -179,7 +179,7 @@ export interface SvelteComputedItem extends ISvelteItem {
     /**
      * The list of data or computed properties names, marked as depended to this property.
      */
-    dependencies: string[]    
+    dependencies: string[]
 }
 
 export interface SvelteMethodParamItem {
@@ -259,13 +259,13 @@ export interface SvelteComponentItem extends ISvelteItem {
  * @since Svelte V3
  * @since {2.0.0}
  */
-export type SvelteEventModificator = 'preventDefault'|'stopPropagation'|'passive'|'capture'|'once';
+export type SvelteEventModificator = 'preventDefault' | 'stopPropagation' | 'passive' | 'capture' | 'once';
 
 export interface SvelteEventItem extends ISvelteItem {
     /**
      * The name of HTML element if propagated standart JS Dom event or null.
      */
-    parent?: string|null;
+    parent?: string | null;
 
     /**
      * The list of event modificators.
@@ -295,7 +295,7 @@ export interface SvelteRefItem extends ISvelteItem {
     /**
      * The name of HTML element or component that binded with this ref name.
      */
-    parent?: string|null;
+    parent?: string | null;
 }
 
 /**
@@ -305,7 +305,7 @@ export interface SvelteComponentDoc {
     /**
      * The name of the parsed component.
      */
-    name?: string|null;
+    name?: string | null;
     /**
      * The Svelte compiler version that used for this document.
      */
@@ -313,7 +313,7 @@ export interface SvelteComponentDoc {
     /**
      * The component description.
      */
-    description?: string|null;
+    description?: string | null;
 
     /**
      * The list of defined model properties.
@@ -323,7 +323,7 @@ export interface SvelteComponentDoc {
      * The list of defined computed properties of component.
      */
     computed?: SvelteComputedItem[];
-    
+
     /**
      * The list of included components.
      */
@@ -365,3 +365,121 @@ export interface SvelteComponentDoc {
      */
     dispatchers?: SvelteMethodItem[];
 }
+
+/**
+ * Features supported by the Svelte 2 parser.
+ */
+export enum Svelte2Feature {
+    name = 'name',
+    data = 'data',
+    computed = 'computed',
+    methods = 'methods',
+    actions = 'actions',
+    helpers = 'helpers',
+    components = 'components',
+    description = 'description',
+    keywords = 'keywords',
+    events = 'events',
+    slots = 'slots',
+    transitions = 'transitions',
+    refs = 'refs',
+    store = 'store',
+};
+
+/**
+ * Features supported by the Svelte 3 parser.
+ */
+export enum Svelte3Feature {
+    name = 'name',
+    data = 'data',
+    computed = 'computed',
+    methods = 'methods',
+    components = 'components',
+    description = 'description',
+    keywords = 'keywords',
+    events = 'events',
+    slots = 'slots',
+    refs = 'refs',
+};
+
+type Svelte2FeatureKeys = keyof typeof Svelte2Feature;
+type Svelte3FeatureKeys = keyof typeof Svelte3Feature;
+type SvelteFeatureKeys = Svelte2FeatureKeys & Svelte3FeatureKeys;
+type Svelte2ExclusiveFeature = Exclude<Svelte2FeatureKeys, Svelte3FeatureKeys>;
+type Svelte3ExclusiveFeature = Exclude<Svelte3FeatureKeys, Svelte2FeatureKeys>;
+
+/**
+ * Visibility of a Svelte item.
+ */
+export type SymbolVisibility = 'private' | 'protected' | 'public';
+
+/**
+ * Supported Svelte versions.
+ */
+export type SvelteVersion = 2 | 3;
+
+export interface ParserOptions<V extends SvelteVersion, F extends SvelteFeatureKeys> {
+    /**
+     * The filename to parse. Required, unless fileContent is passed.
+     */
+    filename?: string;
+
+    /**
+     * The file content to parse. Required, unless filename is passed.
+     */
+    fileContent?: string;
+
+    /**
+     * @default 'utf8'
+     */
+    encoding?: BufferEncoding;
+
+    /**
+     * The component features to parse and extract.
+     * Uses all supported features by default.
+     * @see Svelte2Feature
+     * @see Svelte3Feature
+     */
+    features?: F[];
+
+    /**
+     * The list of ignored visibilities. Use an empty array to export all
+     * visibilities.
+     * @default ['private','protected']
+     */
+    ignoredVisibilities?: SymbolVisibility[];
+
+    /**
+     * Indicates that source locations should be provided for component symbols.
+     * @default false
+     */
+    includeSourceLocations?: boolean
+
+    /**
+     * Optional. Use 2 or 3 to specify which svelte syntax should be used.
+     * When version is not provided, the parser tries to detect which version
+     * of the syntax to use.
+     */
+    version?: V;
+
+    /**
+     * Optional. Specify which version of svelte syntax to fallback to if the
+     * parser can't identify the version used.
+     */
+    defaultVersion?: V;
+}
+
+/**
+ * Options to pass to the main parse function.
+ * 
+ * @example
+ * const options = {
+ *     filename: 'main.svelte',
+ *     encoding: 'ascii',
+ *     features: ['data', 'computed', 'methods'],
+ *     ignoredVisibilities: ['private'],
+ *     includeSourceLocations: true,
+ *     version: 3
+ * });
+ */
+export type SvelteParserOptions = ParserOptions<3, Svelte3FeatureKeys> | ParserOptions<2, Svelte2FeatureKeys>;

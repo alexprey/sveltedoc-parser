@@ -1,15 +1,87 @@
 const { loadFileStructureFromOptions } = require('./lib/helpers');
 const SvelteVersionDetector = require('./lib/detector');
+const { isString, printArray, isVisibilitySupported } = require('./lib/utils');
 
+/**
+ * @typedef {import("./typings").SvelteParserOptions} SvelteParserOptions
+ * @typedef {import('./typings').SymbolVisibility} SymbolVisibility
+ */
+
+/** @type {BufferEncoding[]} */
+const ENCODINGS = [
+    'ascii',
+    'utf8',
+    'utf-8',
+    'utf16le',
+    'ucs2',
+    'ucs-2',
+    'base64',
+    'latin1',
+    'binary',
+    'hex'
+];
+
+/** @type {SymbolVisibility[]} */
+const VISIBILITIES = ['public', 'protected', 'private'];
+
+/** @type {BufferEncoding} */
 const DEFAULT_ENCODING = 'utf8';
+
+/** @type {SymbolVisibility[]} */
 const DEFAULT_IGNORED_VISIBILITIES = ['protected', 'private'];
 
+const ERROR_OPTIONS_REQUIRED = 'An options object is required.';
+const ERROR_INPUT_REQUIRED = 'One of options.filename or options.fileContent is required.';
+const ERROR_ENCODING_NOT_SUPPORTED =
+    'options.encoding must be one of: ' + printArray(ENCODINGS);
+
+const ERROR_IGNORED_VISIBILITIES_FORMAT =
+    'options.ignoredVisibilities must be an array of those strings: ' +
+    printArray(VISIBILITIES);
+
+const ERROR_IGNORED_VISIBILITIES_NOT_SUPPORTED =
+    `options.ignoredVisibilities expected any of [${printArray(VISIBILITIES)}] ` +
+    'but found these instead: ';
+
+/**
+ * @param {SvelteParserOptions} options
+ * @throws an error if any option is invalid
+ */
 function validateOptions(options) {
-    if (!options || (!options.filename && !options.fileContent)) {
-        throw new Error('One of options.filename or options.filecontent is required');
+    if (!options) {
+        throw new Error(ERROR_OPTIONS_REQUIRED);
+    }
+
+    if (!isString(options.filename) && !isString(options.fileContent)) {
+        throw new Error(ERROR_INPUT_REQUIRED);
+    }
+
+    if (options.encoding && !ENCODINGS.includes(options.encoding)) {
+        throw new Error(ERROR_ENCODING_NOT_SUPPORTED);
+    }
+
+    if (options.ignoredVisibilities) {
+        if (!Array.isArray(options.ignoredVisibilities)) {
+            throw new Error(ERROR_IGNORED_VISIBILITIES_FORMAT);
+        }
+
+        if (!options.ignoredVisibilities.every(isVisibilitySupported)) {
+            const notSupported = options.ignoredVisibilities.filter(
+                (iv) => !isVisibilitySupported(iv)
+            );
+
+            throw new Error(
+                ERROR_IGNORED_VISIBILITIES_NOT_SUPPORTED +
+                printArray(notSupported)
+            );
+        }
     }
 }
 
+/**
+ * Applies default values to options.
+ * @param {SvelteParserOptions} options
+ */
 function normalizeOptions(options) {
     options.encoding = options.encoding || DEFAULT_ENCODING;
     options.ignoredVisibilities = options.ignoredVisibilities || DEFAULT_IGNORED_VISIBILITIES;
@@ -179,6 +251,20 @@ function subscribeOnParserEvents(parser, options, version, resolve, reject) {
     });
 }
 
+/**
+ * Main parse function.
+ * @param {SvelteParserOptions} options
+ * @example
+ * const { parse } = require('sveltedoc-parser');
+ * const doc = await parse({
+ *     filename: 'main.svelte',
+ *     encoding: 'ascii',
+ *     features: ['data', 'computed', 'methods'],
+ *     ignoredVisibilities: ['private'],
+ *     includeSourceLocations: true,
+ *     version: 3
+ * });
+ */
 module.exports.parse = (options) => new Promise((resolve, reject) => {
     try {
         validateOptions(options);
@@ -198,6 +284,9 @@ module.exports.parse = (options) => new Promise((resolve, reject) => {
     }
 });
 
+/**
+ * @param {SvelteParserOptions} options
+ */
 module.exports.detectVersion = (options) => {
     validateOptions(options);
 

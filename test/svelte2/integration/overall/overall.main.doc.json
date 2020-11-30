@@ -245,7 +245,6 @@
                     },
                     "name": "actionName",
                     "optional": false,
-                    "default": null,
                     "description": "The name of action that should be performed."
                 }
             ]

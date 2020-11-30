@@ -151,7 +151,7 @@
                     },
                     "name": "question",
                     "optional": true,
-                    "default": "Why?",
+                    "defaultValue": "Why?",
                     "description": "a question about life, the universe, everything"
                 }
             ],

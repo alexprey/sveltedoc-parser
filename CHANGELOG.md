@@ -3,6 +3,21 @@ All notable changes to the "svelte-intellisense" extension will be documented in
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [4.0.0] UNRELEASED
+
+- 🛠 **[Fixed]** Fix [Issue #42](https://github.com/alexprey/sveltedoc-parser/issues/42)
+- ✔ **[Added]** Support to complete parsing of component method arguments [Issue #39](https://github.com/alexprey/sveltedoc-parser/issues/39). Thanks for [@soft-decay](https://github.com/soft-decay)
+- ✔ **[Added]** Support to parse return types and description for methods in component [Issue #37](https://github.com/alexprey/sveltedoc-parser/issues/37). Thanks for [@soft-decay](https://github.com/soft-decay)
+- 🔥 **[Breaking]** API rework for component methods description:
+    - `args` property was renamed to `params`;
+    - Change the structure of `return` item for methods:
+        - `desc` property was renamed to `description`;
+        - `type` property now contains the `JSDocType` object, instead of `string` type with text representation of type. This can be gets from `text` property of `JSDocType` object;
+    - [Svelte2]: method arguments was presented with plain array with names, now that replaced with objects of `SvelteMethodParamItem` type;
+- 🔥 **[Breaking]** Cleanup depricated code:
+    - `loc` property was removed, please use `locations` instead, if you late with upgrade;
+    - `value` property of `SvelteComponentItem` was removed, please use `importPath` instead
+
 ## [3.0.5] 28.11.2020
 
 - 🛠 **[Fixed]** Fix [Issue #35](https://github.com/alexprey/sveltedoc-parser/issues/35): Object literals not supported in @type keyword. Thanks for @soft-decay

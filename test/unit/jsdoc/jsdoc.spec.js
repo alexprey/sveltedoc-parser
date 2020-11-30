@@ -188,7 +188,7 @@ describe('JSDoc parser module tests', () => {
 
             expect(param).is.exist;
             expect(param.name).is.equal('parameter');
-            expect(param.default).is.not.exist;
+            expect(param.defaultValue).is.not.exist;
             expect(param.optional).is.true;
         });
 
@@ -197,7 +197,7 @@ describe('JSDoc parser module tests', () => {
 
             expect(param).is.exist;
             expect(param.name).is.equal('parameter');
-            expect(param.default).is.not.exist;
+            expect(param.defaultValue).is.not.exist;
             expect(param.optional).is.true;
 
             expect(param.type).is.exist;
@@ -210,7 +210,7 @@ describe('JSDoc parser module tests', () => {
 
             expect(param).is.exist;
             expect(param.name).is.equal('parameter');
-            expect(param.default).is.equal('Default value');
+            expect(param.defaultValue).is.equal('Default value');
             expect(param.optional).is.true;
 
             expect(param.type).is.exist;

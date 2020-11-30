@@ -79,13 +79,6 @@ export interface ISvelteItem {
     name: string;
 
     /**
-     * The source code location of this item.
-     * Provided only if requested by specific option parameter.
-     * @deprecated This field marked as depricated, please use `locations` instead of this.
-     */
-    loc?: SourceLocation;
-
-    /**
      * The list of source code locations for this item.
      * Provided only if requested by specific option parameter.
      */
@@ -250,12 +243,6 @@ export interface SvelteMethodItem extends ISvelteItem {
 }
 
 export interface SvelteComponentItem extends ISvelteItem {
-    /**
-     * The relative path to improted component.
-     * @deprecated Use `importPath` instead of this property.
-     */
-    value: string;
-
     /**
      * The relative path of importing of this object.
      * When not defined, so variable is not provided.

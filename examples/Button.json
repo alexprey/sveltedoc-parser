@@ -184,7 +184,6 @@
             "parent": "button",
             "modificators": [],
             "locations": null,
-            "loc": null,
             "visibility": "public",
             "description": "",
             "keywords": []

@@ -367,7 +367,7 @@ describe('JSDoc parser module tests', () => {
 
             expect(returns).to.exist;
             expect(returns.description).to.equal('return description');
-            
+
             expect(returns.type).to.exist;
             expect(returns.type.kind).to.equal('type');
             expect(returns.type.type).to.equal('any');
@@ -378,7 +378,7 @@ describe('JSDoc parser module tests', () => {
 
             expect(returns).to.exist;
             expect(returns.description).to.equal('return description');
-            
+
             expect(returns.type).to.exist;
             expect(returns.type.kind).to.equal('type');
             expect(returns.type.type).to.equal('any');
@@ -411,7 +411,7 @@ describe('JSDoc parser module tests', () => {
 
             expect(returns).to.exist;
             expect(returns.description).to.equal('return description');
-            
+
             expect(returns.type).to.exist;
             expect(returns.type.kind).to.equal('type');
             expect(returns.type.type).to.equal('any');

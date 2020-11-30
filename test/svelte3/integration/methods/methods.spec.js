@@ -61,6 +61,7 @@ describe('SvelteDoc v3 - Methods', () => {
             expect(doc.methods.length).to.equal(1);
 
             const method = doc.methods[0];
+
             expect(method.name).to.equal('publicMethod');
             expect(method.visibility).to.equal('public');
             expect(method.static).to.be.false;
@@ -71,11 +72,13 @@ describe('SvelteDoc v3 - Methods', () => {
             expect(method.params.length).to.equal(2);
 
             const param0 = method.params[0];
+
             expect(param0.name).to.equal('param1');
             expect(param0.description).to.equal('the first parameter');
             expect(param0.optional).to.be.false;
 
             const param1 = method.params[1];
+
             expect(param1.name).to.equal('param2');
             expect(param1.description).to.equal('the second parameter');
             expect(param1.optional).to.be.true;

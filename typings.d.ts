@@ -216,15 +216,6 @@ export interface SvelteMethodParamItem {
     static?: boolean;
 }
 
-/**
- * @deprecated
- */
-export type SvelteArgItem = SvelteMethodParamItem;
-/**
- * @deprecated
- */
-export type SvelteArgumentItem = SvelteMethodParamItem;
-
 export interface SvelteMethodReturnItem {
     /**
      * The JSDocType of the return value.

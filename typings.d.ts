@@ -14,48 +14,42 @@ export interface JSDocKeyword {
     description: string;
 }
 
-export interface JSDocType {
-    /**
-     * Kind of this type.
-     */
-    kind: 'type' | 'union' | 'const',
+export interface JSDocTypeBase {
     /**
      * The text representation of this type.
      */
     text: string,
-    /**
-     * The type representation of this item.
-     * @see `'type'|'const'` in `kind` field, then this field provide the name of JS type.
-     * @see `'union'` in `kind` field, then this field provide the list of @see JSDocType  
-     */
-    type: string | JSDocType[],
-    /**
-     * The constant value related to this type, if can be provided.
-     */
-    value?: any
 }
 
-export interface JSDocTypeUnion extends JSDocType {
+export interface JSDocTypeElement extends JSDocTypeBase {
+    kind: 'type',
     /**
-     * Kind of this type.
-     */
-    kind: 'union',
-    /**
-     * The list of types of this item. 
-     */
-    type: JSDocType[],
-}
-
-export interface JSDocTypeElement extends JSDocType {
-    /**
-     * Kind of this type.
-     */
-    kind: 'type' | 'const',
-    /**
-     * The type representation of this item.
+     * The name of JS type.
      */
     type: string,
 }
+
+export interface JSDocTypeConst extends JSDocTypeBase {
+    kind: 'const',
+    /**
+     * The name of JS type.
+     */
+    type: string,
+    /**
+     * The constant value related to this type, if can be provided.
+     */
+    value?: any,
+}
+
+export interface JSDocTypeUnion extends JSDocTypeBase {
+    kind: 'union',
+    /**
+     * The list of possible types.
+     */
+    type: JSDocType[]
+}
+
+export type JSDocType = JSDocTypeElement | JSDocTypeConst | JSDocTypeUnion;
 
 /**
  * Represents a source location of symbol.
@@ -71,6 +65,10 @@ export interface SourceLocation {
      */
     end: number;
 }
+
+export type JSVisibilityScope = 'public' | 'protected' | 'private';
+
+export type JSVariableDeclarationKind = 'var' | 'let' | 'const';
 
 export interface ISvelteItem {
     /**
@@ -91,7 +89,7 @@ export interface ISvelteItem {
     /**
      * The visibility of item.
      */
-    visibility?: 'public' | 'protected' | 'private';
+    visibility?: JSVisibilityScope;
     /**
      * The list of parsed JSDoc keywords from related comment.
      */
@@ -120,7 +118,7 @@ export interface SvelteDataItem extends ISvelteItem {
      * @since Svelte V3
      * @since {2.0.0}
      */
-    kind?: 'var' | 'let' | 'const';
+    kind?: JSVariableDeclarationKind;
     /**
      * Provides information about property binding.
      * @since Svelte V3
@@ -143,7 +141,7 @@ export interface SvelteDataItem extends ISvelteItem {
     /**
      * The default value of property, if provided.
      */
-    value?: any;
+    defaultValue?: any;
 
     /**
      * The original name of the imported item.
@@ -201,10 +199,12 @@ export interface SvelteMethodParamItem {
     optional?: boolean;
     /**
      * The default value of optional parameter.
+     * @since {4.0.0}
      */
-    default?: string;
+    defaultValue?: string;
     /**
      * The description of the parameter.
+     * @since {4.0.0}
      */
     description?: string;
     /**
@@ -216,14 +216,12 @@ export interface SvelteMethodParamItem {
     static?: boolean;
 }
 
-export type SvelteArgItem = SvelteMethodParamItem;
-export type SvelteArgumentItem = SvelteMethodParamItem;
-
 export interface SvelteMethodReturnItem {
     /**
      * The JSDocType of the return value.
      */
     type: JSDocType;
+
     /**
      * The description of the return value.
      */
@@ -233,11 +231,14 @@ export interface SvelteMethodReturnItem {
 export interface SvelteMethodItem extends ISvelteItem {
     /**
      * The list of parameter items of the method.
+     * @since {4.0.0}
      */
     params?: SvelteMethodParamItem[];
+
     /**
      * The return item of the method. This exists if an item with 'name' equal
      * to 'returns' or 'return' exists in 'keywords'.
+     * @since {4.0.0}
      */
     return?: SvelteMethodReturnItem;
 }
@@ -259,7 +260,7 @@ export interface SvelteComponentItem extends ISvelteItem {
  * @since Svelte V3
  * @since {2.0.0}
  */
-export type SvelteEventModificator = 'preventDefault' | 'stopPropagation' | 'passive' | 'capture' | 'once';
+export type SvelteEventModificator = 'preventDefault'|'stopPropagation'|'passive'|'capture'|'once'|'nonpassive';
 
 export interface SvelteEventItem extends ISvelteItem {
     /**
@@ -384,7 +385,7 @@ export enum Svelte2Feature {
     transitions = 'transitions',
     refs = 'refs',
     store = 'store',
-};
+}
 
 /**
  * Features supported by the Svelte 3 parser.
@@ -407,11 +408,6 @@ type Svelte3FeatureKeys = keyof typeof Svelte3Feature;
 type SvelteFeatureKeys = Svelte2FeatureKeys & Svelte3FeatureKeys;
 type Svelte2ExclusiveFeature = Exclude<Svelte2FeatureKeys, Svelte3FeatureKeys>;
 type Svelte3ExclusiveFeature = Exclude<Svelte3FeatureKeys, Svelte2FeatureKeys>;
-
-/**
- * Visibility of a Svelte item.
- */
-export type SymbolVisibility = 'private' | 'protected' | 'public';
 
 /**
  * Supported Svelte versions.
@@ -447,7 +443,7 @@ export interface ParserOptions<V extends SvelteVersion, F extends SvelteFeatureK
      * visibilities.
      * @default ['private','protected']
      */
-    ignoredVisibilities?: SymbolVisibility[];
+    ignoredVisibilities?: JSVisibilityScope[];
 
     /**
      * Indicates that source locations should be provided for component symbols.

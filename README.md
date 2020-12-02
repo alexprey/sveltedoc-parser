@@ -7,41 +7,7 @@ Generate a JSON documentation for a Svelte file
 
 ## Changelog 
 
-## [3.0.5] 28.11.2020
-
-- 🛠 **[Fixed]** Fix [Issue #35](https://github.com/alexprey/sveltedoc-parser/issues/35): Object literals not supported in @type keyword. Thanks for @soft-decay
-
-### [3.0.4] 25.08.2020
-
-- 🛠 **[Fixed]** Fix [issue #5](https://github.com/alexprey/sveltedoc-parser/issues/5) (slots items have a private access level by default)
-
-### [3.0.3] 25.08.2020
-
-- 🛠 **[Fixed]** Fix [issue #28](https://github.com/alexprey/sveltedoc-parser/issues/28) (Inline event handlers in markup cause errors when used without quotes)
-    - Change dependency from `htmlparser2` to [htmlparser2-svelte](https://www.npmjs.com/package/htmlparser2-svelte) special fork of [htmlparser2](https://www.npmjs.com/package/htmlparser2) to handle Svelte specific cases to parse markup
-
-### [3.0.2] 24.08.2020
-
-- 🛠 **[Fixed]** Fix issue #6 (Build a correct component name from a file name)
-```
-round.button.svelte -> RoundButton
-```
-- 🛠 **[Fixed]** Fix issue #27 (Events is not exposed from exported functions and arrow functions)
-- 🛠 **[Fixed]** Fix issue #31 (Propogated events in markup should be parsed even it was before handled)
-- 🛠 **[Fixed]** Fix issue #32 (Event is not registered when dispatched from functions used as a parameters of another functions)
-
-### [3.0.1] 17.08.2020
-
-- 🛠 **[Fixed]** Solve issue #26, support `export { variables as var }` statement.
-- ✔ **[Added]** now interface `SvelteDataItem` provides a new property `localName` with information about internal name of component property.
-
-### [3.0.0] 08.08.2020
-
-- 🛠 **[Fixed]** Solve vulnerability issues:
-    - Update `espree` to `7.2.0`
-    - Update `htmlparser2` to `3.9.2`
-    - Add dependency to `eslint` to fix issues after upgrading to new versions
-- 🔥 **[Breaking]** Increase requirement of Node.js to `10.0.0`, Node.js v8 now is not supported, this is related with security isssues above. Please let me know if it still required.
+...TBD...
 
 Full changelog of release versions can be found [here](/CHANGELOG.md)
 

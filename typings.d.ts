@@ -405,7 +405,7 @@ export enum Svelte3Feature {
 
 type Svelte2FeatureKeys = keyof typeof Svelte2Feature;
 type Svelte3FeatureKeys = keyof typeof Svelte3Feature;
-type SvelteFeatureKeys = Svelte2FeatureKeys & Svelte3FeatureKeys;
+type SvelteFeatureKeys = Svelte2FeatureKeys | Svelte3FeatureKeys;
 type Svelte2ExclusiveFeature = Exclude<Svelte2FeatureKeys, Svelte3FeatureKeys>;
 type Svelte3ExclusiveFeature = Exclude<Svelte3FeatureKeys, Svelte2FeatureKeys>;
 
@@ -414,14 +414,14 @@ type Svelte3ExclusiveFeature = Exclude<Svelte3FeatureKeys, Svelte2FeatureKeys>;
  */
 export type SvelteVersion = 2 | 3;
 
-export interface ParserOptions<V extends SvelteVersion, F extends SvelteFeatureKeys> {
+interface BaseParserOptions<V extends SvelteVersion, F extends SvelteFeatureKeys> {
     /**
-     * The filename to parse. Required, unless fileContent is passed.
+     * The filename to parse. Required unless fileContent is passed.
      */
     filename?: string;
 
     /**
-     * The file content to parse. Required, unless filename is passed.
+     * The file content to parse. Required unless filename is passed.
      */
     fileContent?: string;
 
@@ -476,6 +476,8 @@ export interface ParserOptions<V extends SvelteVersion, F extends SvelteFeatureK
  *     ignoredVisibilities: ['private'],
  *     includeSourceLocations: true,
  *     version: 3
- * });
+ * };
  */
-export type SvelteParserOptions = ParserOptions<3, Svelte3FeatureKeys> | ParserOptions<2, Svelte2FeatureKeys>;
+export type SvelteParserOptions = 
+    | BaseParserOptions<3, Svelte3FeatureKeys>
+    | BaseParserOptions<2, Svelte2FeatureKeys>;

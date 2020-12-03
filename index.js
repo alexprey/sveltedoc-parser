@@ -1,51 +1,44 @@
 const { loadFileStructureFromOptions } = require('./lib/helpers');
+const { validate, retrieveFileOptions } = require('./lib/options');
 const SvelteVersionDetector = require('./lib/detector');
 
-const DEFAULT_ENCODING = 'utf8';
-const DEFAULT_IGNORED_VISIBILITIES = ['protected', 'private'];
+/**
+ * @typedef {import("./typings").SvelteParserOptions} SvelteParserOptions
+ */
 
-function validateOptions(options) {
-    if (!options || (!options.filename && !options.fileContent)) {
-        throw new Error('One of options.filename or options.filecontent is required');
-    }
-}
-
-function normalizeOptions(options) {
-    options.encoding = options.encoding || DEFAULT_ENCODING;
-    options.ignoredVisibilities = options.ignoredVisibilities || DEFAULT_IGNORED_VISIBILITIES;
-}
-
-function buildSvelte2Parser(structure, options) {
+function buildSvelte2Parser(options) {
     const Parser = require('./lib/parser');
 
     // Convert structure object to old version source options
-    const hasScript = structure.scripts && structure.scripts.length > 0;
-    const hasStyle = structure.styles && structure.styles.length > 0;
+    const { scripts, styles, template } = options.structure;
+
+    const hasScript = !!scripts && scripts.length > 0;
+    const hasStyle = !!styles && styles.length > 0;
 
     options.source = {
-        template: structure.template,
-        script: hasScript ? structure.scripts[0].content : '',
-        scriptOffset: hasScript ? structure.scripts[0].offset : 0,
-        style: hasStyle ? structure.styles[0].content : '',
-        styleOffset: hasStyle ? structure.styles[0].offset : 0,
+        template: template,
+        script: hasScript ? scripts[0].content : '',
+        scriptOffset: hasScript ? scripts[0].offset : 0,
+        style: hasStyle ? styles[0].content : '',
+        styleOffset: hasStyle ? styles[0].offset : 0,
     };
 
     return new Parser(options);
 }
 
-function buildSvelte3Parser(structure, options) {
+function buildSvelte3Parser(options) {
     const Parser = require('./lib/v3/parser');
 
-    return new Parser(structure, options);
+    return new Parser(options);
 }
 
-function buildSvelteParser(structure, options, version) {
+function buildSvelteParser(options, version) {
     if (version === SvelteVersionDetector.SVELTE_VERSION_3) {
-        return buildSvelte3Parser(structure, options);
+        return buildSvelte3Parser(options);
     }
 
     if (version === SvelteVersionDetector.SVELTE_VERSION_2) {
-        return buildSvelte2Parser(structure, options);
+        return buildSvelte2Parser(options);
     }
 
     if (version) {
@@ -116,7 +109,7 @@ function mergeItems(itemType, currentItem, newItem, ignoreLocations) {
     return currentItem;
 }
 
-function subscribeOnParserEvents(parser, options, version, resolve, reject) {
+function subscribeOnParserEvents(parser, ignoredVisibilities, version, resolve, reject) {
     const component = {
         version: version
     };
@@ -166,7 +159,7 @@ function subscribeOnParserEvents(parser, options, version, resolve, reject) {
         parser.features.forEach((feature) => {
             if (component[feature] instanceof Array) {
                 component[feature] = component[feature].filter((item) => {
-                    return !options.ignoredVisibilities.includes(item.visibility);
+                    return !ignoredVisibilities.includes(item.visibility);
                 });
             }
         });
@@ -179,18 +172,34 @@ function subscribeOnParserEvents(parser, options, version, resolve, reject) {
     });
 }
 
+/**
+ * Main parse function.
+ * @param {SvelteParserOptions} options
+ * @example
+ * const { parse } = require('sveltedoc-parser');
+ * // basic usage only requires 'filename' to be set.
+ * const doc = await parse({
+ *     filename: 'main.svelte',
+ *     encoding: 'ascii',
+ *     features: ['data', 'computed', 'methods'],
+ *     ignoredVisibilities: ['private'],
+ *     includeSourceLocations: true,
+ *     version: 3
+ * });
+ */
 module.exports.parse = (options) => new Promise((resolve, reject) => {
     try {
-        validateOptions(options);
-        normalizeOptions(options);
+        validate(options);
 
-        const structure = loadFileStructureFromOptions(options);
+        const fileOptions = retrieveFileOptions(options);
 
-        const version = options.version || SvelteVersionDetector.detectVersionFromStructure(structure, options.defaultVersion);
+        options.structure = loadFileStructureFromOptions(fileOptions);
 
-        const parser = buildSvelteParser(structure, options, version);
+        const version = options.version || SvelteVersionDetector.detectVersionFromStructure(options.structure, options.defaultVersion);
 
-        subscribeOnParserEvents(parser, options, version, resolve, reject);
+        const parser = buildSvelteParser(options, version);
+
+        subscribeOnParserEvents(parser, options.ignoredVisibilities, version, resolve, reject);
 
         parser.walk();
     } catch (error) {
@@ -198,8 +207,11 @@ module.exports.parse = (options) => new Promise((resolve, reject) => {
     }
 });
 
+/**
+ * @param {SvelteParserOptions} options
+ */
 module.exports.detectVersion = (options) => {
-    validateOptions(options);
+    validate(options);
 
     return SvelteVersionDetector.detectVersionFromOptions(options);
 };

@@ -90,12 +90,7 @@ describe('Options Module', () => {
 
     describe('options.retrieveFileOptions', () => {
         it('Should return all file-related keys from options', () => {
-            const options = {
-                ...baseOptions,
-                ignoredVisibilities: ['protected', 'public']
-            };
-
-            expect(retrieveFileOptions(options)).to.have.keys(
+            expect(retrieveFileOptions(baseOptions)).to.have.keys(
                 'filename', 'fileContent', 'structure', 'encoding'
             );
         });

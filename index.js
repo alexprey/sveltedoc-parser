@@ -109,9 +109,9 @@ function mergeItems(itemType, currentItem, newItem, ignoreLocations) {
     return currentItem;
 }
 
-function subscribeOnParserEvents(parser, ignoredVisibilities, detectedVersion, resolve, reject) {
+function subscribeOnParserEvents(parser, ignoredVisibilities, version, resolve, reject) {
     const component = {
-        version: detectedVersion
+        version: version
     };
 
     parser.features.forEach((feature) => {
@@ -195,11 +195,11 @@ module.exports.parse = (options) => new Promise((resolve, reject) => {
 
         options.structure = loadFileStructureFromOptions(fileOptions);
 
-        const detectedVersion = options.version || SvelteVersionDetector.detectVersionFromStructure(structure, options.defaultVersion);
+        const version = options.version || SvelteVersionDetector.detectVersionFromStructure(options.structure, options.defaultVersion);
 
-        const parser = buildSvelteParser(options, detectedVersion);
+        const parser = buildSvelteParser(options, version);
 
-        subscribeOnParserEvents(parser, options.ignoredVisibilities, detectedVersion, resolve, reject);
+        subscribeOnParserEvents(parser, options.ignoredVisibilities, version, resolve, reject);
 
         parser.walk();
     } catch (error) {

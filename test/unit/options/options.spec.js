@@ -2,8 +2,10 @@ const expect = require('chai').expect;
 
 const {
     validate,
+    validateFeatures,
     retrieveFileOptions,
-    ErrorMessage
+    OptionsError,
+    ParserError
 } = require('../../../lib/options');
 
 const baseOptions = { filename: 'empty.svelte' };
@@ -12,20 +14,20 @@ describe('Options Module', () => {
     describe('options.validate', () => {
         describe('Should throw when', () => {
             it('options object is missing', () => {
-                expect(() => validate()).to.throw(ErrorMessage.OptionsRequired);
+                expect(() => validate()).to.throw(OptionsError.OptionsRequired);
             });
 
             it('input is missing, not a string, or an empty filename', () => {
-                expect(() => validate({})).to.throw(ErrorMessage.InputRequired);
-                expect(() => validate({ filename: {} })).to.throw(ErrorMessage.InputRequired);
-                expect(() => validate({ filename: '' })).to.throw(ErrorMessage.InputRequired);
-                expect(() => validate({ fileContent: {} })).to.throw(ErrorMessage.InputRequired);
+                expect(() => validate({})).to.throw(OptionsError.InputRequired);
+                expect(() => validate({ filename: {} })).to.throw(OptionsError.InputRequired);
+                expect(() => validate({ filename: '' })).to.throw(OptionsError.InputRequired);
+                expect(() => validate({ fileContent: {} })).to.throw(OptionsError.InputRequired);
             });
 
             it('encoding is not a string', () => {
                 const options = { ...baseOptions, encoding: true };
 
-                expect(() => validate(options)).to.throw(ErrorMessage.EncodingFormat);
+                expect(() => validate(options)).to.throw(OptionsError.EncodingFormat);
             });
 
             it('encoding is not supported', () => {
@@ -33,7 +35,7 @@ describe('Options Module', () => {
                 const options = { ...baseOptions, encoding: unsupported };
 
                 expect(() => validate(options)).to.throw(
-                    ErrorMessage.EncodingNotSupported(unsupported)
+                    OptionsError.EncodingNotSupported(unsupported)
                 );
             });
 
@@ -43,7 +45,7 @@ describe('Options Module', () => {
                 const options = { ...baseOptions, ignoredVisibilities: mixed };
 
                 expect(() => validate(options)).to.throw(
-                    ErrorMessage.IgnoredVisibilitiesNotSupported([unsupported])
+                    OptionsError.IgnoredVisibilitiesNotSupported([unsupported])
                 );
             });
 
@@ -53,7 +55,7 @@ describe('Options Module', () => {
                 const options = { ...baseOptions, ignoredVisibilities: mixed };
 
                 expect(() => validate(options)).to.throw(
-                    ErrorMessage.IgnoredVisibilitiesNotSupported([unsupported])
+                    OptionsError.IgnoredVisibilitiesNotSupported([unsupported])
                 );
             });
         });
@@ -84,6 +86,74 @@ describe('Options Module', () => {
                 };
 
                 expect(() => validate(options)).to.not.throw();
+            });
+        });
+    });
+
+    describe('options.validateFeatures', () => {
+        describe('Should pass when', () => {
+            it('only supported features are present', () => {
+                const supported = ['something', 'else'];
+
+                const single = ['something'];
+                const options1 = { features: single };
+
+                expect(() => validateFeatures(options1, supported)).to.not.throw();
+
+                const all = ['else', 'something'];
+                const options2 = { features: all };
+
+                expect(() => validateFeatures(options2, supported)).to.not.throw();
+            });
+        });
+
+        describe('Should throw when', () => {
+            it('features is not an array', () => {
+                expect(() => validateFeatures({ features: {} }, []))
+                    .to.throw(ParserError.FeaturesFormat);
+
+                expect(() => validateFeatures({ features: true }, []))
+                    .to.throw(ParserError.FeaturesFormat);
+
+                expect(() => validateFeatures({ features: 'something' }, []))
+                    .to.throw(ParserError.FeaturesFormat);
+            });
+
+            it('features is an empty array', () => {
+                const supported = ['something', 'else'];
+
+                expect(() => validateFeatures({ features: [] }, supported))
+                    .to.throw(ParserError.FeaturesEmpty(supported));
+            });
+
+            it('one or more features are not supported', () => {
+                const supported = ['something', 'else'];
+
+                const notSupported1 = ['other'];
+                const options1 = { features: notSupported1 };
+
+                expect(() => validateFeatures(options1, supported)).to.throw(
+                    ParserError.FeaturesNotSupported(notSupported1, supported)
+                );
+
+                const notSupported2 = ['other', 'bad', 'trash'];
+                const options2 = { features: notSupported2 };
+
+                expect(() => validateFeatures(options2, supported)).to.throw(
+                    ParserError.FeaturesNotSupported(notSupported2, supported)
+                );
+            });
+
+            it('some features are not supported', () => {
+                const supported = ['something', 'else', 'stuff'];
+                const notSupported = ['other', 'thing'];
+
+                const mixed = ['stuff', ...notSupported, 'something'];
+                const options2 = { features: mixed };
+
+                expect(() => validateFeatures(options2, supported)).to.throw(
+                    ParserError.FeaturesNotSupported(notSupported, supported)
+                );
             });
         });
     });

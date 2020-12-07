@@ -8,6 +8,9 @@ const { AssertionError } = require('chai');
 const {
     SUPPORTED_FEATURES: V3_SUPPORTED_FEATURES
 } = require('../../../lib/v3/parser');
+const {
+    SUPPORTED_FEATURES: V2_SUPPORTED_FEATURES
+} = require('../../../lib/parser');
 
 describe('parse - Integration', () => {
     it('should correctly auto-detect svelte V2 component', (done) => {
@@ -38,7 +41,26 @@ describe('parse - Integration', () => {
         });
     });
 
-    it('should throw when passed unsupported features', (done) => {
+    it('should throw when svelte V2 parser receives unsupported features', (done) => {
+        parser.parse({
+            version: 2,
+            filename: path.resolve(__dirname, 'basicV2.svelte'),
+            features: ['data', 'unsupported'],
+        }).then(() => {
+            done(new AssertionError(
+                'parser.parse should throw ParserError.FeaturesNotSupported'
+            ));
+        }).catch(e => {
+            expect(e.message).is.equal(ParserError.FeaturesNotSupported(
+                ['unsupported'], V2_SUPPORTED_FEATURES
+            ));
+            done();
+        }).catch(e => {
+            done(e);
+        });
+    });
+
+    it('should throw when svelte V3 parser receives unsupported features', (done) => {
         parser.parse({
             version: 3,
             filename: path.resolve(__dirname, 'basicV3.svelte'),
@@ -52,6 +74,8 @@ describe('parse - Integration', () => {
                 ['unsupported'], V3_SUPPORTED_FEATURES
             ));
             done();
+        }).catch(e => {
+            done(e);
         });
     });
 });

@@ -58,6 +58,14 @@ describe('Options Module', () => {
                     OptionsError.IgnoredVisibilitiesNotSupported([unsupported])
                 );
             });
+
+            it('includeSourceLocations is not a boolean', () => {
+                const options = { ...baseOptions, includeSourceLocations: 'true' };
+
+                expect(() => validate(options)).to.throw(
+                    OptionsError.IncludeSourceLocationsFormat
+                );
+            });
         });
 
         describe('Should pass when', () => {
@@ -86,6 +94,14 @@ describe('Options Module', () => {
                 };
 
                 expect(() => validate(options)).to.not.throw();
+            });
+
+            it('includeSourceLocations is a boolean', () => {
+                const options1 = { ...baseOptions, includeSourceLocations: false };
+                const options2 = { ...baseOptions, includeSourceLocations: true };
+
+                expect(() => validate(options1)).to.not.throw();
+                expect(() => validate(options2)).to.not.throw();
             });
         });
     });

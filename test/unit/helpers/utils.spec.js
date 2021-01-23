@@ -30,22 +30,64 @@ describe('"utils.js" module', () => {
         });
     });
 
-    describe('buildPropertyAccessorChainFromAst', () => {
-        it('should generate the correct array when parsing a nested "MemberExpression"', () => {
+    describe('buildPropertyAccessorChainFromTokens', () => {
+        it('should correctly parse a single identifier', () => {
+            const expectedChain = ['NOTIFY'];
+            const script = `
+            callee(${expectedChain.join('.')});
+            `;
+            const tokens = espree.tokenize(script);
+            const identifierTokens = tokens.slice(2);
+
+            const chain = utils.buildPropertyAccessorChainFromTokens(identifierTokens);
+
+            expect(chain).to.deep.equal(expectedChain);
+        });
+
+        it('should correctly parse chained identifiers', () => {
             const expectedChain = ['EVENT', 'SIGNAL', 'NOTIFY'];
             const script = `
             callee(${expectedChain.join('.')});
             `;
-            const ast = espree.parse(script);
-            const node = ast.body[0].expression.arguments[0];
-            const chain = utils.buildPropertyAccessorChainFromAst(node);
+            const tokens = espree.tokenize(script);
+            const identifierTokens = tokens.slice(2);
+
+            const chain = utils.buildPropertyAccessorChainFromTokens(identifierTokens);
 
             expect(chain).to.deep.equal(expectedChain);
         });
     });
 
+    describe('buildPropertyAccessorChainFromAst', () => {
+        describe('should build an array when', () => {
+            it('AST is a single identifier', () => {
+                const expectedChain = ['NOTIFY'];
+                const script = `
+                callee(${expectedChain.join('.')});
+                `;
+                const ast = espree.parse(script);
+                const node = ast.body[0].expression.arguments[0];
+                const chain = utils.buildPropertyAccessorChainFromAst(node);
+
+                expect(chain).to.deep.equal(expectedChain);
+            });
+
+            it('AST has a nested "MemberExpression" node', () => {
+                const expectedChain = ['EVENT', 'SIGNAL', 'NOTIFY'];
+                const script = `
+                callee(${expectedChain.join('.')});
+                `;
+                const ast = espree.parse(script);
+                const node = ast.body[0].expression.arguments[0];
+                const chain = utils.buildPropertyAccessorChainFromAst(node);
+
+                expect(chain).to.deep.equal(expectedChain);
+            });
+        });
+    });
+
     describe('buildObjectFromObjectExpression', () => {
-        it('should generate the correct object when parsing a nested "ObjectExpression"', () => {
+        it('should build an object from an AST containing a nested "ObjectExpression" node', () => {
             const expectedObject = {
                 SIGNAL: {
                     NOTIFY: 'notify'
@@ -58,7 +100,28 @@ describe('"utils.js" module', () => {
                 }
             }`;
             const ast = espree.parse(script);
+            const node = ast.body[0].declarations[0].init;
+            const object = utils.buildObjectFromObjectExpression(node);
 
+            expect(object).to.deep.equal(expectedObject);
+        });
+
+        it('should ignore unsupported node types', () => {
+            const expectedObject = {
+                SIGNAL: {
+                    NOTIFY: 'notify'
+                },
+                LITERAL: true,
+            };
+            const script = `
+            var EVENT = {
+                SIGNAL: {
+                    NOTIFY: 'notify'
+                },
+                OTHER: ['notify'],
+                LITERAL: true,
+            }`;
+            const ast = espree.parse(script);
             const node = ast.body[0].declarations[0].init;
             const object = utils.buildObjectFromObjectExpression(node);
 
@@ -67,9 +130,40 @@ describe('"utils.js" module', () => {
     });
 
     describe('getValueForPropertyAccessorChain', () => {
-        it('should retrieve the correct value when searching an object', () => {
-            const expectedValue = 'notify';
+        it('should return the default value when value is unreachable', () => {
+            const script = `
+            var EVENT = {
+                SIGNAL: {}
+            }`;
+            const ast = espree.parse(script);
+            const node = ast.body[0].declarations[0].init;
+            const container = {
+                EVENT: node
+            };
+            const chain = ['EVENT', 'SIGNAL', 'NOTIFY'];
+            const value = utils.getValueForPropertyAccessorChain(container, chain);
 
+            expect(value).to.equal(utils.UNHANDLED_EVENT_NAME);
+        });
+
+        it('should return the default value when visiting an unsupported node', () => {
+            const script = `
+            var EVENT = {
+                SIGNAL: ['notify']
+            }`;
+            const ast = espree.parse(script);
+            const node = ast.body[0].declarations[0].init;
+            const container = {
+                EVENT: node
+            };
+            const chain = ['EVENT', 'SIGNAL', '0'];
+            const value = utils.getValueForPropertyAccessorChain(container, chain);
+
+            expect(value).to.equal(utils.UNHANDLED_EVENT_NAME);
+        });
+
+        it('should return the correct value when searching an object', () => {
+            const expectedValue = 'notify';
             const script = `
             var EVENT = {
                 SIGNAL: {
@@ -77,9 +171,7 @@ describe('"utils.js" module', () => {
                 }
             }`;
             const ast = espree.parse(script);
-
             const node = ast.body[0].declarations[0].init;
-
             const container = {
                 EVENT: node
             };

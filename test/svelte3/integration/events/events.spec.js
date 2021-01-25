@@ -324,7 +324,7 @@ describe('SvelteDoc v3 - Events', () => {
         });
     });
 
-    it('Dispatch event from code should be found when using an identifier', (done) => {
+    it('Dispatch event from code should be found when using an identifier from object', (done) => {
         parser.parse({
             version: 3,
             filename: path.resolve(__dirname, 'event.dispatcher.identifier.svelte'),
@@ -333,12 +333,70 @@ describe('SvelteDoc v3 - Events', () => {
         }).then((doc) => {
             expect(doc, 'Document should be provided').to.exist;
             expect(doc.events, 'Document events should be parsed').to.exist;
-            expect(doc.events.length).to.equal(1);
+            expect(doc.events.length).to.equal(2);
+
+            let event = doc.events[0];
+
+            expect(event, 'Event should be a valid entity').to.exist;
+            expect(event.name).to.equal('notify');
+            expect(event.visibility).to.equal('public');
+
+            event = doc.events[1];
+
+            expect(event, 'Event should be a valid entity').to.exist;
+            expect(event.name).to.equal('plain-notify');
+            expect(event.visibility).to.equal('public');
+
+            done();
+        }).catch(e => {
+            done(e);
+        });
+    });
+
+    xit('Dispatch event from code should be found when using an identifier from array', (done) => {
+        parser.parse({
+            version: 3,
+            filename: path.resolve(__dirname, 'event.dispatcher.arrayIdentifier.svelte'),
+            features: ['events'],
+            ignoredVisibilities: []
+        }).then((doc) => {
+            expect(doc, 'Document should be provided').to.exist;
+            expect(doc.events, 'Document events should be parsed').to.exist;
+            expect(doc.events.length).to.equal(2);
 
             const event = doc.events[0];
 
             expect(event, 'Event should be a valid entity').to.exist;
             expect(event.name).to.equal('notify');
+            expect(event.visibility).to.equal('public');
+
+            done();
+        }).catch(e => {
+            done(e);
+        });
+    });
+
+    xit('Dispatch event from code should be found when using an identifier from imported object', (done) => {
+        parser.parse({
+            version: 3,
+            filename: path.resolve(__dirname, 'event.dispatcher.importedIdentifier.svelte'),
+            features: ['events'],
+            ignoredVisibilities: []
+        }).then((doc) => {
+            expect(doc, 'Document should be provided').to.exist;
+            expect(doc.events, 'Document events should be parsed').to.exist;
+            expect(doc.events.length).to.equal(2);
+
+            let event = doc.events[0];
+
+            expect(event, 'Event should be a valid entity').to.exist;
+            expect(event.name).to.equal('notify');
+            expect(event.visibility).to.equal('public');
+
+            event = doc.events[1];
+
+            expect(event, 'Event should be a valid entity').to.exist;
+            expect(event.name).to.equal('plain-notify');
             expect(event.visibility).to.equal('public');
 
             done();

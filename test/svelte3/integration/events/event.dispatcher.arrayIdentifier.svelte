@@ -7,10 +7,6 @@
             NOTIFY: 'notify'
         }
     };
-
-    const SIMPLE_EVENT = 'plain-notify';
-
-    dispatch(EVENT.SIGNAL.NOTIFY);
-
-    dispatch(SIMPLE_EVENT);
+    
+    dispatch(EVENT['SIGNAL']['NOTIFY']);
 </script>

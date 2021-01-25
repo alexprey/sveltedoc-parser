@@ -2,13 +2,7 @@
     import { createEventDispatcher } from 'svelte';
     const dispatch = createEventDispatcher();
 
-    const EVENT = {
-        SIGNAL: {
-            NOTIFY: 'notify'
-        }
-    };
-
-    const SIMPLE_EVENT = 'plain-notify';
+    import { EVENT, SIMPLE_EVENT } from './sharedEvents.js';
 
     dispatch(EVENT.SIGNAL.NOTIFY);
 

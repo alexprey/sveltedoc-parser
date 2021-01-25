@@ -11,7 +11,11 @@
      */
 
     import { createEventDispatcher } from 'svelte';
+    
     const dispatch = createEventDispatcher();
+    const EVENT = {
+        CLOSE: "close"
+    }
 
     export let closable = false;
 </script>
@@ -27,7 +31,7 @@
                 The `close` event fired when user click to X button in the panel. 
                 @event CloseEvent#close
             -->
-            <button on:click={() => dispatch('close')}>&times;</button>
+            <button on:click={() => dispatch(EVENT.CLOSE)}>&times;</button>
         </div>
     {/if}
 </div>

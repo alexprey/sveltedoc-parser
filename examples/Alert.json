@@ -33,6 +33,20 @@
             }
         },
         {
+            "visibility": "private",
+            "description": null,
+            "keywords": [],
+            "name": "EVENT",
+            "kind": "const",
+            "static": false,
+            "readonly": true,
+            "type": {
+                "kind": "type",
+                "text": "any",
+                "type": "any"
+            }
+        },
+        {
             "visibility": "public",
             "description": null,
             "keywords": [],

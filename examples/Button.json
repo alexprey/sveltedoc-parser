@@ -150,9 +150,9 @@
                         "type": "string"
                     },
                     "name": "question",
+                    "description": "a question about life, the universe, everything",
                     "optional": true,
-                    "defaultValue": "Why?",
-                    "description": "a question about life, the universe, everything"
+                    "defaultValue": "Why?"
                 }
             ],
             "return": {

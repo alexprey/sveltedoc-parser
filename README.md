@@ -1,12 +1,31 @@
-# The sveltedoc parser
+# The sveltedoc parser <!-- omit in toc -->
 
 Generate a JSON documentation for a Svelte file
 
 [![npm](https://img.shields.io/npm/v/sveltedoc-parser.svg)](https://www.npmjs.com/package/sveltedoc-parser)
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/alexprey/sveltedoc-parser/Node%20CI/master)
 
-## Changelog 
+## Table of Contents <!-- omit in toc -->
 
+- [Changelog](#changelog)
+  - [[4.0.0] 25.01.2021](#400-25012021)
+- [Install](#install)
+- [Features](#features)
+  - [Common](#common)
+  - [Svelte 2](#svelte-2)
+  - [Svelte 3](#svelte-3)
+- [Options](#options)
+  - [Supported feature names](#supported-feature-names)
+- [Output format](#output-format)
+- [Usage](#usage)
+- [API](#api)
+  - [parse(options)](#parseoptions)
+  - [detectVersion(options)](#detectversionoptions)
+- [Issues](#issues)
+- [Contributors](#contributors)
+- [License](#license)
+
+## Changelog
 
 ### [4.0.0] 25.01.2021
 
@@ -35,82 +54,101 @@ npm install --save sveltedoc-parser
 
 ## Features
 
+### Common
+
 - JSDoc support
-    - Support description extraction for everything items
-    - Support visibility scope from JSDoc keywords: `@public`, `@protected`, `@private`
-- Extract global component description and keywords from JSDoc comment (_Svelte 3_)
-    - Top level comment must include `@component`. [Example script](/test/svelte3/integration/globalComment/globalComment.script.svelte), [Example html](/test/svelte3/integration/globalComment/globalComment.markup.svelte)
+  - Support description extraction for everything items
+  - Support visibility scope from JSDoc keywords: `@public`, `@protected`, `@private`
 - Extract list of imported components
-    - Extract relative path to imported component (supports full-syntax and short-syntax import styles)
+  - Extract relative path to imported component (supports full-syntax and short-syntax import styles)
 - Extract data properties
-    - Extract description from JSDoc comment
-    - Extract JS type from JSDoc (`@type {string}`) or parse default value if is not provided
+  - Extract description from JSDoc comment
+  - Extract JS type from JSDoc (`@type {string}`) or parse default value if is not provided
 - Extract computed properties with list of dependencies
-- Extract list of references that attached to components or HTML elements
+- Extract list of references attached to components or HTML elements
 - Extract information about events
-    - Events that propagated from child component or HTML elements `<button on:click>...</button>`
-    - Parse event modifiers `... on:click|once`
-- Extract all fired events (_Svelte 2 only_)
-    - Events that fired by this component by `fire(...)` method
-    - Custom event handlers with `private` visibility scope
-- Extract all dispatched events (_Svelte 3_)
-    - Events that dispatched from script block by user-created dispatcher
-    - Events that dispatched from markup expressions by user-created dispatcher
+  - Events that propagated from child component or HTML elements `<button on:click>...</button>`
+  - Parse event modifiers `... on:click|once`
 - Extract list of used default and named `slots`
 - Extract component methods
-    - Extract description from JSDoc comment
-    - Extract parameters description from JSDoc comment
-    - Extract JS type from JSDoc for parameters (`@param {string} parameter`)
-    - Identify optional parameters (`@param [parameter]`), Google Closure Compiler syntax supported as well (`@param {string=} parameter`)
+  - Extract description from JSDoc comment
+  - Extract parameters description from JSDoc comment
+  - Extract JS type from JSDoc for parameters (`@param {string} parameter`)
+  - Identify optional parameters using brackets (`@param [parameter]`) or using Google ClosureCompiler syntax (`@param {string=} parameter`)
     - Identify default values for optional parameters (`@param [parameter=Default value]`)
-- Extract component helpers (_Svelte 2 only_)
-- Extract component actions (_Svelte 2 only_)
-- Extract component transitions (_Svelte 2 only_)
 - Extract source locations for component symbols
-    - data
-    - slots
-    - methods
-    - refs
-    - events
+  - data (props)
+  - slots
+  - methods
+  - refs
+  - events
 
-## Configuration
+### Svelte 2
 
-| json Path | Description | Default value |
-|---------|-----------|---------------|
-| **filename** | The filename to parse. **Required**, unless `fileContent` is passed. | |
-| **fileContent** | The file content to parse. **Required**, unless `filename` is passed. | |
-| **encoding** | The file encoding. | `utf8` |
-| **features** | The component features to parse and extracting. | By default used all supported features (see below). |
-| **ignoredVisibilities** | The list of ignored visibilities. | `['private', 'protected']` |
-| **includeSourceLocations** | Flag, which indicates that source locations should be provided for component symbols. | `false` |
-| **version** | Optional. Use `2` or `3` to specify which svelte syntax should be used. When that is not provided, parser try to detect version of the syntax. | `undefined` |
-| **defaultVersion** | Optional. Specify default version of svelte syntax, if auto-detector can't identify correct version. | `undefined` |
+- Extract fired events
+  - Events fired by this component using the `fire(...)` method
+  - Custom event handlers with `private` visibility scope
+- Extract component helpers
+- Extract component actions
+- Extract component transitions
+
+### Svelte 3
+
+- Extract global component description and keywords from JSDoc comment
+  - Top level comment must include `@component`. [Example script](/test/svelte3/integration/globalComment/globalComment.script.svelte), [Example html](/test/svelte3/integration/globalComment/globalComment.markup.svelte)
+- Extract all dispatched events
+  - Events that dispatched from script block by user-created dispatcher
+  - Events that dispatched from markup expressions by user-created dispatcher
+
+## Options
+
+The `options` object passed to the `parse` function ***must include*** `filename` or `fileContent`.
+
+Here are the properties supported by `options` (see the [Usage](#Usage) section below):
+
+| json Path | Description | Type | Default value |
+|-----------|-------------|------|---------------|
+| **filename** | The filename to parse. **Required**, unless `fileContent` is passed. | string |
+| **fileContent** | The file content to parse. **Required**, unless `filename` is passed. | string |
+| **encoding** | The file encoding. | string | `utf8` |
+| **features** | The component features to parse and extract. | string[] | [All supported features](#Supported-feature-names) |
+| **ignoredVisibilities** | The list of ignored visibilities. Symbols with a visibility that is ignored will not be included in the output. | string[] | `['private', 'protected']` |
+| **includeSourceLocations** | Flag, which indicates that source locations should be provided for component symbols. | boolean | `false` |
+| **version** | Optional. Use `2` or `3` to specify which svelte syntax should be used. When that is not provided, parser try to detect version of the syntax. | number? | `undefined` |
+| **defaultVersion** | Optional. Specify default version of svelte syntax, if auto-detector can't identify correct version. | number? | `undefined` |
 
 ### Supported feature names
 
-- `'name'` - Extract the component name (_Supported by Svelte 2 and Svelte 3_).
-- `'data'` - Extract and parse the list of component data properties (_Supported by Svelte 2 and Svelte 3_).
-- `'computed'` - Extract and parse the list of component computed properties (_Supported by Svelte 2 and Svelte 3_).
-- `'methods'` - Extract the list of component methods (_Supported by Svelte 2 and Svelte 3_).
-- `'actions'` - Extract the list of component actions (_Supported by Svelte 2_).
-- `'helpers'` - Extract the list of component helpers (_Supported by Svelte 2_).
-- `'components'` - Extract the list of imported components (_Supported by Svelte 2 and Svelte 3_).
-- `'description'` - Extract the component description (_Supported by Svelte 2 and Svelte 3_).
-- `'keywords'` - Extract the component keywords (_Supported by Svelte 2 and Svelte 3_).
-- `'events'` - Extract the list of events that fired by this component (_Supported by Svelte 2 and Svelte 3_).
-- `'slots'` - Extract the list of slots provided by this component (_Supported by Svelte 2 and Svelte 3_).
-- `'transitions'` - Extract the list of transitions used by this component (_Supported by Svelte 2_).
-- `'refs'` - Extract the list of references used by this component (_Supported by Svelte 2 and Svelte 3_).
+These are the values that can be included in the `options.features` array:
+
+| Feature       | Svelte 2 | Svelte 3 | Description                                           |
+|---------------|:--------:|:--------:|-------------------------------------------------------|
+| `name`        |     ✔    |     ✔    | Component's name                                      |
+| `description` |     ✔    |     ✔    | Component's description                               |
+| `keywords`    |     ✔    |     ✔    | List of JSDoc keywords found in the top level comment |
+| `components`  |     ✔    |     ✔    | List of imported components                           |
+| `computed`    |     ✔    |     ✔    | List of computed properties                           |
+| `data`        |     ✔    |     ✔    | List of data properties (Component's props)           |
+| `events`      |     ✔    |     ✔    | List of events fired/dispatched by this component     |
+| `methods`     |     ✔    |     ✔    | List of methods                                       |
+| `refs`        |     ✔    |     ✔    | List of references used by this component             |
+| `slots`       |     ✔    |     ✔    | List of slots provided by this component              |
+| `actions`     |     ✔    |          | List of actions                                       |
+| `helpers`     |     ✔    |          | List of helpers                                       |
+| `transitions` |     ✔    |          | List of transitions used by this component            |
+| `store`       |          |          | NOT SUPPORTED                                         |
 
 ## Output format
 
-Output format are described at [this document](/typings.d.ts).
+Output format is described in [this document](/typings.d.ts).
 
-Please follow to [Examples](/examples/) folder to check how Svelte components transforms to JSON document.
+For Svelte 3 examples, take a look at the [examples folder](/examples/) to check how Svelte 3 components are transformed to JSON documents.
 
-See example of output for Svelte 2 component [here](/test/svelte2/integration/overall/overall.main.doc.json) presented in JSON format for [this component](/test/svelte2/integration/overall/main.svelte).
+For a Svelte 2 example, take a look at the [JSON output](/test/svelte2/integration/overall/overall.main.doc.json) generated from [this component](/test/svelte2/integration/overall/main.svelte).
 
 ## Usage
+
+Minimal example:
 
 ```js
 const sveltedoc = require('sveltedoc-parser');
@@ -125,6 +163,23 @@ sveltedoc.parse(options)
     .catch(e => {
         console.error(e);
     });
+```
+
+or with options customization:
+
+```js
+const { parse } = require('sveltedoc-parser');
+const { externalFileContent } = require('./local-file');
+const options = {
+    fileContent: externalFileContent,
+    encoding: 'ascii',
+    features: ['data', 'computed', 'methods'],
+    ignoredVisibilities: ['private'],
+    includeSourceLocations: true,
+    version: 3
+};
+const doc = await parse(options);
+console.log(doc)
 ```
 
 ## API
@@ -143,15 +198,15 @@ Method to detect svelte syntax version
 
 ## Issues
 
-All list of known issues presented at [this page](https://github.com/alexprey/sveltedoc-parser/issues).
+A list of known issues can be found [here](https://github.com/alexprey/sveltedoc-parser/issues).
 
-Found a new issues? Please contribute and write detailed description [here](https://github.com/alexprey/sveltedoc-parser/issues/new).
+Found a new issue? Please contribute and write a detailed description [here](https://github.com/alexprey/sveltedoc-parser/issues/new).
 
 ## Contributors
 
 Author [Alexey Mulyukin](https://github.com/alexprey)
 
-Based on [vuedoc-parse](https://gitlab.com/vuedoc/parser)
+Based on [Vuedoc Parser](https://gitlab.com/vuedoc/parser)
 
 ## License
 

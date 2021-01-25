@@ -7,7 +7,23 @@ Generate a JSON documentation for a Svelte file
 
 ## Changelog 
 
-...TBD...
+
+### [4.0.0] 25.01.2021
+
+- 🛠 **[Fixed]** Fix [Issue #42](https://github.com/alexprey/sveltedoc-parser/issues/42)
+- 🛠 **[Fixed]** Partially fixed [Issue #1](https://github.com/alexprey/sveltedoc-parser/issues/1). Now event name correcly parsed if it provided by top-level constant of the same file. Thanks for [@soft-decay](https://github.com/soft-decay)
+- ✔ **[Added]** Support to complete parsing of component method arguments [Issue #39](https://github.com/alexprey/sveltedoc-parser/issues/39). Thanks for [@soft-decay](https://github.com/soft-decay)
+- ✔ **[Added]** Support to parse return types and description for methods in component [Issue #37](https://github.com/alexprey/sveltedoc-parser/issues/37). Thanks for [@soft-decay](https://github.com/soft-decay)
+- ✔ **[Added]** Options validation, thanks for [@soft-decay](https://github.com/soft-decay)
+- 🔥 **[Breaking]** API rework for component methods description:
+    - `args` property was renamed to `params`;
+    - Change the structure of `return` item for methods:
+        - `desc` property was renamed to `description`;
+        - `type` property now contains the `JSDocType` object, instead of `string` type with text representation of type. This can be gets from `text` property of `JSDocType` object;
+    - [Svelte2]: method arguments was presented with plain array with names, now that replaced with objects of `SvelteMethodParamItem` type;
+- 🔥 **[Breaking]** Cleanup depricated code:
+    - `loc` property was removed, please use `locations` instead, if you late with upgrade;
+    - `value` property of `SvelteComponentItem` was removed, please use `importPath` instead
 
 Full changelog of release versions can be found [here](/CHANGELOG.md)
 

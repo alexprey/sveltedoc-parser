@@ -17,6 +17,8 @@
         "test:svelte3": "mocha ./test/svelte3/**/*.spec.js",
         "test:svelte3:unit": "mocha ./test/svelte3/unit/**/*.spec.js",
         "test:svelte3:integration": "mocha ./test/svelte3/integration/**/*.spec.js",
+        "test:svelte3-ts": "mocha ./test/svelte3-ts/**/*.spec.js",
+        "test:svelte3-ts:integration": "mocha ./test/svelte3-ts/integration/**/*.spec.js",
         "generate-examples": "node ./scripts/generate-examples.js"
     },
     "repository": {

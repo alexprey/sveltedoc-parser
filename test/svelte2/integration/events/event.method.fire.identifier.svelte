@@ -7,8 +7,12 @@
 <script>
 
 const ComponentEventNames = {
-    Click: 'click'
+    Click: 'click',
+    Alternate: {
+        Press: 'press'
+    },
 };
+
 
 export default {
     methods: {
@@ -17,6 +21,12 @@ export default {
              * Event fired when user clicked on button.
              */
             this.fire(ComponentEventNames.Click, event);
+        },
+        handleButtonPress(event) {
+            /**
+             * Event fired when user pressed on button.
+             */
+            this.fire(ComponentEventNames.Alternate.Press, event);
         }
     }
 }

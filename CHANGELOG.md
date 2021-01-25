@@ -3,11 +3,13 @@ All notable changes to the "svelte-intellisense" extension will be documented in
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [4.0.0] UNRELEASED
+## [4.0.0] 25.01.2021
 
 - 🛠 **[Fixed]** Fix [Issue #42](https://github.com/alexprey/sveltedoc-parser/issues/42)
+- 🛠 **[Fixed]** Partially fixed [Issue #1](https://github.com/alexprey/sveltedoc-parser/issues/1). Now event name correcly parsed if it provided by top-level constant of the same file. Thanks for [@soft-decay](https://github.com/soft-decay)
 - ✔ **[Added]** Support to complete parsing of component method arguments [Issue #39](https://github.com/alexprey/sveltedoc-parser/issues/39). Thanks for [@soft-decay](https://github.com/soft-decay)
 - ✔ **[Added]** Support to parse return types and description for methods in component [Issue #37](https://github.com/alexprey/sveltedoc-parser/issues/37). Thanks for [@soft-decay](https://github.com/soft-decay)
+- ✔ **[Added]** Options validation, thanks for [@soft-decay](https://github.com/soft-decay)
 - 🔥 **[Breaking]** API rework for component methods description:
     - `args` property was renamed to `params`;
     - Change the structure of `return` item for methods:

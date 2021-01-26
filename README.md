@@ -1,6 +1,6 @@
 # The sveltedoc parser <!-- omit in toc -->
 
-Generate a JSON documentation for a Svelte file
+Generate a JSON documentation for a Svelte file.
 
 [![npm](https://img.shields.io/npm/v/sveltedoc-parser.svg)](https://www.npmjs.com/package/sveltedoc-parser)
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/alexprey/sveltedoc-parser/Node%20CI/master)
@@ -30,21 +30,21 @@ Generate a JSON documentation for a Svelte file
 ### [4.0.0] 25.01.2021
 
 - 🛠 **[Fixed]** Fix [Issue #42](https://github.com/alexprey/sveltedoc-parser/issues/42)
-- 🛠 **[Fixed]** Partially fixed [Issue #1](https://github.com/alexprey/sveltedoc-parser/issues/1). Now event name correcly parsed if it provided by top-level constant of the same file. Thanks for [@soft-decay](https://github.com/soft-decay)
-- ✔ **[Added]** Support to complete parsing of component method arguments [Issue #39](https://github.com/alexprey/sveltedoc-parser/issues/39). Thanks for [@soft-decay](https://github.com/soft-decay)
-- ✔ **[Added]** Support to parse return types and description for methods in component [Issue #37](https://github.com/alexprey/sveltedoc-parser/issues/37). Thanks for [@soft-decay](https://github.com/soft-decay)
-- ✔ **[Added]** Options validation, thanks for [@soft-decay](https://github.com/soft-decay)
+- 🛠 **[Fixed]** Partially fixed [Issue #1](https://github.com/alexprey/sveltedoc-parser/issues/1). Event names are now correctly parsed if provided by a top-level constant in the same file. Thanks to [@soft-decay](https://github.com/soft-decay)
+- ✔ **[Added]** Support complete parsing of component method arguments [Issue #39](https://github.com/alexprey/sveltedoc-parser/issues/39). Thanks to [@soft-decay](https://github.com/soft-decay)
+- ✔ **[Added]** Support parsing of return type and description for methods in component [Issue #37](https://github.com/alexprey/sveltedoc-parser/issues/37). Thanks to [@soft-decay](https://github.com/soft-decay)
+- ✔ **[Added]** Options validation, Thanks to [@soft-decay](https://github.com/soft-decay)
 - 🔥 **[Breaking]** API rework for component methods description:
-    - `args` property was renamed to `params`;
-    - Change the structure of `return` item for methods:
-        - `desc` property was renamed to `description`;
-        - `type` property now contains the `JSDocType` object, instead of `string` type with text representation of type. This can be gets from `text` property of `JSDocType` object;
-    - [Svelte2]: method arguments was presented with plain array with names, now that replaced with objects of `SvelteMethodParamItem` type;
-- 🔥 **[Breaking]** Cleanup depricated code:
-    - `loc` property was removed, please use `locations` instead, if you late with upgrade;
-    - `value` property of `SvelteComponentItem` was removed, please use `importPath` instead
+  - `args` property renamed to `params`;
+  - Change the structure of `return` item for methods:
+    - `desc` property renamed to `description`;
+    - `type` property now contains a `JSDocType` object instead of a `string` with a text representation of the type. This text representation is still available from the `text` property of the `JSDocType` object;
+  - [Svelte2]: method arguments presented with plain array with names, now that replaced with objects of `SvelteMethodParamItem` type;
+- 🔥 **[Breaking]** Cleanup deprecated code:
+  - `loc` property removed: Use `locations` instead;
+  - `value` property of `SvelteComponentItem` removed: Use `importPath` instead;
 
-Full changelog of release versions can be found [here](/CHANGELOG.md)
+Full changelog of release versions can be found [here](/CHANGELOG.md).
 
 ## Install
 
@@ -190,11 +190,12 @@ Method to parse svelte component and provide doc object structure with details i
 
 ### detectVersion(options)
 
-Method to detect svelte syntax version
+Method to detect the Svelte syntax used in the component. It returns, in order:
 
-- Returns `3` when Svelte 3 special syntax feature are used
-- Returns `2` when Svelte 2 special syntax feature are used
-- Returns `defaultVersion` or `undefined` when specific version can't be identified
+- the value of `options.version`, if present; else
+- `2` or `3` if Svelte 2 syntax or Svelte 3 syntax is detected, respectively; else
+- the value of `options.defaultVersion`, if present; else
+- `undefined` if the function failed to detect the syntax to use
 
 ## Issues
 

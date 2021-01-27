@@ -31,36 +31,63 @@ describe('"utils.js" module', () => {
     });
 
     describe('buildPropertyAccessorChainFromTokens', () => {
-        it('should correctly parse a single identifier', () => {
-            const expectedChain = ['NOTIFY'];
-            const script = `
+        describe('should return an accessor chain when', () => {
+            it('tokens represent a single identifier', () => {
+                const expectedChain = ['NOTIFY'];
+                const script = `
             callee(${expectedChain.join('.')});
             `;
-            const tokens = espree.tokenize(script);
-            const identifierTokens = tokens.slice(2);
+                const tokens = espree.tokenize(script);
+                const identifierTokens = tokens.slice(2);
 
-            const chain = utils.buildPropertyAccessorChainFromTokens(identifierTokens);
+                const chain = utils.buildPropertyAccessorChainFromTokens(identifierTokens);
 
-            expect(chain).to.deep.equal(expectedChain);
-        });
+                expect(chain).to.deep.equal(expectedChain);
+            });
 
-        it('should correctly parse chained identifiers', () => {
-            const expectedChain = ['EVENT', 'SIGNAL', 'NOTIFY'];
-            const script = `
+            it('tokens represent chained identifiers using dot notation', () => {
+                const expectedChain = ['EVENT', 'SIGNAL', 'NOTIFY'];
+                const script = `
             callee(${expectedChain.join('.')});
             `;
-            const tokens = espree.tokenize(script);
-            const identifierTokens = tokens.slice(2);
+                const tokens = espree.tokenize(script);
+                const identifierTokens = tokens.slice(2);
 
-            const chain = utils.buildPropertyAccessorChainFromTokens(identifierTokens);
+                const chain = utils.buildPropertyAccessorChainFromTokens(identifierTokens);
 
-            expect(chain).to.deep.equal(expectedChain);
+                expect(chain).to.deep.equal(expectedChain);
+            });
+
+            it('tokens represent chained identifiers using mixed notation', () => {
+                const expectedChain = ['EVENT', 'SIGNAL', 'NOTIFY'];
+                const script = `
+            callee(${expectedChain[0]}['${expectedChain[1]}'].${expectedChain[2]});
+            `;
+                const tokens = espree.tokenize(script);
+                const identifierTokens = tokens.slice(2);
+
+                const chain = utils.buildPropertyAccessorChainFromTokens(identifierTokens);
+
+                expect(chain).to.deep.equal(expectedChain);
+            });
+            it('tokens represent chained identifiers using only bracket notation', () => {
+                const expectedChain = ['EVENT', '"SIGNAL"', "'NOTIFY'"];
+                const script = `
+            callee(${expectedChain[0]}['${expectedChain[1]}']["${expectedChain[2]}"]);
+            `;
+                const tokens = espree.tokenize(script);
+                const identifierTokens = tokens.slice(2);
+
+                const chain = utils.buildPropertyAccessorChainFromTokens(identifierTokens);
+
+                expect(chain).to.deep.equal(expectedChain);
+            });
         });
     });
 
     describe('buildPropertyAccessorChainFromAst', () => {
-        describe('should build an array when', () => {
-            it('AST is a single identifier', () => {
+        describe('should return an accessor chain when', () => {
+            it('AST has a single identifier', () => {
                 const expectedChain = ['NOTIFY'];
                 const script = `
                 callee(${expectedChain.join('.')});
@@ -76,6 +103,30 @@ describe('"utils.js" module', () => {
                 const expectedChain = ['EVENT', 'SIGNAL', 'NOTIFY'];
                 const script = `
                 callee(${expectedChain.join('.')});
+                `;
+                const ast = espree.parse(script);
+                const node = ast.body[0].expression.arguments[0];
+                const chain = utils.buildPropertyAccessorChainFromAst(node);
+
+                expect(chain).to.deep.equal(expectedChain);
+            });
+
+            it('AST has a nested computed "MemberExpression" node', () => {
+                const expectedChain = ['EVENT', 'SIGNAL', 'NOTIFY'];
+                const script = `
+                callee(${expectedChain[0]}['${expectedChain[1]}'].${expectedChain[2]});
+                `;
+                const ast = espree.parse(script);
+                const node = ast.body[0].expression.arguments[0];
+                const chain = utils.buildPropertyAccessorChainFromAst(node);
+
+                expect(chain).to.deep.equal(expectedChain);
+            });
+
+            it('AST has only nested computed "MemberExpression" nodes', () => {
+                const expectedChain = ['EVENT', 'SIGNAL', 'NOTIFY'];
+                const script = `
+                callee(${expectedChain[0]}['${expectedChain[1]}']["${expectedChain[2]}"]);
                 `;
                 const ast = espree.parse(script);
                 const node = ast.body[0].expression.arguments[0];

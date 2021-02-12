@@ -18,35 +18,35 @@ export interface JSDocTypeBase {
     /**
      * The text representation of this type.
      */
-    text: string,
+    text: string;
 }
 
 export interface JSDocTypeElement extends JSDocTypeBase {
-    kind: 'type',
+    kind: 'type';
     /**
      * The name of JS type.
      */
-    type: string,
+    type: string;
 }
 
 export interface JSDocTypeConst extends JSDocTypeBase {
-    kind: 'const',
+    kind: 'const';
     /**
      * The name of JS type.
      */
-    type: string,
+    type: string;
     /**
      * The constant value related to this type, if can be provided.
      */
-    value?: any,
+    value?: any;
 }
 
 export interface JSDocTypeUnion extends JSDocTypeBase {
-    kind: 'union',
+    kind: 'union';
     /**
      * The list of possible types.
      */
-    type: JSDocType[]
+    type: JSDocType[];
 }
 
 export type JSDocType = JSDocTypeElement | JSDocTypeConst | JSDocTypeUnion;
@@ -177,7 +177,7 @@ export interface SvelteComputedItem extends ISvelteItem {
     /**
      * The list of data or computed properties names, marked as depended to this property.
      */
-    dependencies: string[]
+    dependencies: string[];
 }
 
 export interface SvelteMethodParamItem {
@@ -255,12 +255,18 @@ export interface SvelteComponentItem extends ISvelteItem {
 
 /**
  * Represents the event modificators.
- * 
+ *
  * @since Svelte V2.5
  * @since Svelte V3
  * @since {2.0.0}
  */
-export type SvelteEventModificator = 'preventDefault'|'stopPropagation'|'passive'|'capture'|'once'|'nonpassive';
+export type SvelteEventModificator =
+    | 'preventDefault'
+    | 'stopPropagation'
+    | 'passive'
+    | 'capture'
+    | 'once'
+    | 'nonpassive';
 
 export interface SvelteEventItem extends ISvelteItem {
     /**
@@ -279,9 +285,7 @@ export interface SvelteEventItem extends ISvelteItem {
  * @since Svelte V3
  * @since {2.0.0}
  */
-export interface SvelteSlotParameter extends ISvelteItem {
-
-}
+export interface SvelteSlotParameter extends ISvelteItem {}
 
 export interface SvelteSlotItem extends ISvelteItem {
     /**
@@ -310,7 +314,7 @@ export interface SvelteComponentDoc {
     /**
      * The Svelte compiler version that used for this document.
      */
-    version?: number,
+    version?: number;
     /**
      * The component description.
      */
@@ -401,7 +405,7 @@ export enum Svelte3Feature {
     events = 'events',
     slots = 'slots',
     refs = 'refs',
-};
+}
 
 type Svelte2FeatureKeys = keyof typeof Svelte2Feature;
 type Svelte3FeatureKeys = keyof typeof Svelte3Feature;
@@ -414,7 +418,10 @@ type Svelte3ExclusiveFeature = Exclude<Svelte3FeatureKeys, Svelte2FeatureKeys>;
  */
 export type SvelteVersion = 2 | 3;
 
-interface BaseParserOptions<V extends SvelteVersion, F extends SvelteFeatureKeys> {
+interface BaseParserOptions<
+    V extends SvelteVersion,
+    F extends SvelteFeatureKeys
+> {
     /**
      * The filename to parse. Required unless fileContent is passed.
      */
@@ -449,7 +456,7 @@ interface BaseParserOptions<V extends SvelteVersion, F extends SvelteFeatureKeys
      * Indicates that source locations should be provided for component symbols.
      * @default false
      */
-    includeSourceLocations?: boolean
+    includeSourceLocations?: boolean;
 
     /**
      * Optional. Use 2 or 3 to specify which svelte syntax should be used.
@@ -467,7 +474,7 @@ interface BaseParserOptions<V extends SvelteVersion, F extends SvelteFeatureKeys
 
 /**
  * Options to pass to the main parse function.
- * 
+ *
  * @example
  * const options = {
  *     filename: 'main.svelte',
@@ -478,6 +485,42 @@ interface BaseParserOptions<V extends SvelteVersion, F extends SvelteFeatureKeys
  *     version: 3
  * };
  */
-export type SvelteParserOptions = 
+export type SvelteParserOptions =
     | BaseParserOptions<3, Svelte3FeatureKeys>
     | BaseParserOptions<2, Svelte2FeatureKeys>;
+
+declare module 'sveltedoc-parser' {
+    /**
+     * Parse the svelte source file to structured object.
+     * 
+     * @param options The parser options
+     * @example
+     * ```js
+     * const { parse } = require('sveltedoc-parser');
+     * // basic usage only requires 'filename' to be set.
+     * const doc = await parse({
+     *     filename: 'main.svelte',
+     *     encoding: 'ascii',
+     *     features: ['data', 'computed', 'methods'],
+     *     ignoredVisibilities: ['private'],
+     *     includeSourceLocations: true,
+     *     version: 3
+     * });
+     * ```
+     * @return Promise with parsed document structure.
+     */
+    export function parse(
+        options: SvelteParserOptions
+    ): Promise<SvelteComponentDoc>;
+
+    /**
+     * Try to detect svelte source file version.
+     * 
+     * @param options The parser options
+     * @return The detected version of svelte source file.
+     */
+    export function detectVersion(options: SvelteParserOptions): number;
+
+    export const SVELTE_VERSION_2: number;
+    export const SVELTE_VERSION_3: number;
+}

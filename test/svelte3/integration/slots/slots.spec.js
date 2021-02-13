@@ -87,4 +87,36 @@ describe('SvelteDoc v3 - Slots', () => {
             done(e);
         });
     });
+
+    it('Slot comments should be correctly parsed', done => {
+        parser.parse({
+            version: 3,
+            filename: path.resolve(__dirname, 'slot.comments.svelte'),
+            features: ['slots', 'events'],
+            ignoredVisibilities: []
+        }).then(doc => {
+            expect(doc, 'Document should be provided').to.exist;
+            expect(doc.slots, 'Document slots should be parsed').to.exist;
+
+            expect(doc.slots).to.have.length(3);
+
+            const firstSlot = doc.slots.find(slot => slot.name === 'first');
+            const defaultSlot = doc.slots.find(slot => slot.name === 'default');
+            const secondSlot = doc.slots.find(slot => slot.name === 'second');
+
+            expect(firstSlot.description).to.equal('The first slot description.');
+            expect(defaultSlot.description).to.empty;
+            expect(secondSlot.description).to.equal('The second slot description.');
+
+            expect(doc.events).to.have.length(1);
+
+            const event = doc.events[0];
+
+            expect(event.description).to.be.empty;
+
+            done();
+        }).catch(e => {
+            done(e);
+        });
+    });
 });

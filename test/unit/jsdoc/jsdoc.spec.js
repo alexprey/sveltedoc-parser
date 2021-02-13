@@ -417,4 +417,37 @@ describe('JSDoc parser module tests', () => {
             expect(returns.type.type).to.equal('any');
         });
     });
+
+    describe('convertToJsDocComment', () => {
+        it('when single line text then should be wrapped', () => {
+            const output = jsdoc.convertToJsDocComment(' The simple component description. ');
+
+            expect(output).to.equal(`/**
+ * The simple component description.
+ */`
+            );
+        });
+
+        it('when comment is already jsdoc then should be w/o any changes', () => {
+            const output = jsdoc.convertToJsDocComment('/** The JSDoc comment **/');
+
+            expect(output).to.equal('/** The JSDoc comment **/');
+        });
+
+        it('when multiline comment then should be correcly wrapped', () => {
+            const output = jsdoc.convertToJsDocComment(`
+                The simple component description.
+
+                @author Alexey
+                @param {string} title
+            `);
+
+            expect(output).to.equal(`/**
+ * The simple component description.
+ * 
+ * @author Alexey
+ * @param {string} title
+ */`);
+        });
+    });
 });

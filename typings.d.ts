@@ -84,18 +84,7 @@ export type JSVisibilityScope = 'public' | 'protected' | 'private';
 
 export type JSVariableDeclarationKind = 'var' | 'let' | 'const';
 
-export interface ISvelteItem {
-    /**
-     * The name of the item.
-     */
-    name: string;
-
-    /**
-     * The list of source code locations for this item.
-     * Provided only if requested by specific option parameter.
-     */
-    locations?: SourceLocation[];
-
+export interface IScopedCommentItem {
     /**
      * The description of the item, provided from related comment.
      */
@@ -108,6 +97,19 @@ export interface ISvelteItem {
      * The list of parsed JSDoc keywords from related comment.
      */
     keywords?: JSDocKeyword[];
+}
+
+export interface ISvelteItem extends IScopedCommentItem {
+    /**
+     * The name of the item.
+     */
+    name: string;
+
+    /**
+     * The list of source code locations for this item.
+     * Provided only if requested by specific option parameter.
+     */
+    locations?: SourceLocation[];
 }
 
 export interface SvelteDataBindMapping {

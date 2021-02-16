@@ -333,7 +333,7 @@ describe('SvelteDoc v3 - Events', () => {
         }).then((doc) => {
             expect(doc, 'Document should be provided').to.exist;
             expect(doc.events, 'Document events should be parsed').to.exist;
-            expect(doc.events.length).to.equal(2);
+            expect(doc.events.length).to.equal(4);
 
             let event = doc.events[0];
 
@@ -347,13 +347,25 @@ describe('SvelteDoc v3 - Events', () => {
             expect(event.name).to.equal('plain-notify');
             expect(event.visibility).to.equal('public');
 
+            event = doc.events[2];
+
+            expect(event, 'Event should be a valid entity').to.exist;
+            expect(event.name).to.equal('exported-notify');
+            expect(event.visibility).to.equal('public');
+
+            event = doc.events[3];
+
+            expect(event, 'Event should be a valid entity').to.exist;
+            expect(event.name).to.equal('exported-plain-notify');
+            expect(event.visibility).to.equal('public');
+
             done();
         }).catch(e => {
             done(e);
         });
     });
 
-    xit('Dispatch event from code should be found when using an identifier from array', (done) => {
+    it('Dispatch event from code should be found when using an identifier with bracket notation', (done) => {
         parser.parse({
             version: 3,
             filename: path.resolve(__dirname, 'event.dispatcher.arrayIdentifier.svelte'),
@@ -362,7 +374,7 @@ describe('SvelteDoc v3 - Events', () => {
         }).then((doc) => {
             expect(doc, 'Document should be provided').to.exist;
             expect(doc.events, 'Document events should be parsed').to.exist;
-            expect(doc.events.length).to.equal(2);
+            expect(doc.events.length).to.equal(1);
 
             const event = doc.events[0];
 

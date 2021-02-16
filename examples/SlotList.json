@@ -1,0 +1,46 @@
+{
+    "version": 3,
+    "name": "SlotList",
+    "data": [
+        {
+            "visibility": "public",
+            "description": null,
+            "keywords": [],
+            "name": "items",
+            "kind": "let",
+            "static": false,
+            "readonly": false,
+            "type": {
+                "kind": "type",
+                "text": "any",
+                "type": "any"
+            }
+        }
+    ],
+    "computed": [],
+    "methods": [],
+    "components": [],
+    "description": null,
+    "keywords": [],
+    "events": [],
+    "slots": [
+        {
+            "name": "default",
+            "description": "Render the one item markup based on data passed in slot property.\n            @param {GenericListItem} prop The item of the list that should be rendered.",
+            "visibility": "public",
+            "parameters": [
+                {
+                    "name": "prop",
+                    "visibility": "public"
+                }
+            ]
+        },
+        {
+            "name": "empty",
+            "description": null,
+            "visibility": "public",
+            "parameters": []
+        }
+    ],
+    "refs": []
+}

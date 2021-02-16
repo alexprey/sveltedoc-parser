@@ -1,6 +1,7 @@
 const { loadFileStructureFromOptions } = require('./lib/helpers');
 const { validate, retrieveFileOptions } = require('./lib/options');
 const SvelteVersionDetector = require('./lib/detector');
+const { SVELTE_VERSION_2, SVELTE_VERSION_3 } = require('./lib/detector');
 
 /**
  * @typedef {import("./typings").SvelteParserOptions} SvelteParserOptions
@@ -215,3 +216,6 @@ module.exports.detectVersion = (options) => {
 
     return SvelteVersionDetector.detectVersionFromOptions(options);
 };
+
+module.exports.SVELTE_VERSION_2 = SVELTE_VERSION_2;
+module.exports.SVELTE_VERSION_3 = SVELTE_VERSION_3;

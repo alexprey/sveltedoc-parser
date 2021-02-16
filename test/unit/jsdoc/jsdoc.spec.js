@@ -234,6 +234,25 @@ describe('JSDoc parser module tests', () => {
             expect(param.repeated).is.true;
             expect(param.type.kind).is.equal('type');
             expect(param.type.type).is.equal('string');
+            expect(param.type.importPath).not.exist;
+        });
+
+        it('Imported type should be parsed correctly', () => {
+            const param = jsdoc.parseParamKeyword('{import(\'./typings.d.ts\').ImportedObjectType} The parameter description.');
+
+            expect(param.type).is.exist;
+            expect(param.type.kind).is.equal('type');
+            expect(param.type.type).is.equal('ImportedObjectType');
+            expect(param.type.importPath).is.equal('./typings.d.ts');
+        });
+
+        it('Imported type with double quotes should be parsed correctly', () => {
+            const param = jsdoc.parseParamKeyword('{import("./typings.d.ts").ImportedObjectType} The parameter description.');
+
+            expect(param.type).is.exist;
+            expect(param.type.kind).is.equal('type');
+            expect(param.type.type).is.equal('ImportedObjectType');
+            expect(param.type.importPath).is.equal('./typings.d.ts');
         });
 
         it('Any object with star declaration', () => {

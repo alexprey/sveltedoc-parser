@@ -26,7 +26,7 @@
     "slots": [
         {
             "name": "default",
-            "description": null,
+            "description": "Render the one item markup based on data passed in slot property.\n            @param {GenericListItem} prop The item of the list that should be rendered.",
             "visibility": "public",
             "parameters": [
                 {

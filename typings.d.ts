@@ -27,6 +27,20 @@ export interface JSDocTypeElement extends JSDocTypeBase {
      * The name of JS type.
      */
     type: string;
+    /**
+     * Provide the path from where this event are imported.
+     * Emited only if JSDoc have {import()} statement.
+     * 
+     * @example
+     * For example, lets check the following JSDoc comment:
+     * ```js
+     * /**
+     *  * @param {import('./typings.d.ts').ImportedObjectType}
+     *  *\/
+     * ```
+     * Then we got the `./typings.d.ts` value for `importPath` property.
+     */
+    importPath?: string;
 }
 
 export interface JSDocTypeConst extends JSDocTypeBase {

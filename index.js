@@ -176,6 +176,7 @@ function subscribeOnParserEvents(parser, ignoredVisibilities, version, resolve, 
 /**
  * Main parse function.
  * @param {SvelteParserOptions} options
+ * @return {Promise<import('./typings').SvelteComponentDoc>}
  * @example
  * const { parse } = require('sveltedoc-parser');
  * // basic usage only requires 'filename' to be set.

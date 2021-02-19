@@ -2,6 +2,7 @@ const path = require('path');
 const chai = require('chai');
 const expect = chai.expect;
 
+const packageConfig = require('../../../../package.json');
 const parser = require('../../../../index');
 
 describe('SvelteDoc v3 - Slots', () => {
@@ -45,7 +46,7 @@ describe('SvelteDoc v3 - Slots', () => {
             expect(slot.name).to.equal('item');
             expect(slot.visibility).to.equal('public');
 
-            const parameters = slot.parameters;
+            const parameters = slot.params;
 
             expect(parameters).to.exist;
             expect(parameters.length).to.equal(1);
@@ -54,7 +55,19 @@ describe('SvelteDoc v3 - Slots', () => {
 
             expect(parameter).to.exist;
             expect(parameter.name).to.equal('item');
-            expect(parameter.visibility).to.equal('public');
+            expect(parameter.description).to.equal('The slot parameter description.');
+            expect(parameter.type).to.deep.eq({
+                kind: 'type',
+                type: 'string',
+                text: 'string'
+            });
+
+            // TODO: 5.* | Backward compatibility test
+            if (packageConfig.version.startsWith('5.')) {
+                expect(slot.parameters, 'parameters field should be removed').undefined;
+            } else {
+                expect(slot.parameters, 'Should be backward compatable until 5.* version').to.deep.eq(slot.params);
+            }
 
             done();
         }).catch(e => {

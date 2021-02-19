@@ -86,10 +86,10 @@
     ],
     "slots": [
         {
-            "name": "default",
-            "description": "The internal content of the alert block.",
+            "keywords": [],
             "visibility": "public",
-            "parameters": []
+            "description": "The internal content of the alert block.",
+            "name": "default"
         }
     ],
     "refs": []

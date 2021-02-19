@@ -25,21 +25,45 @@
     "events": [],
     "slots": [
         {
-            "name": "default",
-            "description": "Render the one item markup based on data passed in slot property.\n            @param {GenericListItem} prop The item of the list that should be rendered.",
+            "keywords": [
+                {
+                    "name": "param",
+                    "description": "{GenericListItem} prop The item of the list that should be rendered."
+                }
+            ],
             "visibility": "public",
+            "description": "Render the one item markup based on data passed in slot property.",
+            "name": "default",
+            "params": [
+                {
+                    "type": {
+                        "kind": "type",
+                        "text": "GenericListItem",
+                        "type": "GenericListItem"
+                    },
+                    "name": "prop",
+                    "description": "The item of the list that should be rendered.",
+                    "optional": false
+                }
+            ],
             "parameters": [
                 {
+                    "type": {
+                        "kind": "type",
+                        "text": "GenericListItem",
+                        "type": "GenericListItem"
+                    },
                     "name": "prop",
-                    "visibility": "public"
+                    "description": "The item of the list that should be rendered.",
+                    "optional": false
                 }
             ]
         },
         {
-            "name": "empty",
-            "description": null,
+            "keywords": [],
             "visibility": "public",
-            "parameters": []
+            "description": "",
+            "name": "empty"
         }
     ],
     "refs": []

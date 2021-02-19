@@ -3,6 +3,22 @@ All notable changes to the "svelte-intellisense" extension will be documented in
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [4.1.0] 19.02.2021
+
+- 🎉 **[Misc]** Update the ReadMe by [@soft-decay](https://github.com/soft-decay).
+- ✔ **[Added]** Implement support of imported types parsing, f.ex. `@type {import('../typings.d.ts').ExternalTypeClass}`. In order to do this, new field `importPath` introduced to `JSDocType`, in the name property now it returns imported class name, f.ex.: `ExternalTypeClass`.
+- 🛠 **[Fixed]** Complete fix of [Issue #1](https://github.com/alexprey/sveltedoc-parser/issues/1): Support parsing event names from top-level constant objects with accessing to their properties by naming strings. Introduce the new issue [Issue #48](https://github.com/alexprey/sveltedoc-parser/issues/48) about supporting parse of event names by external references.
+- 🛠 **[Fixed]** Fix the [Issue #47](https://github.com/alexprey/sveltedoc-parser/issues/48), now all comments in markup are parsed correctly and attached to required items in document. Support JSDoc comment markup parsing in all places where comment can be used.
+- 🛠 **[Fixed]** Fix the [Issue #61](https://github.com/alexprey/sveltedoc-parser/issues/61), now slot parameter items enrich with all detailed information that was parsed from markup comment.
+- 🛠 **[Fixed]** Spec: add the module definition typings to `typings.d.ts` file.
+- 🛠 **[Fixed]** Fix some edge-cases in script parsing logic.
+- 🛠 **[Tech]** Refactor internal parser logic to make it easy to introduce new features, moves forward to TS support! ;)
+- 🔥 **[Breaking]** Spec: change the `SvelteSlotParameter` definition, to support `name`, `description`, `type` fields, instead of many not relevant fields that was inherited from `ISvelteItem` interface.
+- 🔥 **[Breaking]** Spec: change the `SvelteSlotItem` definition, to improve consistency:
+  - Rename `parameters` property to `params` to be most likely the same as `SvelteMethodItem`. Old field still available until 5.* release.
+
+Thanks a lot [@soft-decay](https://github.com/soft-decay) for contributing in this release!
+
 ## [4.0.0] 25.01.2021
 
 - 🛠 **[Fixed]** Fix [Issue #42](https://github.com/alexprey/sveltedoc-parser/issues/42)

@@ -301,15 +301,38 @@ export interface SvelteEventItem extends ISvelteItem {
  * @since Svelte V3
  * @since {2.0.0}
  */
-export interface SvelteSlotParameter extends ISvelteItem {}
+export interface SvelteSlotParameter {
+    /**
+     * The name of slot parameter.
+     */
+    name: string;
+    /**
+     * The JSDocType of the slot parameter value.
+     * @since {4.1.0}
+     */
+    type: JSDocType;
+    /**
+     * The description of the slot parameter.
+     * @since {4.1.0}
+     */
+    description?: string;
+}
 
 export interface SvelteSlotItem extends ISvelteItem {
     /**
      * List of exposed slot parameters.
      * @since Svelte V3
      * @since {2.0.0}
+     * @deprecated @see params property instead
      */
     parameters?: SvelteSlotParameter[];
+
+    /**
+     * List of exposed slot parameters.
+     * @since Svelte V3
+     * @since {4.1.0}
+     */
+    params?: SvelteSlotParameter[];
 }
 
 export interface SvelteRefItem extends ISvelteItem {

@@ -255,6 +255,59 @@ describe('SvelteDoc v3 - Props', () => {
         });
     });
 
+    it('Export statements with multiple named exports should be parsed with matching descriptions', done => {
+        parser.parse({
+            version: 3,
+            filename: path.resolve(__dirname, 'data.exportNamed.many.svelte'),
+            features: ['data'],
+            includeSourceLocations: true,
+            ignoredVisibilities: []
+        }).then((doc) => {
+            expect(doc, 'Document should be provided').to.exist;
+            expect(doc.data, 'Document data should be parsed').to.exist;
+
+            expect(doc.data.length).to.equal(4);
+
+            const prop1 = doc.data.find(d => d.name === 'a');
+
+            expect(prop1.name).to.equal('a');
+            expect(prop1.visibility).to.equal('public');
+            expect(prop1.static).to.be.false;
+            expect(prop1.description).to.be.equal('The `a` variable description');
+            expect(prop1.type).to.eql({ kind: 'type', type: 'number', text: 'number' });
+
+            expect(prop1.locations, 'Code location should be parsed').to.be.exist;
+
+            const prop2 = doc.data.find(d => d.name === 'b');
+
+            expect(prop2.name).to.equal('b');
+            expect(prop2.visibility).to.equal('public');
+            expect(prop2.static).to.be.false;
+            expect(prop2.description).to.be.equal('The `b` variable description');
+            expect(prop2.type).to.eql({ kind: 'type', type: 'string', text: 'string' });
+
+            const prop3 = doc.data.find(d => d.name === 'c');
+
+            expect(prop3.name).to.equal('c');
+            expect(prop3.visibility).to.equal('public');
+            expect(prop3.static).to.be.false;
+            expect(prop3.description).to.be.null;
+            expect(prop3.type).to.eql({ kind: 'type', type: 'string', text: 'string' });
+
+            const prop4 = doc.data.find(d => d.name === 'd');
+
+            expect(prop4.name).to.equal('d');
+            expect(prop4.visibility).to.equal('public');
+            expect(prop4.static).to.be.false;
+            expect(prop4.description).to.be.equal('The `d` variable description');
+            expect(prop4.type).to.eql({ kind: 'type', type: 'number', text: 'number' });
+
+            done();
+        }).catch(e => {
+            done(e);
+        });
+    });
+
     it('Export object statement with multiple variables should be parsed as public props', done => {
         parser.parse({
             version: 3,

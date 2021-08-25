@@ -266,7 +266,7 @@ describe('SvelteDoc v3 - Props', () => {
             expect(doc, 'Document should be provided').to.exist;
             expect(doc.data, 'Document data should be parsed').to.exist;
 
-            expect(doc.data.length).to.equal(2);
+            expect(doc.data.length).to.equal(3);
 
             const prop1 = doc.data.find(d => d.name === 'a');
 
@@ -278,14 +278,23 @@ describe('SvelteDoc v3 - Props', () => {
 
             expect(prop1.locations, 'Code location should be parsed').to.be.exist;
             expect(prop1.locations[0]).is.deep.equals({ start: 56, end: 57 });
-            expect(prop1.locations[1]).is.deep.equals({ start: 97, end: 98 });
+            expect(prop1.locations[1]).is.deep.equals({ start: 196, end: 197 });
 
             const prop2 = doc.data.find(d => d.name === 'b');
 
             expect(prop2.name).to.equal('b');
             expect(prop2.visibility).to.equal('public');
             expect(prop2.static).to.be.false;
+            expect(prop2.description).to.be.equal('The `b` variable description');
             expect(prop2.type).to.eql({ kind: 'type', type: 'string', text: 'string' });
+
+            const prop3 = doc.data.find(d => d.name === 'c');
+
+            expect(prop3.name).to.equal('c');
+            expect(prop3.visibility).to.equal('public');
+            expect(prop3.static).to.be.false;
+            expect(prop3.description).to.be.equal('The `c` variable description');
+            expect(prop3.type).to.eql({ kind: 'type', type: 'string', text: 'string' });
 
             done();
         }).catch(e => {

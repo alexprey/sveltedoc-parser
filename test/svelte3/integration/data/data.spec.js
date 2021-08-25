@@ -278,7 +278,7 @@ describe('SvelteDoc v3 - Props', () => {
 
             expect(prop1.locations, 'Code location should be parsed').to.be.exist;
             expect(prop1.locations[0]).is.deep.equals({ start: 56, end: 57 });
-            expect(prop1.locations[1]).is.deep.equals({ start: 157, end: 158 });
+            expect(prop1.locations[1]).is.deep.equals({ start: 196, end: 197 });
 
             const prop2 = doc.data.find(d => d.name === 'b');
 

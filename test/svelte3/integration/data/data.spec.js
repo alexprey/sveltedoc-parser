@@ -132,6 +132,52 @@ describe('SvelteDoc v3 - Props', () => {
         });
     });
 
+    it('Primitive types should be inferred', (done) => {
+        parser.parse({
+            version: 3,
+            filename: path.resolve(__dirname, 'data.types.svelte'),
+            features: ['data'],
+            ignoredVisibilities: []
+        }).then((doc) => {
+            expect(doc, 'Document should be provided').to.exist;
+            expect(doc.data, 'Document events should be parsed').to.exist;
+
+            expect(doc.data.length).to.equal(7);
+
+            expect(doc.data[0].name).to.equal('a');
+            expect(doc.data[0].type.kind).to.equal('union');
+            expect(doc.data[0].type.text).to.equal('""|"small"|"medium"|"large"');
+
+            expect(doc.data[1].name).to.equal('b');
+            expect(doc.data[1].type.type).to.equal('number');
+            expect(doc.data[1].type.text).to.equal('number');
+
+            expect(doc.data[2].name).to.equal('c');
+            expect(doc.data[2].type.type).to.equal('boolean');
+            expect(doc.data[2].type.text).to.equal('boolean');
+
+            expect(doc.data[3].name).to.equal('d');
+            expect(doc.data[3].type.type).to.equal('array');
+            expect(doc.data[3].type.text).to.equal('array');
+
+            expect(doc.data[4].name).to.equal('e');
+            expect(doc.data[4].type.type).to.equal('object');
+            expect(doc.data[4].type.text).to.equal('object');
+
+            expect(doc.data[5].name).to.equal('f');
+            expect(doc.data[5].type.type).to.equal('function');
+            expect(doc.data[5].type.text).to.equal('function');
+
+            expect(doc.data[6].name).to.equal('g');
+            expect(doc.data[6].type.type).to.equal('function');
+            expect(doc.data[6].type.text).to.equal('function');
+
+            done();
+        }).catch(e => {
+            done(e);
+        });
+    });
+
     it('Object pattern prop declaration should be parsed', (done) => {
         parser.parse({
             version: 3,

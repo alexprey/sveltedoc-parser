@@ -16,4 +16,6 @@
     export let f = function(){};
 
     export let g = () => {};
+
+    export let h = (new Date);
 </script>

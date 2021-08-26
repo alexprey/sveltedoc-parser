@@ -142,7 +142,7 @@ describe('SvelteDoc v3 - Props', () => {
             expect(doc, 'Document should be provided').to.exist;
             expect(doc.data, 'Document events should be parsed').to.exist;
 
-            expect(doc.data.length).to.equal(7);
+            expect(doc.data.length).to.equal(8);
 
             expect(doc.data[0].name).to.equal('a');
             expect(doc.data[0].type.kind).to.equal('union');
@@ -171,6 +171,10 @@ describe('SvelteDoc v3 - Props', () => {
             expect(doc.data[6].name).to.equal('g');
             expect(doc.data[6].type.type).to.equal('function');
             expect(doc.data[6].type.text).to.equal('function');
+
+            expect(doc.data[7].name).to.equal('h');
+            expect(doc.data[7].type.type).to.equal('any');
+            expect(doc.data[7].type.text).to.equal('any');
 
             done();
         }).catch(e => {

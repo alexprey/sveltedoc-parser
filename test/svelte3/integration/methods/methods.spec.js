@@ -116,7 +116,7 @@ describe('SvelteDoc v3 - Methods', () => {
 
             // @param keywords
             expect(method.params, 'Method arguments should be parsed').to.exist;
-            expect(method.params.length).to.equal(6);
+            expect(method.params.length).to.equal(7);
 
             const param0 = method.params[0];
 
@@ -145,7 +145,7 @@ describe('SvelteDoc v3 - Methods', () => {
             const param3 = method.params[3];
 
             expect(param3.name).to.equal('param4');
-            expect(param3.description).to.be.undefined;
+            expect(param3.description).to.be.null;
             expect(param3.type.type).to.equal('array');
             expect(param3.defaultValue).to.be.undefined;
             expect(param3.optional).to.be.true;
@@ -153,7 +153,7 @@ describe('SvelteDoc v3 - Methods', () => {
             const param4 = method.params[4];
 
             expect(param4.name).to.equal('param5');
-            expect(param4.description).to.be.undefined;
+            expect(param4.description).to.be.null;
             expect(param4.type.type).to.equal('object');
             expect(param4.defaultValue).to.be.undefined;
             expect(param4.optional).to.be.true;
@@ -161,10 +161,18 @@ describe('SvelteDoc v3 - Methods', () => {
             const param5 = method.params[5];
 
             expect(param5.name).to.equal('param6');
-            expect(param5.description).to.be.undefined;
+            expect(param5.description).to.be.null;
             expect(param5.type.type).to.equal('boolean');
             expect(param5.defaultValue).to.equal('true');
             expect(param5.optional).to.be.true;
+
+            const param6 = method.params[6];
+
+            expect(param6.name).to.equal('param7');
+            expect(param6.description).to.be.null;
+            expect(param6.type.type).to.equal('any');
+            expect(param6.defaultValue).to.be.undefined;
+            expect(param6.optional).to.be.false;
 
             // @returns keyword
             expect(method.return, 'Method return keyword should be parsed').to.exist;

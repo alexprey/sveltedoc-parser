@@ -30,7 +30,7 @@ export interface JSDocTypeElement extends JSDocTypeBase {
     /**
      * Provide the path from where this event are imported.
      * Emited only if JSDoc have {import()} statement.
-     * 
+     *
      * @example
      * For example, lets check the following JSDoc comment:
      * ```js
@@ -143,7 +143,7 @@ export interface SvelteDataItem extends ISvelteItem {
     bind?: SvelteDataBindMapping[];
     /**
      * Indicates that this data item of component located in static context.
-     * Variable should be declared in `<script scope="module" />` block.
+     * Variable should be declared in `<script context="module" />` block.
      * @since Svelte V3
      * @since {2.0.0}
      */
@@ -225,7 +225,7 @@ export interface SvelteMethodParamItem {
     description?: string;
     /**
      * Indicates that this data item of component located in static context.
-     * Variable should be declared in `<script scope="module" />` block.
+     * Variable should be declared in `<script context="module" />` block.
      * @since Svelte V3
      * @since {2.0.0}
      */
@@ -531,7 +531,7 @@ export type SvelteParserOptions =
 declare module 'sveltedoc-parser' {
     /**
      * Parse the svelte source file to structured object.
-     * 
+     *
      * @param options The parser options
      * @example
      * ```js
@@ -554,7 +554,7 @@ declare module 'sveltedoc-parser' {
 
     /**
      * Try to detect svelte source file version.
-     * 
+     *
      * @param options The parser options
      * @return The detected version of svelte source file.
      */

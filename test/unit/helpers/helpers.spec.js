@@ -30,7 +30,7 @@ let variable = 1;
         it('When html block have attribute, should be correct extracted', () => {
             const content = `
 <p>Some content here</p>
-<script scope="module">
+<script context="module">
 let variable = 1;
 </script>
 `;
@@ -41,7 +41,7 @@ let variable = 1;
             const block = result.block;
 
             expect(block).is.exist;
-            expect(block.attributes).is.eq(' scope="module"');
+            expect(block.attributes).is.eq(' context="module"');
         });
 
         it('When startIndex are specified, should be skip first content and provide the next item', () => {
@@ -138,7 +138,7 @@ export let items = [];
   <Code>
     {@html highlight(
       '<script> \n' +
-      '   const items = [ \n' + 
+      '   const items = [ \n' +
       '     { title: "Tab 1", active: true }, \n' +
       '     { title: "Tab 2", active: false }, \n' +
       '     { title: "Tab 3", active: false }, \n' +

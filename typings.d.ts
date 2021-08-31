@@ -187,6 +187,17 @@ export interface SvelteDataItem extends ISvelteItem {
      * @since {2.2.0}
      */
     importPath?: string;
+
+    /**
+     * The list of parameter items of the function expression.
+     */
+     params?: SvelteMethodParamItem[];
+
+     /**
+      * The return item of the function expression. This exists if an item with 'name' equal
+      * to 'returns' or 'return' exists in 'keywords'.
+      */
+     return?: SvelteMethodReturnItem;
 }
 
 export interface SvelteComputedItem extends ISvelteItem {

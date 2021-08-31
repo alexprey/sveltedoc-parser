@@ -219,11 +219,12 @@ describe('SvelteDoc v3 - Props', () => {
             expect(doc, 'Document should be provided').to.exist;
 
             expect(doc.data, 'Document methods should be parsed').to.exist;
-            expect(doc.data.length).to.equal(3);
+            expect(doc.data.length).to.equal(4);
 
             const data0 = doc.data[0];
             const data1 = doc.data[1];
             const data2 = doc.data[2];
+            const data3 = doc.data[3];
 
             expect(data0.name).to.equal('add');
             expect(data0.type.type).to.equal('function');
@@ -292,6 +293,12 @@ describe('SvelteDoc v3 - Props', () => {
             expect(data2.return.type).to.exist;
             expect(data2.return.type.type).to.equal('number');
             expect(data2.return.description).to.equal('the total');
+
+
+            expect(data3.name).to.equal('done');
+            expect(data3.type.type).to.equal('function');
+            expect(data3.description).to.be.null;
+            expect(data3.params).to.not.exist;
 
 
             done();

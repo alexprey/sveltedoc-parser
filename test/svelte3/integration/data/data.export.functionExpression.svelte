@@ -22,4 +22,8 @@
         return a * b
     };
 
+    export let done = function(){
+        //nothing happens
+    }
+
 </script>

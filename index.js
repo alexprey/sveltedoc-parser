@@ -77,7 +77,7 @@ function mergeItems(itemType, currentItem, newItem, ignoreLocations) {
         currentItem.description = newItem.description;
     }
 
-    if (!currentItem.defaultValue && newItem.defaultValue) {
+    if (!currentItem.defaultValue && typeof newItem.defaultValue != 'undefined') {
         currentItem.defaultValue = newItem.defaultValue;
     }
 
@@ -87,7 +87,7 @@ function mergeItems(itemType, currentItem, newItem, ignoreLocations) {
         }
     }
 
-    if (!currentItem.keywords && newItem.keywords) {
+    if ((!currentItem.keywords || currentItem.keywords.length == 0) && newItem.keywords) {
         currentItem.keywords = newItem.keywords;
     }
 

@@ -77,6 +77,10 @@ function mergeItems(itemType, currentItem, newItem, ignoreLocations) {
         currentItem.description = newItem.description;
     }
 
+    if (!currentItem.defaultValue && newItem.defaultValue) {
+        currentItem.defaultValue = newItem.defaultValue;
+    }
+
     if (!currentItem.type || currentItem.type.type === 'any') {
         if (newItem.type && newItem.type.type !== 'any') {
             currentItem.type = newItem.type;

@@ -2,7 +2,7 @@
     /**
      * The import comment.
      */
-    import {y, z} from "./importable.js";
+    import {y, z} from "./const.importable.js";
 
-    import X from "./importable.js";
+    import X from "./const.importable.js";
 </script>

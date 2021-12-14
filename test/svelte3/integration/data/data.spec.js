@@ -329,7 +329,7 @@ describe('SvelteDoc v3 - Props', () => {
 
             expect(prop.name).to.equal('x');
             expect(prop.originalName).to.equal('x');
-            expect(prop.importPath).to.equal('./importable.js');
+            expect(prop.importPath).to.equal('./const.importable.js');
             expect(prop.visibility).to.equal('private');
             expect(prop.static).to.be.false;
 
@@ -361,7 +361,7 @@ describe('SvelteDoc v3 - Props', () => {
 
             expect(prop.name).to.equal('altY');
             expect(prop.originalName).to.equal('y');
-            expect(prop.importPath).to.equal('./importable.js');
+            expect(prop.importPath).to.equal('./const.importable.js');
             expect(prop.visibility).to.equal('private');
             expect(prop.static).to.be.false;
 

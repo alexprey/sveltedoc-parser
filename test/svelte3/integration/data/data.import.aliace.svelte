@@ -2,7 +2,7 @@
     /**
      * The import comment.
      */
-    import {y as altY} from "./importable.js";
+    import {y as altY} from "./const.importable.js";
 
-    import X from "./importable.js";
+    import X from "./const.importable.js";
 </script>

@@ -10,7 +10,7 @@ describe('SvelteDoc - Failure', () => {
             version: 2,
             filename: path.resolve(__dirname, 'failure.invalid.js.svelte'),
             ignoredVisibilities: []
-        }).then((doc) => {
+        }).then(() => {
             done(new Error('Should not be parsed'));
         }).catch(e => {
             expect(e).is.not.null;

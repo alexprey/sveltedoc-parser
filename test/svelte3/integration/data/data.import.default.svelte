@@ -2,7 +2,7 @@
     /**
      * The import comment.
      */
-    import x from "./importable.js";
+    import x from "./const.importable.js";
     
-    import X from "./importable.js";
+    import X from "./const.importable.js";
 </script>

@@ -109,21 +109,25 @@ describe('SvelteDoc v3 - Events', () => {
             expect(location, 'Location should be correct identified').is.deep.equals({ start: 122, end: 130 });
 
             const event1 = doc.events[1];
+
             expect(event1, 'Event should be a valid entity').to.exist;
             expect(event1.name).to.equal('start');
             expect(event1.visibility).to.equal('public');
 
             const event2 = doc.events[2];
+
             expect(event2, 'Event should be a valid entity').to.exist;
             expect(event2.name).to.equal('end');
             expect(event2.visibility).to.equal('public');
 
-            const event3= doc.events[3];
+            const event3 = doc.events[3];
+
             expect(event3, 'Event should be a valid entity').to.exist;
             expect(event3.name).to.equal('running');
             expect(event3.visibility).to.equal('public');
 
             const event4 = doc.events[4];
+
             expect(event4, 'Event should be a valid entity').to.exist;
             expect(event4.name).to.equal('failed');
             expect(event4.visibility).to.equal('public');

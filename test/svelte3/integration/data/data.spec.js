@@ -514,7 +514,7 @@ describe('SvelteDoc v3 - Props', () => {
             expect(doc, 'Document should be provided').to.exist;
             expect(doc.data, 'Document data should be parsed').to.exist;
 
-            expect(doc.data.length).to.equal(2);
+            expect(doc.data.length).to.equal(4);
 
             const prop = doc.data.find(d => d.name === 'class');
 
@@ -527,11 +527,24 @@ describe('SvelteDoc v3 - Props', () => {
             expect(prop.type).to.eql({ kind: 'type', type: 'Array<string>', text: 'Array<string>' });
 
             expect(prop.locations, 'Code location should be parsed').to.be.exist;
-            expect(prop.locations[0]).is.deep.equals({ start: 181, end: 186 });
+            expect(prop.locations[0]).is.deep.equals({ start: 178, end: 183 });
 
             const localProp = doc.data.find(d => d.name === 'classes');
 
             expect(localProp, 'Local prop definition also must be provided').to.exist;
+
+            const prop2 = doc.data.find(d => d.name === 'switch');
+            expect(prop2).to.exist;
+            expect(prop2.name, 'Aliace name must be exposed instead of original name').to.equal('switch');
+            expect(prop2.localName, 'Local name must be stored').to.equal('switchValue');
+            expect(prop2.defaultValue).to.equal("main");
+            expect(prop2.keywords).to.exist;
+            expect(prop2.keywords.length).to.equal(1);
+
+            const keyword = prop2.keywords[0];
+
+            expect(keyword.name).to.equal('type');
+            expect(keyword.description).to.equal("{'main' | 'sidebar'}");
 
             done();
         }).catch(e => {

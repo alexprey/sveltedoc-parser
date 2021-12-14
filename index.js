@@ -77,13 +77,17 @@ function mergeItems(itemType, currentItem, newItem, ignoreLocations) {
         currentItem.description = newItem.description;
     }
 
+    if (!currentItem.defaultValue && typeof newItem.defaultValue != 'undefined') {
+        currentItem.defaultValue = newItem.defaultValue;
+    }
+
     if (!currentItem.type || currentItem.type.type === 'any') {
         if (newItem.type && newItem.type.type !== 'any') {
             currentItem.type = newItem.type;
         }
     }
 
-    if (!currentItem.keywords && newItem.keywords) {
+    if ((!currentItem.keywords || currentItem.keywords.length == 0) && newItem.keywords) {
         currentItem.keywords = newItem.keywords;
     }
 

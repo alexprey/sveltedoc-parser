@@ -301,7 +301,9 @@ export type SvelteEventModificator =
     | 'passive'
     | 'capture'
     | 'once'
-    | 'nonpassive';
+    | 'nonpassive'
+    | 'self'
+    | 'trusted';
 
 export interface SvelteEventItem extends ISvelteItem {
     /**

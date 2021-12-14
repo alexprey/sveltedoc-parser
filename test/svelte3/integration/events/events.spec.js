@@ -25,7 +25,7 @@ describe('SvelteDoc v3 - Events', () => {
             expect(event.description).to.equal('Event fired when user clicked on button.');
 
             expect(event.modificators).to.eql([
-                'once', 'preventDefault'
+                'once', 'preventDefault', 'stopPropagation', 'passive', 'nonpassive', 'capture', 'self', 'trusted'
             ]);
 
             done();

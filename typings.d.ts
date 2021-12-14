@@ -14,7 +14,19 @@ export interface JSDocKeyword {
     description: string;
 }
 
+export type JSDocTypeKind = 'type' | 'const' | 'union' | 'function';
+
 export interface JSDocTypeBase {
+    /**
+     * The kind of JSDocType object.
+     * That property can identify which additional properties included in that object.
+     * 
+     * @see JSDocTypeElement
+     * @see JSDocTypeConst
+     * @see JSDocTypeUnion
+     * @see JSDocTypeFunction
+     */
+    kind: JSDocTypeKind;
     /**
      * The text representation of this type.
      */
@@ -63,7 +75,26 @@ export interface JSDocTypeUnion extends JSDocTypeBase {
     type: JSDocType[];
 }
 
-export type JSDocType = JSDocTypeElement | JSDocTypeConst | JSDocTypeUnion;
+export interface IMethodDefinition {
+    /**
+     * The list of parameter items of the function expression.
+     */
+    params?: SvelteMethodParamItem[];
+    /**
+      * The return item of the function expression. This exists if an item with 'name' equal
+      * to 'returns' or 'return' exists in 'keywords'.
+      */
+    return?: SvelteMethodReturnItem;
+}
+
+/**
+ * @since {4.2.0}
+ */
+export interface JSDocTypeFunction extends JSDocTypeBase, IMethodDefinition {
+    kind: 'function';    
+}
+
+export type JSDocType = JSDocTypeElement | JSDocTypeConst | JSDocTypeUnion | JSDocTypeFunction;
 
 /**
  * Represents a source location of symbol.
@@ -187,17 +218,6 @@ export interface SvelteDataItem extends ISvelteItem {
      * @since {2.2.0}
      */
     importPath?: string;
-
-    /**
-     * The list of parameter items of the function expression.
-     */
-     params?: SvelteMethodParamItem[];
-
-     /**
-      * The return item of the function expression. This exists if an item with 'name' equal
-      * to 'returns' or 'return' exists in 'keywords'.
-      */
-     return?: SvelteMethodReturnItem;
 }
 
 export interface SvelteComputedItem extends ISvelteItem {
@@ -255,19 +275,7 @@ export interface SvelteMethodReturnItem {
     description?: string;
 }
 
-export interface SvelteMethodItem extends ISvelteItem {
-    /**
-     * The list of parameter items of the method.
-     * @since {4.0.0}
-     */
-    params?: SvelteMethodParamItem[];
-
-    /**
-     * The return item of the method. This exists if an item with 'name' equal
-     * to 'returns' or 'return' exists in 'keywords'.
-     * @since {4.0.0}
-     */
-    return?: SvelteMethodReturnItem;
+export interface SvelteMethodItem extends ISvelteItem, IMethodDefinition {
 }
 
 export interface SvelteComponentItem extends ISvelteItem {

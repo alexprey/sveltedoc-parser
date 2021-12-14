@@ -232,6 +232,7 @@ describe('SvelteDoc v3 - Props', () => {
             expect(data0.params, 'Function expression arguments should be parsed').to.exist;
 
             const data0params0 = data0.params[0];
+
             expect(data0params0.name).to.equal('a');
             expect(data0params0.description).to.be.null;
             expect(data0params0.type.type).to.equal('number');
@@ -239,12 +240,12 @@ describe('SvelteDoc v3 - Props', () => {
             expect(data0params0.optional).to.be.true;
 
             const data0params1 = data0.params[1];
+
             expect(data0params1.name).to.equal('b');
             expect(data0params1.description).to.be.null;
             expect(data0params1.type.type).to.equal('number');
             expect(data0params1.defaultValue).to.equal('0');
             expect(data0params1.optional).to.be.true;
-
 
             expect(data1.name).to.equal('subtract');
             expect(data1.type.type).to.equal('function');
@@ -252,6 +253,7 @@ describe('SvelteDoc v3 - Props', () => {
             expect(data1.params, 'Function expression arguments should be parsed').to.exist;
 
             const data1params0 = data1.params[0];
+
             expect(data1params0.name).to.equal('a');
             expect(data1params0.description).to.equal('first number');
             expect(data1params0.type.type).to.equal('number');
@@ -259,6 +261,7 @@ describe('SvelteDoc v3 - Props', () => {
             expect(data1params0.optional).to.be.false;
 
             const data1params1 = data1.params[1];
+
             expect(data1params1.name).to.equal('b');
             expect(data1params1.description).to.equal('second number');
             expect(data1params1.type.type).to.equal('number');
@@ -276,6 +279,7 @@ describe('SvelteDoc v3 - Props', () => {
             expect(data2.params, 'Function expression arguments should be parsed').to.exist;
 
             const data2params0 = data2.params[0];
+
             expect(data2params0.name).to.equal('a');
             expect(data2params0.description).to.equal('first number');
             expect(data2params0.type.type).to.equal('number');
@@ -283,6 +287,7 @@ describe('SvelteDoc v3 - Props', () => {
             expect(data2params0.optional).to.be.true;
 
             const data2params1 = data2.params[1];
+
             expect(data2params1.name).to.equal('b');
             expect(data2params1.description).to.equal('second number');
             expect(data2params1.type.type).to.equal('number');
@@ -294,12 +299,10 @@ describe('SvelteDoc v3 - Props', () => {
             expect(data2.return.type.type).to.equal('number');
             expect(data2.return.description).to.equal('the total');
 
-
             expect(data3.name).to.equal('done');
             expect(data3.type.type).to.equal('function');
             expect(data3.description).to.be.null;
             expect(data3.params).to.not.exist;
-
 
             done();
         }).catch(e => {
@@ -534,10 +537,11 @@ describe('SvelteDoc v3 - Props', () => {
             expect(localProp, 'Local prop definition also must be provided').to.exist;
 
             const prop2 = doc.data.find(d => d.name === 'switch');
+
             expect(prop2).to.exist;
             expect(prop2.name, 'Aliace name must be exposed instead of original name').to.equal('switch');
             expect(prop2.localName, 'Local name must be stored').to.equal('switchValue');
-            expect(prop2.defaultValue).to.equal("main");
+            expect(prop2.defaultValue).to.equal('main');
             expect(prop2.keywords).to.exist;
             expect(prop2.keywords.length).to.equal(1);
 

@@ -3,6 +3,8 @@ All notable changes to the "svelte-intellisense" extension will be documented in
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## UNPUBLISHED
+
 ## [4.2.0] 14.12.2021
 
 - 🔒 **[Fixed]** Upgrade all dependecies to latest version to solve known vulnarability issues.

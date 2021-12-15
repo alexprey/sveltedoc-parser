@@ -8,6 +8,8 @@ Generate a JSON documentation for a Svelte file.
 ## Table of Contents <!-- omit in toc -->
 
 - [Changelog](#changelog)
+  - [[4.2.1] 15.12.2021](#421-15122021)
+  - [[4.2.0] 14.12.2021](#420-14122021)
   - [[4.1.0] 19.02.2021](#410-19022021)
   - [[4.0.0] 25.01.2021](#400-25012021)
 - [Install](#install)
@@ -28,17 +30,20 @@ Generate a JSON documentation for a Svelte file.
 
 ## Changelog
 
+### [4.2.1] 15.12.2021
+- 🛠 **[Fixed]** - Add missed dependency.
+
 ### [4.2.0] 14.12.2021
 
 - 🔒 **[Fixed]** Upgrade all dependecies to latest version to solve known vulnarability issues.
-- ✔ **[Added]** Add support ES6 default value assignment for method parameter [Issue #75](https://github.com/alexprey/sveltedoc-parser/issues/75). Thanks for @ekhaled.
-- ✔ **[Added]** Add support of method parsing when it assigned to identifier [Issue #78](https://github.com/alexprey/sveltedoc-parser/issues/78). Thanks for @ekhaled.
+- ✔ **[Added]** Add support ES6 default value assignment for method parameter [Issue #75](https://github.com/alexprey/sveltedoc-parser/issues/75). Thanks for [@ekhaled](https://github.com/ekhaled).
+- ✔ **[Added]** Add support of method parsing when it assigned to identifier [Issue #78](https://github.com/alexprey/sveltedoc-parser/issues/78). Thanks for [@ekhaled](https://github.com/ekhaled).
 - ✔ **[Added]** Extend typings to support `self` and `trusted` event modifiers [Issue #80].
 - ✔ **[Added]** Introduce `JSDocTypeFunction` to support functions types in variable definitions and provide details about function parameters and methods.
-- ✔ **[Added]** Extend `JSDocType` to support new `JSDocTypeFunction`
+- ✔ **[Added]** Extend `JSDocType` to support new `JSDocTypeFunction`.
 - ✔ **[Added]** Improve type infering from assigned value. Currently support simple infering: `array`, `object`, `function`.
-- 🛠 **[Fixed]** Fix the [Issue #67](https://github.com/alexprey/sveltedoc-parser/issues/67), [Issue #69](https://github.com/alexprey/sveltedoc-parser/issues/69): specifier comments are not parsed properly; Thanks to @ekhaled
-- 🛠 **[Fixed]** Fix the [Issue #72](https://github.com/alexprey/sveltedoc-parser/issues/72): Module context scripts look for the wrong attribute
+- 🛠 **[Fixed]** Fix the [Issue #67](https://github.com/alexprey/sveltedoc-parser/issues/67), [Issue #69](https://github.com/alexprey/sveltedoc-parser/issues/69): specifier comments are not parsed properly; Thanks to [@ekhaled](https://github.com/ekhaled).
+- 🛠 **[Fixed]** Fix the [Issue #72](https://github.com/alexprey/sveltedoc-parser/issues/72): Module context scripts look for the wrong attribute.
 - 🛠 **[Fixed]** Fix the [Issue #83](https://github.com/alexprey/sveltedoc-parser/issues/83): Default value and keywords of exported aliases not merged.
 
 ### [4.1.0] 19.02.2021

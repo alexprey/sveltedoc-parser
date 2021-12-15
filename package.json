@@ -39,6 +39,7 @@
     "homepage": "https://github.com/alexprey/sveltedoc-parser",
     "dependencies": {
         "espree": "9.2.0",
+        "eslint": "8.4.1",
         "htmlparser2-svelte": "4.1.0"
     },
     "devDependencies": {

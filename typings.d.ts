@@ -530,6 +530,8 @@ interface BaseParserOptions<
      * parser can't identify the version used.
      */
     defaultVersion?: V;
+
+    scriptParserFactory?: (options: any) => any;
 }
 
 /**

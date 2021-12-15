@@ -180,13 +180,13 @@
     ],
     "events": [
         {
+            "keywords": [],
+            "visibility": "public",
+            "description": "",
             "name": "click",
             "parent": "button",
             "modificators": [],
-            "locations": null,
-            "visibility": "public",
-            "description": "",
-            "keywords": []
+            "locations": null
         }
     ],
     "slots": [],

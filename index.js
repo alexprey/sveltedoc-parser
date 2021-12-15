@@ -77,13 +77,17 @@ function mergeItems(itemType, currentItem, newItem, ignoreLocations) {
         currentItem.description = newItem.description;
     }
 
+    if (!currentItem.defaultValue && typeof newItem.defaultValue !== 'undefined') {
+        currentItem.defaultValue = newItem.defaultValue;
+    }
+
     if (!currentItem.type || currentItem.type.type === 'any') {
         if (newItem.type && newItem.type.type !== 'any') {
             currentItem.type = newItem.type;
         }
     }
 
-    if (!currentItem.keywords && newItem.keywords) {
+    if ((!currentItem.keywords || currentItem.keywords.length === 0) && newItem.keywords) {
         currentItem.keywords = newItem.keywords;
     }
 
@@ -176,6 +180,7 @@ function subscribeOnParserEvents(parser, ignoredVisibilities, version, resolve, 
 /**
  * Main parse function.
  * @param {SvelteParserOptions} options
+ * @return {Promise<import('./typings').SvelteComponentDoc>}
  * @example
  * const { parse } = require('sveltedoc-parser');
  * // basic usage only requires 'filename' to be set.

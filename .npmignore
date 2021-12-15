@@ -3,6 +3,7 @@
 /scripts
 .eslintrc.json
 .gitignore
+.eslintignore
 yarn.lock
 .github
 .vscode

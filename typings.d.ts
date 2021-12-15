@@ -14,7 +14,19 @@ export interface JSDocKeyword {
     description: string;
 }
 
+export type JSDocTypeKind = 'type' | 'const' | 'union' | 'function';
+
 export interface JSDocTypeBase {
+    /**
+     * The kind of JSDocType object.
+     * That property can identify which additional properties included in that object.
+     * 
+     * @see JSDocTypeElement
+     * @see JSDocTypeConst
+     * @see JSDocTypeUnion
+     * @see JSDocTypeFunction
+     */
+    kind: JSDocTypeKind;
     /**
      * The text representation of this type.
      */
@@ -30,7 +42,7 @@ export interface JSDocTypeElement extends JSDocTypeBase {
     /**
      * Provide the path from where this event are imported.
      * Emited only if JSDoc have {import()} statement.
-     * 
+     *
      * @example
      * For example, lets check the following JSDoc comment:
      * ```js
@@ -63,7 +75,26 @@ export interface JSDocTypeUnion extends JSDocTypeBase {
     type: JSDocType[];
 }
 
-export type JSDocType = JSDocTypeElement | JSDocTypeConst | JSDocTypeUnion;
+export interface IMethodDefinition {
+    /**
+     * The list of parameter items of the function expression.
+     */
+    params?: SvelteMethodParamItem[];
+    /**
+      * The return item of the function expression. This exists if an item with 'name' equal
+      * to 'returns' or 'return' exists in 'keywords'.
+      */
+    return?: SvelteMethodReturnItem;
+}
+
+/**
+ * @since {4.2.0}
+ */
+export interface JSDocTypeFunction extends JSDocTypeBase, IMethodDefinition {
+    kind: 'function';    
+}
+
+export type JSDocType = JSDocTypeElement | JSDocTypeConst | JSDocTypeUnion | JSDocTypeFunction;
 
 /**
  * Represents a source location of symbol.
@@ -143,7 +174,7 @@ export interface SvelteDataItem extends ISvelteItem {
     bind?: SvelteDataBindMapping[];
     /**
      * Indicates that this data item of component located in static context.
-     * Variable should be declared in `<script scope="module" />` block.
+     * Variable should be declared in `<script context="module" />` block.
      * @since Svelte V3
      * @since {2.0.0}
      */
@@ -225,7 +256,7 @@ export interface SvelteMethodParamItem {
     description?: string;
     /**
      * Indicates that this data item of component located in static context.
-     * Variable should be declared in `<script scope="module" />` block.
+     * Variable should be declared in `<script context="module" />` block.
      * @since Svelte V3
      * @since {2.0.0}
      */
@@ -244,19 +275,7 @@ export interface SvelteMethodReturnItem {
     description?: string;
 }
 
-export interface SvelteMethodItem extends ISvelteItem {
-    /**
-     * The list of parameter items of the method.
-     * @since {4.0.0}
-     */
-    params?: SvelteMethodParamItem[];
-
-    /**
-     * The return item of the method. This exists if an item with 'name' equal
-     * to 'returns' or 'return' exists in 'keywords'.
-     * @since {4.0.0}
-     */
-    return?: SvelteMethodReturnItem;
+export interface SvelteMethodItem extends ISvelteItem, IMethodDefinition {
 }
 
 export interface SvelteComponentItem extends ISvelteItem {
@@ -282,7 +301,9 @@ export type SvelteEventModificator =
     | 'passive'
     | 'capture'
     | 'once'
-    | 'nonpassive';
+    | 'nonpassive'
+    | 'self'
+    | 'trusted';
 
 export interface SvelteEventItem extends ISvelteItem {
     /**
@@ -301,15 +322,38 @@ export interface SvelteEventItem extends ISvelteItem {
  * @since Svelte V3
  * @since {2.0.0}
  */
-export interface SvelteSlotParameter extends ISvelteItem {}
+export interface SvelteSlotParameter {
+    /**
+     * The name of slot parameter.
+     */
+    name: string;
+    /**
+     * The JSDocType of the slot parameter value.
+     * @since {4.1.0}
+     */
+    type: JSDocType;
+    /**
+     * The description of the slot parameter.
+     * @since {4.1.0}
+     */
+    description?: string;
+}
 
 export interface SvelteSlotItem extends ISvelteItem {
     /**
      * List of exposed slot parameters.
      * @since Svelte V3
      * @since {2.0.0}
+     * @deprecated @see params property instead
      */
     parameters?: SvelteSlotParameter[];
+
+    /**
+     * List of exposed slot parameters.
+     * @since Svelte V3
+     * @since {4.1.0}
+     */
+    params?: SvelteSlotParameter[];
 }
 
 export interface SvelteRefItem extends ISvelteItem {
@@ -508,7 +552,7 @@ export type SvelteParserOptions =
 declare module 'sveltedoc-parser' {
     /**
      * Parse the svelte source file to structured object.
-     * 
+     *
      * @param options The parser options
      * @example
      * ```js
@@ -531,7 +575,7 @@ declare module 'sveltedoc-parser' {
 
     /**
      * Try to detect svelte source file version.
-     * 
+     *
      * @param options The parser options
      * @return The detected version of svelte source file.
      */

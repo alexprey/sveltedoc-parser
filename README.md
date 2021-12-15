@@ -8,6 +8,9 @@ Generate a JSON documentation for a Svelte file.
 ## Table of Contents <!-- omit in toc -->
 
 - [Changelog](#changelog)
+  - [[4.2.1] 15.12.2021](#421-15122021)
+  - [[4.2.0] 14.12.2021](#420-14122021)
+  - [[4.1.0] 19.02.2021](#410-19022021)
   - [[4.0.0] 25.01.2021](#400-25012021)
 - [Install](#install)
 - [Features](#features)
@@ -26,6 +29,38 @@ Generate a JSON documentation for a Svelte file.
 - [License](#license)
 
 ## Changelog
+
+### [4.2.1] 15.12.2021
+- 🛠 **[Fixed]** - Add missed dependency.
+
+### [4.2.0] 14.12.2021
+
+- 🔒 **[Fixed]** Upgrade all dependecies to latest version to solve known vulnarability issues.
+- ✔ **[Added]** Add support ES6 default value assignment for method parameter [Issue #75](https://github.com/alexprey/sveltedoc-parser/issues/75). Thanks for [@ekhaled](https://github.com/ekhaled).
+- ✔ **[Added]** Add support of method parsing when it assigned to identifier [Issue #78](https://github.com/alexprey/sveltedoc-parser/issues/78). Thanks for [@ekhaled](https://github.com/ekhaled).
+- ✔ **[Added]** Extend typings to support `self` and `trusted` event modifiers [Issue #80].
+- ✔ **[Added]** Introduce `JSDocTypeFunction` to support functions types in variable definitions and provide details about function parameters and methods.
+- ✔ **[Added]** Extend `JSDocType` to support new `JSDocTypeFunction`.
+- ✔ **[Added]** Improve type infering from assigned value. Currently support simple infering: `array`, `object`, `function`.
+- 🛠 **[Fixed]** Fix the [Issue #67](https://github.com/alexprey/sveltedoc-parser/issues/67), [Issue #69](https://github.com/alexprey/sveltedoc-parser/issues/69): specifier comments are not parsed properly; Thanks to [@ekhaled](https://github.com/ekhaled).
+- 🛠 **[Fixed]** Fix the [Issue #72](https://github.com/alexprey/sveltedoc-parser/issues/72): Module context scripts look for the wrong attribute.
+- 🛠 **[Fixed]** Fix the [Issue #83](https://github.com/alexprey/sveltedoc-parser/issues/83): Default value and keywords of exported aliases not merged.
+
+### [4.1.0] 19.02.2021
+
+- 🎉 **[Misc]** Update the ReadMe by [@soft-decay](https://github.com/soft-decay).
+- ✔ **[Added]** Implement support of imported types parsing, f.ex. `@type {import('../typings.d.ts').ExternalTypeClass}`. In order to do this, new field `importPath` introduced to `JSDocType`, in the name property now it returns imported class name, f.ex.: `ExternalTypeClass`.
+- 🛠 **[Fixed]** Complete fix of [Issue #1](https://github.com/alexprey/sveltedoc-parser/issues/1): Support parsing event names from top-level constant objects with accessing to their properties by naming strings. Introduce the new issue [Issue #48](https://github.com/alexprey/sveltedoc-parser/issues/48) about supporting parse of event names by external references.
+- 🛠 **[Fixed]** Fix the [Issue #47](https://github.com/alexprey/sveltedoc-parser/issues/48), now all comments in markup are parsed correctly and attached to required items in document. Support JSDoc comment markup parsing in all places where comment can be used.
+- 🛠 **[Fixed]** Fix the [Issue #61](https://github.com/alexprey/sveltedoc-parser/issues/61), now slot parameter items enrich with all detailed information that was parsed from markup comment.
+- 🛠 **[Fixed]** Spec: add the module definition typings to `typings.d.ts` file.
+- 🛠 **[Fixed]** Fix some edge-cases in script parsing logic.
+- 🛠 **[Tech]** Refactor internal parser logic to make it easy to introduce new features, moves forward to TS support! ;)
+- 🔥 **[Breaking]** Spec: change the `SvelteSlotParameter` definition, to support `name`, `description`, `type` fields, instead of many not relevant fields that was inherited from `ISvelteItem` interface.
+- 🔥 **[Breaking]** Spec: change the `SvelteSlotItem` definition, to improve consistency:
+  - Rename `parameters` property to `params` to be most likely the same as `SvelteMethodItem`. Old field still available until 5.* release.
+
+Thanks a lot [@soft-decay](https://github.com/soft-decay) for contributing in this release!
 
 ### [4.0.0] 25.01.2021
 
@@ -207,7 +242,7 @@ Found a new issue? Please contribute and write a detailed description [here](htt
 
 Author [Alexey Mulyukin](https://github.com/alexprey)
 
-Based on [Vuedoc Parser](https://gitlab.com/vuedoc/parser)
+Inspired by [Vuedoc Parser](https://gitlab.com/vuedoc/parser)
 
 ## License
 

@@ -27,6 +27,24 @@ describe('SvelteDoc v3 - Global component', () => {
         }).catch(done);
     });
 
+    it('Global component data should be parsed with HTML comment (Official Example)', (done) => {
+        parser.parse({
+            version: 3,
+            filename: path.resolve(__dirname, 'globalComment.markup-off.svelte'),
+            features: ['description', 'keywords'],
+            includeSourceLocations: true,
+            ignoredVisibilities: []
+        }).then((doc) => {
+            expect(doc, 'Document should be provided').to.exist;
+            expect(doc.description, 'Document description should be parsed').to.exist;
+            expect(doc.keywords, 'Document keywords should be parsed').to.exist;
+
+            expect(doc.description, 'Document description text').to.contain("Here's some documentation for this component.");
+            expect(doc.keywords, 'Document keywords length').to.have.length(1);
+            done();
+        }).catch(done);
+    });
+
     it('Global component data should be parsed with JS comment', (done) => {
         parser.parse({
             version: 3,
